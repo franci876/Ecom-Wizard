@@ -1,7 +1,11 @@
 package testCases;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -24,14 +28,24 @@ public class Login
     String filePath = System.getProperty("user.dir")+"\\src\\excelExportAndFileIO";
 
     //Call read file method of the class to read data
-  
+
+    
     CommonUtilities	xcl = new CommonUtilities();
 	@BeforeTest
-	public void beforetest()
+		
+	public void beforetest() throws IOException
 	{
+		
 		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
-		driver.get("http://main.stage.bt-ms.com/erp.php/login");
+		FileReader fr=new FileReader(System.getProperty("user.dir")+"\\src\\main\\java\\data\\data.properties");
+		Properties p =new Properties();
+	    
+
+		p.load(fr);
+		//System.out.println(p.getProperty("URL"));
+		
+		driver.get(p.getProperty("URL"));
 			  
 	}
 	
