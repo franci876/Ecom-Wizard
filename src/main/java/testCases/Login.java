@@ -18,52 +18,26 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import pages.LoginPage;
+import utilities.Base;
 import utilities.CommonUtilities;
 
 
-public class Login
+public class Login extends Base
 {
-	WebDriver driver;
-	
-    String filePath = System.getProperty("user.dir")+"\\src\\excelExportAndFileIO";
-
-    //Call read file method of the class to read data
-
+	//WebDriver driver;
     
     CommonUtilities	xcl = new CommonUtilities();
-	@BeforeTest
-		
-	public void beforetest() throws IOException
-	{
-		
-		WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver();
-		FileReader fr=new FileReader(System.getProperty("user.dir")+"\\src\\main\\java\\data\\data.properties");
-		Properties p =new Properties();
-	    
-
-		p.load(fr);
-		//System.out.println(p.getProperty("URL"));
-		
-		driver.get(p.getProperty("URL"));
-			  
-	}
-	
-	@Test
+	@Test(priority=1)
 	public void loginoperation() throws InterruptedException, IOException
-	{
-
-		LoginPage page = new LoginPage(driver);
-						
-		page.login(xcl.getCellData("Login","User Name"), xcl.getCellData("Login","Password"));		
-  				
+	{						
+		 LoginPage page = new LoginPage(driver);
+		page.login(xcl.getCellData("Login","User Name"), xcl.getCellData("Login","Password"));					  				
 	}
-	
-	@AfterTest
-	public void aftertest()
+	@Test(priority=2)
+	public void logoutoperation()
 	{
-		driver.quit();
+      LoginPage page = new LoginPage(driver);
+	  page.clickLogout();
+		
 	}
-	
-
 }

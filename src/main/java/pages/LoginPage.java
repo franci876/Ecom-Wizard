@@ -17,7 +17,8 @@ public class LoginPage
 	By password = By.name("password");
 	By loginbutton = By.xpath("/html/body/div[3]/div[1]/div[2]/div/form/fieldset/div[2]/div[4]/div[2]/input");
 	By profile = By.className("user-icon");
-	By logoutbutton = By.className("dropdown-item");
+	By logoutbutton = By.xpath("/html/body/div[1]/div/div[2]/div/p[1]/a[2]");
+	//By logoutbutton = By.linkText("Log out");
 	
 	public void enterUserName(String strUserName)
 	{
@@ -32,11 +33,15 @@ public class LoginPage
 	public void clickLoginButton()
 	{
 		driver.findElement(loginbutton).click();		
-		driver.findElement(username).clear();
-		driver.findElement(password).clear();
+		//driver.findElement(username).clear();
+		//driver.findElement(password).clear();
 		
 	}
 	
+	 public void clickLogout()
+	 	{
+	 		driver.findElement(logoutbutton).click();
+	 	}
      public  void login(String strUserName, String strPassword)
 	{
 		try
@@ -44,6 +49,7 @@ public class LoginPage
 			this.enterUserName(strUserName);
 			this.enterPassword(strPassword);
 			this.clickLoginButton();
+			this.clickLogout();
 			
 	    }
 		catch(Exception e)
@@ -52,5 +58,6 @@ public class LoginPage
 		
 		}
 	}
+    
 	
 }
