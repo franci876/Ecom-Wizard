@@ -21,7 +21,6 @@ import pages.LoginPage;
 import utilities.Base;
 import utilities.CommonUtilities;
 
-
 public class Login extends Base
 {
 	//WebDriver driver;
@@ -30,14 +29,10 @@ public class Login extends Base
 	@Test(priority=1)
 	public void loginoperation() throws InterruptedException, IOException
 	{						
-		 LoginPage page = new LoginPage(driver);
+		LoginPage page = new LoginPage(driver);
 		page.login(xcl.getCellData("Login","User Name"), xcl.getCellData("Login","Password"));					  				
+		page.clickLogout();
 	}
-	@Test(priority=2)
-	public void logoutoperation()
-	{
-      LoginPage page = new LoginPage(driver);
-	  page.clickLogout();
-		
-	}
+	
+	
 }

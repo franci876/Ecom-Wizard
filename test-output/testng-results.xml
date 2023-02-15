@@ -1,43 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="2" passed="1" failed="1" skipped="0">
+<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-02-14T10:11:22 IST" name="Default suite" finished-at="2023-02-14T10:11:40 IST" duration-ms="18172">
+  <suite started-at="2023-02-15T15:27:34 IST" name="Default suite" finished-at="2023-02-15T15:29:06 IST" duration-ms="92170">
     <groups>
     </groups>
-    <test started-at="2023-02-14T10:11:22 IST" name="Default test" finished-at="2023-02-14T10:11:40 IST" duration-ms="18172">
-      <class name="testCases.Login">
-        <test-method is-config="true" signature="beforetest()[pri:0, instance:testCases.Login@5ce4369b]" started-at="2023-02-14T10:11:22 IST" name="beforetest" finished-at="2023-02-14T10:11:29 IST" duration-ms="7468" status="PASS">
+    <test started-at="2023-02-15T15:27:34 IST" name="Default test" finished-at="2023-02-15T15:29:06 IST" duration-ms="92170">
+      <class name="testCases.AddProducts">
+        <test-method is-config="true" signature="beforetest()[pri:0, instance:testCases.AddProducts@7f829c76]" started-at="2023-02-15T15:27:34 IST" name="beforetest" finished-at="2023-02-15T15:27:41 IST" duration-ms="7627" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforetest -->
-        <test-method signature="loginoperation()[pri:1, instance:testCases.Login@5ce4369b]" started-at="2023-02-14T10:11:30 IST" name="loginoperation" finished-at="2023-02-14T10:11:39 IST" duration-ms="9869" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- loginoperation -->
-        <test-method signature="logoutoperation()[pri:2, instance:testCases.Login@5ce4369b]" started-at="2023-02-14T10:11:40 IST" name="logoutoperation" finished-at="2023-02-14T10:11:40 IST" duration-ms="47" status="FAIL">
-          <exception class="org.openqa.selenium.NoSuchElementException">
+        <test-method signature="addproductoperation()[pri:1, instance:testCases.AddProducts@7f829c76]" started-at="2023-02-15T15:27:42 IST" name="addproductoperation" finished-at="2023-02-15T15:29:05 IST" duration-ms="83694" status="FAIL">
+          <exception class="org.openqa.selenium.ElementClickInterceptedException">
             <message>
-              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[1]/div/div[2]/div/p[1]/a[2]"}
+              <![CDATA[element click intercepted: Element <a href="#" class="sf-with-ul">...</a> is not clickable at point (207, 20). Other element would receive the click: <img src="http://main.stage.bt-ms.com/images/header.png" alt="" width="648" height="72">
   (Session info: chrome=110.0.5481.96)
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
 Build info: version: '4.0.0-alpha-3', revision: '8c567de6dc'
 System info: host: 'SEZ-WS-47', ip: '192.168.10.201', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.5'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 110.0.5481.96, chrome: {chromedriverVersion: 110.0.5481.77 (65ed616c6e8e..., userDataDir: C:\Users\dme595\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:50205}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 1a409b28e8c876cf7fd8acc999798850
-*** Element info: {Using=xpath, value=/html/body/div[1]/div/div[2]/div/p[1]/a[2]}]]>
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 110.0.5481.96, chrome: {chromedriverVersion: 110.0.5481.77 (65ed616c6e8e..., userDataDir: C:\Users\dme595\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:51611}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: b95583a0c7c42dce916a3bb4f1c3afde]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[1]/div/div[2]/div/p[1]/a[2]"}
+              <![CDATA[org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <a href="#" class="sf-with-ul">...</a> is not clickable at point (207, 20). Other element would receive the click: <img src="http://main.stage.bt-ms.com/images/header.png" alt="" width="648" height="72">
   (Session info: chrome=110.0.5481.96)
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
 Build info: version: '4.0.0-alpha-3', revision: '8c567de6dc'
 System info: host: 'SEZ-WS-47', ip: '192.168.10.201', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.5'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 110.0.5481.96, chrome: {chromedriverVersion: 110.0.5481.77 (65ed616c6e8e..., userDataDir: C:\Users\dme595\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:50205}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 1a409b28e8c876cf7fd8acc999798850
-*** Element info: {Using=xpath, value=/html/body/div[1]/div/div[2]/div/p[1]/a[2]}
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 110.0.5481.96, chrome: {chromedriverVersion: 110.0.5481.77 (65ed616c6e8e..., userDataDir: C:\Users\dme595\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:51611}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: b95583a0c7c42dce916a3bb4f1c3afde
 at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -49,12 +41,11 @@ at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpRespo
 at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:161)
 at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
 at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:576)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:327)
-at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:445)
-at org.openqa.selenium.By$ByXPath.findElement(By.java:396)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:319)
-at pages.LoginPage.clickLogout(LoginPage.java:43)
-at testCases.Login.logoutoperation(Login.java:42)
+at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:308)
+at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:83)
+at pages.AddProductsPage.clickcoredata(AddProductsPage.java:41)
+at pages.AddProductsPage.addproduct(AddProductsPage.java:81)
+at testCases.AddProducts.addproductoperation(AddProducts.java:27)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -85,15 +76,15 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+          </exception> <!-- org.openqa.selenium.ElementClickInterceptedException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- logoutoperation -->
-        <test-method is-config="true" signature="aftertest()[pri:0, instance:testCases.Login@5ce4369b]" started-at="2023-02-14T10:11:40 IST" name="aftertest" finished-at="2023-02-14T10:11:40 IST" duration-ms="407" status="PASS">
+        </test-method> <!-- addproductoperation -->
+        <test-method is-config="true" signature="aftertest()[pri:0, instance:testCases.AddProducts@7f829c76]" started-at="2023-02-15T15:29:05 IST" name="aftertest" finished-at="2023-02-15T15:29:06 IST" duration-ms="535" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- aftertest -->
-      </class> <!-- testCases.Login -->
+      </class> <!-- testCases.AddProducts -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

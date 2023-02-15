@@ -11,30 +11,21 @@ import utilities.CommonUtilities;
 public class AddProducts extends Base
 {
 	
-
-	    //Call read file method of the class to read data
-
-	    
+	    //Call read file method of the class to read data	    
 	    CommonUtilities	xcl = new CommonUtilities();
-
 	//WebDriver driver;   
 	
 	@Test(priority=1)
-	public void addproductoperation() throws InterruptedException, IOException
+	public void addproductoperation() throws Exception
 	{
-		LoginPage objloginpage = new LoginPage(driver);
-		
-		objloginpage.login(xcl.getCellData("Login","User Name"), xcl.getCellData("Login","Password"));	
-		
-		
+		LoginPage objloginpage = new LoginPage(driver);		
+		objloginpage.login(xcl.getCellData("Login","User Name"), xcl.getCellData("Login","Password"));					
 		AddProductsPage page = new AddProductsPage(driver);						
 		page.clickcoredata();		
 		page.createproduct();
 		page.deleteproduct();
-		page.addproduct();
-  				
+		page.addproduct();				
 	}
-	
 	
 	
 //	@AfterTest
