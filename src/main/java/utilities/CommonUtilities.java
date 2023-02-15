@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -23,6 +24,12 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CommonUtilities {
 
@@ -88,6 +95,26 @@ public class CommonUtilities {
               
     	 
     	 }
+
+//    public String dropdownmethod(String a, String b)
+//    {
+//		
+//		WebDriver driver;
+//		
+//		By strid = By.cssSelector("strid");
+//		By straid= By.xpath("straid");
+//		
+//		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+//		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("strid")));
+//		WebElement element = driver.findElement(By.cssSelector("strid"));
+//		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+//		Thread.sleep(500); 
+//		
+//		driver.findElement(strid).click();;
+//		Thread.sleep(4000);
+//		driver.findElement(straid).click();
+//    	return;
+//    }
     
 }
 	
