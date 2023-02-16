@@ -11,7 +11,6 @@ import utilities.CommonUtilities;
 
 public class AddProducts extends Base
 {
-	
 	    //Call read file method of the class to read data	    
 	    CommonUtilities	xcl = new CommonUtilities(); 
 	
@@ -21,15 +20,12 @@ public class AddProducts extends Base
 		LoginPage objloginpage = new LoginPage(driver);		
 		objloginpage.login(xcl.getCellData("Login","User Name"), xcl.getCellData("Login","Password"));					
 		AddProductsPage page = new AddProductsPage(driver);						
-	
-		page.addproduct();
-		
+		page.addproduct();	
 	}
-	
+
 	@AfterTest
 	public void aftertest()
 	{
 		driver.quit();
 	}	
-	
 }

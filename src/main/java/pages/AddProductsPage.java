@@ -3,6 +3,7 @@ package pages;
 import java.time.Duration;
 import java.util.List;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -19,10 +20,10 @@ WebDriver driver;
 	{
 		this.driver = driver;		
 	}
- 
 	By coredata =By.xpath("/html/body/div[2]/ul/li[2]/a");
 	By products = By.xpath("/html/body/div[2]/ul/li[2]/ul/li[7]/a");	
 	By addnewproduct = By.xpath("/html/body/div[3]/div[1]/a");
+	 String productnm="Test Product "+RandomStringUtils.randomAlphabetic(5);
 	By prodname = By.id("prod_name");
 	//click on dropbox business type
 	By businesstype = By.xpath("//div[3]/div[2]/div/a/span");
@@ -62,7 +63,8 @@ WebDriver driver;
 	}
 	public void createproduct() throws Exception
 	{
-		driver.findElement(prodname).sendKeys("Test Product New 101");
+       
+		driver.findElement(prodname).sendKeys(productnm);
 		driver.findElement(businesstype).click();
 		Thread.sleep(4000);
 		driver.findElement(businesstp).click();
@@ -106,7 +108,7 @@ WebDriver driver;
 	}
 	public void filter() throws Exception 
 	{
-		driver.findElement(prodNameFilter).sendKeys("Test Product New 101");
+		driver.findElement(prodNameFilter).sendKeys(productnm);
 		driver.findElement(prodFilter).click();
 		Thread.sleep(2000);
 	}
