@@ -29,6 +29,7 @@ WebDriver driver;
 	String productnm="Test Product "+RandomStringUtils.randomAlphabetic(5);
 	By prodname = By.id("prod_name");
 	//click on dropbox business type
+	
 	By businesstype = By.xpath("//div[3]/div[2]/div/a/span");
 	By businesstp =By.xpath("//div/div/ul/li[2]");
 	//click on dropbox product appearance
@@ -38,7 +39,8 @@ WebDriver driver;
 	
 	String path= "#prod_tank_type_desc_chosen span";
 	By tanktype = By.cssSelector(path);
-	By tank= By.xpath("//li[contains(.,\'T4\')]");
+	//By tank= By.xpath("//li[contains(.,\'T4\')]");
+	
 	
 	By shipname = By.id("prod_ship_name");
 	//click on dropbox secondary class
@@ -66,30 +68,54 @@ WebDriver driver;
 		driver.findElement(products).click();
 		driver.findElement(addnewproduct).click();
 	}
-	public void createproduct() throws Exception
+//	public void enterproductsg(String sg)
+//	{
+//	driver.findElement(prodsg).sendKeys(sg);
+//	}
+//	public void enterProductName()
+//	{
+//		driver.findElement(prodname).sendKeys(productnm);
+//	}
+//	public void ClickBusinessType() throws Exception
+//	{
+//		driver.findElement(businesstype).click();
+//		Thread.sleep(4000);
+//		driver.findElement(businesstp).click();
+//	}
+//	public void Prodappearance()
+//	{
+//		driver.findElement(prodappearance).sendKeys("Test Product appearance");
+//	}
+	public void tankType(String tnktp) throws Exception
 	{
-       
-		driver.findElement(prodname).sendKeys(productnm);
+		By s=By.xpath("//li[contains(.,\'"+tnktp+"\')]");
+		Thread.sleep(4000);
+	    driver.findElement(s).click();
+	}
+	public void prodsg(String sg)
+	{
+		driver.findElement(prodsg).sendKeys(sg);
+		
+	}
+	
+	public void createproduct() throws Exception
+	{       
+		driver.findElement(prodname).sendKeys(productnm);	
 		driver.findElement(businesstype).click();
 		Thread.sleep(4000);
 		driver.findElement(businesstp).click();
+		
 		driver.findElement(prodappearance).sendKeys("Test Product appearance");
-		driver.findElement(prodsg).sendKeys("99.1");
+		//driver.findElement(prodsg).sendKeys("99.1");
 		
 		Thread.sleep(4000);
-		
+		//method to select/get/show dropdown values
 		dropdownmethod(driver,path);
 		
-//		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-//		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#prod_tank_type_desc_chosen span")));
-//		WebElement element = driver.findElement(By.cssSelector("#prod_tank_type_desc_chosen span"));
-//		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-//		Thread.sleep(500); 
-//		
 		driver.findElement(tanktype).click();;
 		Thread.sleep(4000);
-		driver.findElement(tank).click();
-		
+//		driver.findElement(tank).click();
+				
 		driver.findElement(primarycls).click();
 		Thread.sleep(4000);
 		driver.findElement(primaryclass).click();
@@ -106,9 +132,14 @@ WebDriver driver;
 		Thread.sleep(3000);
 		driver.findElement(create).click();	
 	}
-	public void addproduct() throws Exception
+
+	
+	public void addproducts(String sg,String s,String tnktp) throws Exception
 	{
 		this.clickcoredata();
+		this.prodsg(sg);
+		Thread.sleep(5000);
+		this.tankType(tnktp);
 		this.createproduct();
 		Thread.sleep(5000);
 		this.filter();
