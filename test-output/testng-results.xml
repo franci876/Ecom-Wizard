@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-02-16T12:08:12 IST" name="Default suite" finished-at="2023-02-16T12:09:23 IST" duration-ms="70311">
+  <suite started-at="2023-02-16T13:48:02 IST" name="Default suite" finished-at="2023-02-16T13:49:09 IST" duration-ms="67669">
     <groups>
     </groups>
-    <test started-at="2023-02-16T12:08:12 IST" name="Default test" finished-at="2023-02-16T12:09:23 IST" duration-ms="70311">
+    <test started-at="2023-02-16T13:48:02 IST" name="Default test" finished-at="2023-02-16T13:49:09 IST" duration-ms="67669">
       <class name="testCases.AddProducts">
-        <test-method is-config="true" signature="beforetest()[pri:0, instance:testCases.AddProducts@42fcc7e6]" started-at="2023-02-16T12:08:12 IST" name="beforetest" finished-at="2023-02-16T12:08:21 IST" duration-ms="8408" status="PASS">
+        <test-method is-config="true" signature="beforetest()[pri:0, instance:testCases.AddProducts@4a0df195]" started-at="2023-02-16T13:48:02 IST" name="beforetest" finished-at="2023-02-16T13:48:08 IST" duration-ms="6489" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforetest -->
-        <test-method signature="addproductoperation()[pri:1, instance:testCases.AddProducts@42fcc7e6]" started-at="2023-02-16T12:08:21 IST" name="addproductoperation" finished-at="2023-02-16T12:09:22 IST" duration-ms="61149" status="PASS">
+        <test-method signature="addproductoperation()[pri:1, instance:testCases.AddProducts@4a0df195]" started-at="2023-02-16T13:48:08 IST" name="addproductoperation" finished-at="2023-02-16T13:49:09 IST" duration-ms="60435" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- addproductoperation -->
-        <test-method is-config="true" signature="aftertest()[pri:0, instance:testCases.AddProducts@42fcc7e6]" started-at="2023-02-16T12:09:22 IST" name="aftertest" finished-at="2023-02-16T12:09:23 IST" duration-ms="404" status="PASS">
+        <test-method is-config="true" signature="aftertest()[pri:0, instance:testCases.AddProducts@4a0df195]" started-at="2023-02-16T13:49:09 IST" name="aftertest" finished-at="2023-02-16T13:49:09 IST" duration-ms="385" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- aftertest -->

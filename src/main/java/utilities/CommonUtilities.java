@@ -93,29 +93,18 @@ public class CommonUtilities {
                 }
                        	 
               
-    	 
-    	 }
-
-//    public String dropdownmethod(String a, String b)
-//    {
-//		
-//		WebDriver driver;
-//		
-//		By strid = By.cssSelector("strid");
-//		By straid= By.xpath("straid");
-//		
-//		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-//		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("strid")));
-//		WebElement element = driver.findElement(By.cssSelector("strid"));
-//		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-//		Thread.sleep(500); 
-//		
-//		driver.findElement(strid).click();;
-//		Thread.sleep(4000);
-//		driver.findElement(straid).click();
-//    	return;
-//    }
-    
+     }
+   //To get selection for dropdowns  
+    public String dropdownmethod(WebDriver driver, String path) throws Exception
+    {
+		
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(path)));
+		WebElement element = driver.findElement(By.cssSelector(path));
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+		Thread.sleep(500);
+		return path; 	
+    }    
 }
 	
 	

@@ -12,7 +12,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class AddProductsPage
+import utilities.CommonUtilities;
+
+public class AddProductsPage extends CommonUtilities 
 {
 WebDriver driver;
 	
@@ -23,7 +25,8 @@ WebDriver driver;
 	By coredata =By.xpath("/html/body/div[2]/ul/li[2]/a");
 	By products = By.xpath("/html/body/div[2]/ul/li[2]/ul/li[7]/a");	
 	By addnewproduct = By.xpath("/html/body/div[3]/div[1]/a");
-	 String productnm="Test Product "+RandomStringUtils.randomAlphabetic(5);
+	//Setting random name for product name 
+	String productnm="Test Product "+RandomStringUtils.randomAlphabetic(5);
 	By prodname = By.id("prod_name");
 	//click on dropbox business type
 	By businesstype = By.xpath("//div[3]/div[2]/div/a/span");
@@ -32,7 +35,9 @@ WebDriver driver;
 	By prodappearance = By.id("prod_appearance");
 	By prodsg = By.id("prod_sg");
 	//click on dropbox tank type
-	By tanktype = By.cssSelector("#prod_tank_type_desc_chosen span");
+	
+	String path= "#prod_tank_type_desc_chosen span";
+	By tanktype = By.cssSelector(path);
 	By tank= By.xpath("//li[contains(.,\'T4\')]");
 	
 	By shipname = By.id("prod_ship_name");
@@ -73,15 +78,18 @@ WebDriver driver;
 		
 		Thread.sleep(4000);
 		
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#prod_tank_type_desc_chosen span")));
-		WebElement element = driver.findElement(By.cssSelector("#prod_tank_type_desc_chosen span"));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-		Thread.sleep(500); 
+		dropdownmethod(driver,path);
 		
+//		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+//		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#prod_tank_type_desc_chosen span")));
+//		WebElement element = driver.findElement(By.cssSelector("#prod_tank_type_desc_chosen span"));
+//		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+//		Thread.sleep(500); 
+//		
 		driver.findElement(tanktype).click();;
 		Thread.sleep(4000);
-		driver.findElement(tank).click();	
+		driver.findElement(tank).click();
+		
 		driver.findElement(primarycls).click();
 		Thread.sleep(4000);
 		driver.findElement(primaryclass).click();
