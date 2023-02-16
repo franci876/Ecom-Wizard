@@ -24,29 +24,34 @@ WebDriver driver;
 	By products = By.xpath("/html/body/div[2]/ul/li[2]/ul/li[7]/a");	
 	By addnewproduct = By.xpath("/html/body/div[3]/div[1]/a");
 	By prodname = By.id("prod_name");
-	
+	//click on dropbox business type
 	By businesstype = By.xpath("//div[3]/div[2]/div/a/span");
 	By businesstp =By.xpath("//div/div/ul/li[2]");
-	
+	//click on dropbox product appearance
 	By prodappearance = By.id("prod_appearance");
 	By prodsg = By.id("prod_sg");
-	
+	//click on dropbox tank type
 	By tanktype = By.cssSelector("#prod_tank_type_desc_chosen span");
 	By tank= By.xpath("//li[contains(.,\'T4\')]");
 	
 	By shipname = By.id("prod_ship_name");
-	
+	//click on dropbox secondary class
 	By secondarycls =By.xpath("//div[@id='prod_secondary_class_chosen']/a/span");
 	By secondaryclass = By.xpath("//div[@id='prod_secondary_class_chosen']/div/ul/li[7]");	
-	
+	//click on dropbox primary class
 	By primarycls = By.xpath("//div[4]/div/fieldset/div[2]/div[2]/div/a/span");
 	By primaryclass = By.xpath("//div[@id='prod_primary_class_chosen']/div/ul/li[5]");
-	
+	//click on dropbox tertiary class
 	By tertiarycls = By.xpath("//div[@id='prod_tertiary_class_chosen']/a/span");
 	By tertiaryclass = By.xpath("//div[@id='prod_tertiary_class_chosen']/div/ul/li[6]");
-	
-	
+	//create product
 	By create = By.xpath("/html/body/div[3]/div[1]/form/div[12]/button");
+	//filter product by name
+	By prodNameFilter =By.id("prod-name-filter");
+	By prodFilter = By.xpath("//button[@type='submit']");
+	//delete added product
+	By deletebtn =By.xpath("/html/body/div[3]/div[1]/div[6]/table/tbody/tr[1]/td[9]/a[4]");
+	By deleteconfirm = By.xpath("//button[contains(.,'OK')]");
 	
 	public void clickcoredata()
 	{
@@ -57,7 +62,7 @@ WebDriver driver;
 	}
 	public void createproduct() throws Exception
 	{
-		driver.findElement(prodname).sendKeys("Test Product 1");
+		driver.findElement(prodname).sendKeys("Test Product New 101");
 		driver.findElement(businesstype).click();
 		Thread.sleep(4000);
 		driver.findElement(businesstp).click();
@@ -88,17 +93,27 @@ WebDriver driver;
 		driver.findElement(tertiaryclass).click();
 		driver.findElement(shipname).sendKeys("Test Ship");
 		
-		Thread.sleep(5000);
-		driver.findElement(create).click();		
-	}
-	public void deleteproduct()
-	{
-		//driver.findElement(deleteprod).click();
+		Thread.sleep(3000);
+		driver.findElement(create).click();	
 	}
 	public void addproduct() throws Exception
 	{
 		this.clickcoredata();
 		this.createproduct();
+		Thread.sleep(5000);
+		this.filter();
 		this.deleteproduct();
+	}
+	public void filter() throws Exception 
+	{
+		driver.findElement(prodNameFilter).sendKeys("Test Product New 101");
+		driver.findElement(prodFilter).click();
+		Thread.sleep(2000);
+	}
+	public void deleteproduct() throws Exception
+	{
+		driver.findElement(deletebtn).click();
+		Thread.sleep(4000);
+		driver.findElement(deleteconfirm).click();
 	}
 }
