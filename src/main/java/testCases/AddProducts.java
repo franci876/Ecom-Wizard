@@ -1,5 +1,8 @@
 package testCases;
 import java.io.IOException;
+
+import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
@@ -23,11 +26,10 @@ public class AddProducts extends Base
 		//AddProductsPage page = new AddProductsPage(driver);						
 		
 		AddProductsPage objaddpg = new AddProductsPage(driver);
-		objaddpg.addproducts(xcl.getCellData("Products","S.G"),xcl.getCellData("Products","S.G"),xcl.getCellData("Products","Tank Type Desc"));
-		
+		objaddpg.addproducts(xcl.getCellData("Products","S.G"),xcl.getCellData("Products","S.G"),xcl.getCellData("Products","Tank Type Desc"),xcl.getCellData("Products", "Primary Class"),xcl.getCellData("Products", "Appearance"),xcl.getCellData("Products", "Proper Shipping Name"));
 		//page.addproducts();	
+		
 	}
-
 	@AfterTest
 	public void aftertest()
 	{

@@ -26,6 +26,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -105,6 +106,52 @@ public class CommonUtilities {
 		Thread.sleep(500);
 		return path; 	
     }    
+    
+    
+    public void dropDownClick(WebDriver driver, By dropDownName, String strDropDownValue ) throws Exception
+	{
+    	
+    	WebElement element = driver.findElement(dropDownName);
+    	((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+    	Thread.sleep(500);
+         
+		
+		driver.findElement(dropDownName).click();;
+		Thread.sleep(4000);
+		
+		String jbn="//li[contains(.,\'"+strDropDownValue+"\')]";
+		By dropDownValue= By.xpath(jbn);
+		
+	    driver.findElement(dropDownValue).click();
+	  
+		
+		
+	}
+    
+    public void dropDownEnter(WebDriver driver, By dropDownName, String strDropDownValue, By strDropDownNameTwo) throws Exception
+   	{
+       	
+       	WebElement element = driver.findElement(dropDownName);
+       	((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+       	Thread.sleep(500); 
+              		
+   		driver.findElement(dropDownName).click();
+   		Thread.sleep(4000);
+   		
+   		/*String jbn="//li[contains(.,\'"+strDropDownValue+"\')]";
+   		By dropDownValue= By.xpath(jbn);  		
+   	    driver.findElement(dropDownValue).click();*/
+   		    
+   	    
+   	    WebElement w= driver.findElement(strDropDownNameTwo);
+		Thread.sleep(4000);
+		Thread.sleep(4000);
+		w.sendKeys(strDropDownValue);
+		w.sendKeys(Keys.ENTER);	
+   	    
+   	
+   	    
+   	}
 }
 	
 	
