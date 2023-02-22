@@ -103,15 +103,20 @@ WebDriver driver;
 	By customercls =By.xpath("//div[2]/div/button/span");
 	By customer =By.xpath("//div[2]/div/ul/li[3]/a/label");
 	
-	By msdsValiddt= By.xpath("//form[@id='product-form']/div[6]/div/fieldset/div[3]/div/div/span/span");
-	By msdsValiddtf = By.xpath("//div[@id='ui-datepicker-div']/div/div/select[2]");
-	By msdsValiddtf2 = By.xpath("//div[5]/div/div/select");
-	By msdsValiddtf3 = By.xpath("//tr[5]/td[3]/a");
+	By msdsValiddt= By.xpath("/html/body/div[3]/div[1]/form/div[6]/div/fieldset/div[3]/div[1]/div/span/span");
+	By msdsValiddtf = By.xpath("/html/body/div[5]/div/div/select[2]");
+	By msdsValiddtf2 = By.xpath("/html/body/div[5]/div/div/select[2]/option[13]");
+	By msdsValiddtf3 = By.xpath("/html/body/div[5]/div/div/select[1]");
+	By msdsValiddtf4 = By.xpath("/html/body/div[5]/div/div/select[1]/option[2]");
+	By msdsValiddtf5 =By.xpath("/html/body/div[5]/table/tbody/tr[2]/td[2]/a");
 	
-	By msdsValiddto = By.xpath("//div[3]/div[2]/div/span");
-	By msdsValiddto2 = By.xpath("//div[5]/div/div/select");
-	By msdsValiddto3 = By.xpath("//tr[2]/td[4]/a");
-	
+	By msdsValiddtt = By.xpath("/html/body/div[3]/div[1]/form/div[6]/div/fieldset/div[3]/div[2]/div/span");
+	By msdsValiddto2 = By.xpath("/html/body/div[5]/div/div/select[2]");
+	By msdsValiddto3 = By.xpath("/html/body/div[5]/div/div/select[2]/option[11]");
+	By msdsValiddto4 =By.xpath("/html/body/div[5]/div/div/select[1]");
+	By msdsValiddto5 = By.xpath("/html/body/div[5]/div/div/select[1]/option[2]");
+	By msdsValiddto6 = By.xpath("/html/body/div[5]/table/tbody/tr[3]/td[3]/a");
+			
 	By synonym = By.xpath("/html/body/div[3]/div[1]/form/div[7]/div/fieldset/div[2]/div/div[1]/input");
 	By synadd = By.id("synonym-add-btn-1");
 	By productNote = By.id("prod_specific_note");
@@ -167,6 +172,10 @@ WebDriver driver;
 	//delete added product
 	By deletebtn =By.xpath("/html/body/div[3]/div[1]/div[6]/table/tbody/tr[1]/td[9]/a[4]");
 	By deleteconfirm = By.xpath("//button[contains(.,'OK')]");
+	
+	//edit added product
+	By editbtn =By.xpath("/html/body/div[3]/div[1]/div[6]/table/tbody/tr[1]/td[9]/a[1]");
+	By updatebtn = By.xpath("/html/body/div[3]/div[1]/form/div[14]/button");
 	
 	CommonUtilities objCU = new CommonUtilities();
 	
@@ -235,6 +244,7 @@ WebDriver driver;
 		
 		driver.findElement(prodDivi).click();
 		Thread.sleep(4000);
+		dropdownmethod(driver,path);
 		driver.findElement(prodDiv).click();
 		driver.findElement(prodname).sendKeys(productnm);
 		Thread.sleep(4000);
@@ -297,10 +307,21 @@ WebDriver driver;
 		driver.findElement(corrosiveToMetal).click();
 		
 		driver.findElement(msdsValiddt).click();
+		Thread.sleep(2000);
 		driver.findElement(msdsValiddtf).click();
 		driver.findElement(msdsValiddtf2).click();
 		driver.findElement(msdsValiddtf3).click();
+		driver.findElement(msdsValiddtf4).click();
+		driver.findElement(msdsValiddtf5).click();
 		
+		driver.findElement(msdsValiddtt).click();
+		Thread.sleep(2000);
+		driver.findElement(msdsValiddto2).click();
+		driver.findElement(msdsValiddto3).click();
+		driver.findElement(msdsValiddto4).click();
+		driver.findElement(msdsValiddto5).click();
+		driver.findElement(msdsValiddto6).click();
+		Thread.sleep(2000);
 		//driver.findElement(customer).click();
 		driver.findElement(synonym).sendKeys("Test Synonym");
 		driver.findElement(synadd).click();
@@ -312,13 +333,13 @@ WebDriver driver;
 		driver.findElement(saptCtrl).sendKeys("82");
 		driver.findElement(sadtCtrl).sendKeys("64");
 		
-		Thread.sleep(4000);
+		Thread.sleep(2000);
 		
 		driver.findElement(qualityTempCtrl).click();
 		
-		Thread.sleep(4000);
+		Thread.sleep(2000);
 		objCU.dropDownClick(driver, lowestTemp1, "-9");
-		Thread.sleep(6000);
+		Thread.sleep(2000);
 		//objCU.dropDownClick(driver, maxTemp1, " -9");
 		objCU.dropDownEnter(driver, maxTemp1,objCU.getCellData("Products","Nominal Temp Max"),maxTemp2);
 		Thread.sleep(2000);
@@ -327,28 +348,28 @@ WebDriver driver;
 		Thread.sleep(2000);
 		//objCU.dropDownClick(driver, fstWarmax1, "-3");
 		objCU.dropDownEnter(driver, fstWarmax1,objCU.getCellData("Products","First Warning Temp Max"),fstWarmax2);
-		Thread.sleep(4000);
+		Thread.sleep(2000);
 		//objCU.dropDownClick(driver, secwarlow1, "-7");
 		objCU.dropDownEnter(driver, secwarlow1,objCU.getCellData("Products","Second Warning Temp Min"),secwarlow2);
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 		//objCU.dropDownClick(driver, secwarmax1, "-2");
 		objCU.dropDownEnter(driver, secwarmax1,objCU.getCellData("Products","Second Warning Temp Max"),secwarmax2);
-		Thread.sleep(4000);
+		Thread.sleep(2000);
 		//objCU.dropDownClick(driver, criticTempLow1, "-10");
 		objCU.dropDownEnter(driver, criticTempLow1,objCU.getCellData("Products","Critical Temp Low"),criticTempLow2);
-		Thread.sleep(4000);
+		Thread.sleep(2000);
 		//objCU.dropDownClick(driver, criticTempMax1, "-1");
 		objCU.dropDownEnter(driver, criticTempMax1,objCU.getCellData("Products","Critical Temp Max"),criticTempMax2);
-		Thread.sleep(4000);
+		Thread.sleep(2000);
 		//objCU.dropDownClick(driver, loadTempMin1, "-6");
 		objCU.dropDownEnter(driver, loadTempMin1,objCU.getCellData("Products","Loading Temp Min"),loadTempMin2);
-		Thread.sleep(4000);
+		Thread.sleep(2000);
 		//objCU.dropDownClick(driver, loadTempMax1, "-2");
 		objCU.dropDownEnter(driver, loadTempMax1,objCU.getCellData("Products","Loading Temp Max"),loadTempMax2);
-		Thread.sleep(4000);
+		Thread.sleep(2000);
 		//objCU.dropDownClick(driver, disTempLow1, "-5");
 		objCU.dropDownEnter(driver, disTempLow1,objCU.getCellData("Products","Discharge Temp Min"),disTempLow2);
-		Thread.sleep(4000);
+		Thread.sleep(2000);
 		//objCU.dropDownClick(driver, disTempMax1, "-2");
 		objCU.dropDownEnter(driver, disTempMax1,objCU.getCellData("Products","Discharge Temp Max"),disTempMax2);
 		
@@ -384,16 +405,34 @@ WebDriver driver;
 		this.clickcreateprod();
 		Thread.sleep(5000);
 		this.filter();
+		this.editProduct();
+		Thread.sleep(2000);
+		this.filter();
 		this.deleteproduct();
 	}
+	
 	public void filter() throws Exception 
 	{
+		driver.findElement(prodNameFilter).clear();
 		driver.findElement(prodNameFilter).sendKeys(productnm);
 		driver.findElement(prodFilter).click();
 		Thread.sleep(2000);
 	}
+	
+	public void editProduct() throws Exception
+	{
+		driver.findElement(editbtn).click();
+		Thread.sleep(2000);
+		driver.findElement(heatmin).sendKeys("45");
+		driver.findElement(heatmax).sendKeys("125");
+		driver.findElement(productNote).sendKeys("Test note new edited");
+		driver.findElement(qssheNote).sendKeys("Edited Qsshe Notes");
+		driver.findElement(updatebtn).click();
+		Thread.sleep(2000);
+	}
 	public void deleteproduct() throws Exception
 	{
+		
 		driver.findElement(deletebtn).click();
 		Thread.sleep(4000);
 		driver.findElement(deleteconfirm).click();
