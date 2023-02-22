@@ -134,29 +134,29 @@ WebDriver driver;
 	By maxTemp2 = By.xpath("/html/body/div[3]/div[1]/form/div[8]/div/fieldset/div[4]/div[1]/div[2]/div/div/div/input");
 	
 	By fstWarLow1 =By.xpath("//div[4]/div[2]/div/div/a/span");
-	//By fstWarLow2 =By.xpath("//div[8]/div/fieldset/div/div/input");
+	By fstWarLow2 =By.xpath("/html/body/div[3]/div[1]/form/div[8]/div/fieldset/div[4]/div[2]/div[1]/div/div/div/input");
 	By fstWarmax1 =By.xpath("//div[4]/div[2]/div[2]/div/a/span");
-	//By fstWarmax2 =By.xpath("//div[8]/div/fieldset/div/div/input");
+	By fstWarmax2 =By.xpath("/html/body/div[3]/div[1]/form/div[8]/div/fieldset/div[4]/div[2]/div[2]/div/div/div/input");
 	
 	By secwarlow1 =By.xpath("//div[4]/div[3]/div/div/a/span");
-	//By secwarlow2 =By.xpath("//div[8]/div/fieldset/div/div/input");
-	By secwarmax1 =By.xpath("//div[4]/div[2]/div[2]/div/a/span");
-	//By secwarmax2 =By.xpath("//div[8]/div/fieldset/div/div/input");
+	By secwarlow2 =By.xpath("/html/body/div[3]/div[1]/form/div[8]/div/fieldset/div[4]/div[3]/div[1]/div/div/div/input");
+	By secwarmax1 =By.xpath("/html/body/div[3]/div[1]/form/div[8]/div/fieldset/div[4]/div[3]/div[2]/div/a");
+	By secwarmax2 =By.xpath("/html/body/div[3]/div[1]/form/div[8]/div/fieldset/div[4]/div[3]/div[2]/div/div/div/input");
 	
 	By criticTempLow1 =By.xpath("//div[4]/div[4]/div/div/a/span");
-	//By criticTempLow2 =By.xpath("//div[8]/div/fieldset/div/div/input");
-	By criticTempMax1 =By.xpath("//div[4]/div[2]/div/a/span");
-	//By criticTempMax2 =By.xpath("//div[8]/div/fieldset/div/div/input");
+	By criticTempLow2 =By.xpath("/html/body/div[3]/div[1]/form/div[8]/div/fieldset/div[4]/div[4]/div[1]/div/div/div/input");
+	By criticTempMax1 =By.xpath("/html/body/div[3]/div[1]/form/div[8]/div/fieldset/div[4]/div[4]/div[2]/div/a");
+	By criticTempMax2 =By.xpath("/html/body/div[3]/div[1]/form/div[8]/div/fieldset/div[4]/div[4]/div[2]/div/div/div/input");
 	
-	By loadTempMin1 = By.xpath("//div[4]/div[5]/div/div/a/span");
-	//By loadTempMin2 = By.xpath("//div[8]/div/fieldset/div/div/input");
-	By loadTempMax1 = By.xpath("//div[5]/div[2]/div/a/span");
-	//By loadTempMax2 = By.xpath("//div[8]/div/fieldset/div/div/input");
+	By loadTempMin1 = By.xpath("/html/body/div[3]/div[1]/form/div[8]/div/fieldset/div[4]/div[5]/div[1]/div/a");
+	By loadTempMin2 = By.xpath("/html/body/div[3]/div[1]/form/div[8]/div/fieldset/div[4]/div[5]/div[1]/div/div/div/input");
+	By loadTempMax1 = By.xpath("/html/body/div[3]/div[1]/form/div[8]/div/fieldset/div[4]/div[5]/div[2]/div/a");
+	By loadTempMax2 = By.xpath("/html/body/div[3]/div[1]/form/div[8]/div/fieldset/div[4]/div[5]/div[2]/div/div/div/input");
 	
 	By disTempLow1 =By.xpath("//div[6]/div/div/a/span");
-	//By disTempLow2 =By.xpath("//div[8]/div/fieldset/div/div/input");
-	By disTempMax1 =By.xpath("//div[6]/div[2]/div/a/span");
-	//By disTempMax2 =By.xpath("//div[8]/div/fieldset/div/div/input");
+	By disTempLow2 =By.xpath("/html/body/div[3]/div[1]/form/div[8]/div/fieldset/div[4]/div[6]/div[1]/div/div/div/input");
+	By disTempMax1 =By.xpath("/html/body/div[3]/div[1]/form/div[8]/div/fieldset/div[4]/div[6]/div[2]/div/a");
+	By disTempMax2 =By.xpath("/html/body/div[3]/div[1]/form/div[8]/div/fieldset/div[4]/div[6]/div[2]/div/div/div/input");
 	
 	
 	//create product
@@ -321,26 +321,36 @@ WebDriver driver;
 		Thread.sleep(6000);
 		//objCU.dropDownClick(driver, maxTemp1, " -9");
 		objCU.dropDownEnter(driver, maxTemp1,objCU.getCellData("Products","Nominal Temp Max"),maxTemp2);
+		Thread.sleep(2000);
+		//objCU.dropDownClick(driver, fstWarLow1, "-8");
+		objCU.dropDownEnter(driver, fstWarLow1,objCU.getCellData("Products","First Warning Temp Min"),fstWarLow2);
+		Thread.sleep(2000);
+		//objCU.dropDownClick(driver, fstWarmax1, "-3");
+		objCU.dropDownEnter(driver, fstWarmax1,objCU.getCellData("Products","First Warning Temp Max"),fstWarmax2);
 		Thread.sleep(4000);
-		objCU.dropDownClick(driver, fstWarLow1, "-8");
+		//objCU.dropDownClick(driver, secwarlow1, "-7");
+		objCU.dropDownEnter(driver, secwarlow1,objCU.getCellData("Products","Second Warning Temp Min"),secwarlow2);
+		Thread.sleep(5000);
+		//objCU.dropDownClick(driver, secwarmax1, "-2");
+		objCU.dropDownEnter(driver, secwarmax1,objCU.getCellData("Products","Second Warning Temp Max"),secwarmax2);
 		Thread.sleep(4000);
-		objCU.dropDownClick(driver, fstWarmax1, "-3");
+		//objCU.dropDownClick(driver, criticTempLow1, "-10");
+		objCU.dropDownEnter(driver, criticTempLow1,objCU.getCellData("Products","Critical Temp Low"),criticTempLow2);
 		Thread.sleep(4000);
-		objCU.dropDownClick(driver, secwarlow1, "-7");
+		//objCU.dropDownClick(driver, criticTempMax1, "-1");
+		objCU.dropDownEnter(driver, criticTempMax1,objCU.getCellData("Products","Critical Temp Max"),criticTempMax2);
 		Thread.sleep(4000);
-		objCU.dropDownClick(driver, secwarmax1, "-2");
+		//objCU.dropDownClick(driver, loadTempMin1, "-6");
+		objCU.dropDownEnter(driver, loadTempMin1,objCU.getCellData("Products","Loading Temp Min"),loadTempMin2);
 		Thread.sleep(4000);
-		objCU.dropDownClick(driver, criticTempLow1, "-10");
+		//objCU.dropDownClick(driver, loadTempMax1, "-2");
+		objCU.dropDownEnter(driver, loadTempMax1,objCU.getCellData("Products","Loading Temp Max"),loadTempMax2);
 		Thread.sleep(4000);
-		objCU.dropDownClick(driver, criticTempMax1, "-1");
+		//objCU.dropDownClick(driver, disTempLow1, "-5");
+		objCU.dropDownEnter(driver, disTempLow1,objCU.getCellData("Products","Discharge Temp Min"),disTempLow2);
 		Thread.sleep(4000);
-		objCU.dropDownClick(driver, loadTempMin1, "-6");
-		Thread.sleep(4000);
-		objCU.dropDownClick(driver, loadTempMax1, "-2");
-		Thread.sleep(4000);
-		objCU.dropDownClick(driver, disTempLow1, "-5");
-		Thread.sleep(4000);
-		objCU.dropDownClick(driver, disTempMax1, "-2");
+		//objCU.dropDownClick(driver, disTempMax1, "-2");
+		objCU.dropDownEnter(driver, disTempMax1,objCU.getCellData("Products","Discharge Temp Max"),disTempMax2);
 		
 		
 		
