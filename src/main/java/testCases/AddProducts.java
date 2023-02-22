@@ -26,8 +26,8 @@ public class AddProducts extends Base
 		//AddProductsPage page = new AddProductsPage(driver);						
 		
 		AddProductsPage objaddpg = new AddProductsPage(driver);
-		objaddpg.addproducts(xcl.getCellData("Products","S.G"),xcl.getCellData("Products","S.G"),xcl.getCellData("Products","Tank Type Desc"),xcl.getCellData("Products", "Primary Class"),xcl.getCellData("Products", "Appearance"),xcl.getCellData("Products", "Proper Shipping Name"));
-		//page.addproducts();	
+		objaddpg.addproducts(xcl.getCellData("Products","S.G"),xcl.getCellData("Products", "Appearance"),xcl.getCellData("Products", "Proper Shipping Name"),xcl.getCellData("Products","Tank Type Desc"),xcl.getCellData("Products", "Primary Class"),xcl.getCellData("Products", "Appearance"),xcl.getCellData("Products", "caS Number"));
+		
 		
 	}
 	@AfterTest
