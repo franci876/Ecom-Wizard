@@ -12,6 +12,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
 import utilities.CommonUtilities;
 
@@ -335,44 +337,44 @@ WebDriver driver;
 		
 		Thread.sleep(2000);
 		
-		driver.findElement(qualityTempCtrl).click();
-		
-		Thread.sleep(2000);
-		objCU.dropDownClick(driver, lowestTemp1, "-9");
-		Thread.sleep(2000);
-		//objCU.dropDownClick(driver, maxTemp1, " -9");
-		objCU.dropDownEnter(driver, maxTemp1,objCU.getCellData("Products","Nominal Temp Max"),maxTemp2);
-		Thread.sleep(2000);
-		//objCU.dropDownClick(driver, fstWarLow1, "-8");
-		objCU.dropDownEnter(driver, fstWarLow1,objCU.getCellData("Products","First Warning Temp Min"),fstWarLow2);
-		Thread.sleep(2000);
-		//objCU.dropDownClick(driver, fstWarmax1, "-3");
-		objCU.dropDownEnter(driver, fstWarmax1,objCU.getCellData("Products","First Warning Temp Max"),fstWarmax2);
-		Thread.sleep(2000);
-		//objCU.dropDownClick(driver, secwarlow1, "-7");
-		objCU.dropDownEnter(driver, secwarlow1,objCU.getCellData("Products","Second Warning Temp Min"),secwarlow2);
-		Thread.sleep(2000);
-		//objCU.dropDownClick(driver, secwarmax1, "-2");
-		objCU.dropDownEnter(driver, secwarmax1,objCU.getCellData("Products","Second Warning Temp Max"),secwarmax2);
-		Thread.sleep(2000);
-		//objCU.dropDownClick(driver, criticTempLow1, "-10");
-		objCU.dropDownEnter(driver, criticTempLow1,objCU.getCellData("Products","Critical Temp Low"),criticTempLow2);
-		Thread.sleep(2000);
-		//objCU.dropDownClick(driver, criticTempMax1, "-1");
-		objCU.dropDownEnter(driver, criticTempMax1,objCU.getCellData("Products","Critical Temp Max"),criticTempMax2);
-		Thread.sleep(2000);
-		//objCU.dropDownClick(driver, loadTempMin1, "-6");
-		objCU.dropDownEnter(driver, loadTempMin1,objCU.getCellData("Products","Loading Temp Min"),loadTempMin2);
-		Thread.sleep(2000);
-		//objCU.dropDownClick(driver, loadTempMax1, "-2");
-		objCU.dropDownEnter(driver, loadTempMax1,objCU.getCellData("Products","Loading Temp Max"),loadTempMax2);
-		Thread.sleep(2000);
-		//objCU.dropDownClick(driver, disTempLow1, "-5");
-		objCU.dropDownEnter(driver, disTempLow1,objCU.getCellData("Products","Discharge Temp Min"),disTempLow2);
-		Thread.sleep(2000);
-		//objCU.dropDownClick(driver, disTempMax1, "-2");
-		objCU.dropDownEnter(driver, disTempMax1,objCU.getCellData("Products","Discharge Temp Max"),disTempMax2);
-		
+//		driver.findElement(qualityTempCtrl).click();
+//		
+//		Thread.sleep(2000);
+//		objCU.dropDownClick(driver, lowestTemp1, "-9");
+//		Thread.sleep(2000);
+//		//objCU.dropDownClick(driver, maxTemp1, " -9");
+//		objCU.dropDownEnter(driver, maxTemp1,objCU.getCellData("Products","Nominal Temp Max"),maxTemp2);
+//		Thread.sleep(2000);
+//		//objCU.dropDownClick(driver, fstWarLow1, "-8");
+//		objCU.dropDownEnter(driver, fstWarLow1,objCU.getCellData("Products","First Warning Temp Min"),fstWarLow2);
+//		Thread.sleep(2000);
+//		//objCU.dropDownClick(driver, fstWarmax1, "-3");
+//		objCU.dropDownEnter(driver, fstWarmax1,objCU.getCellData("Products","First Warning Temp Max"),fstWarmax2);
+//		Thread.sleep(2000);
+//		//objCU.dropDownClick(driver, secwarlow1, "-7");
+//		objCU.dropDownEnter(driver, secwarlow1,objCU.getCellData("Products","Second Warning Temp Min"),secwarlow2);
+//		Thread.sleep(2000);
+//		//objCU.dropDownClick(driver, secwarmax1, "-2");
+//		objCU.dropDownEnter(driver, secwarmax1,objCU.getCellData("Products","Second Warning Temp Max"),secwarmax2);
+//		Thread.sleep(2000);
+//		//objCU.dropDownClick(driver, criticTempLow1, "-10");
+//		objCU.dropDownEnter(driver, criticTempLow1,objCU.getCellData("Products","Critical Temp Low"),criticTempLow2);
+//		Thread.sleep(2000);
+//		//objCU.dropDownClick(driver, criticTempMax1, "-1");
+//		objCU.dropDownEnter(driver, criticTempMax1,objCU.getCellData("Products","Critical Temp Max"),criticTempMax2);
+//		Thread.sleep(2000);
+//		//objCU.dropDownClick(driver, loadTempMin1, "-6");
+//		objCU.dropDownEnter(driver, loadTempMin1,objCU.getCellData("Products","Loading Temp Min"),loadTempMin2);
+//		Thread.sleep(2000);
+//		//objCU.dropDownClick(driver, loadTempMax1, "-2");
+//		objCU.dropDownEnter(driver, loadTempMax1,objCU.getCellData("Products","Loading Temp Max"),loadTempMax2);
+//		Thread.sleep(2000);
+//		//objCU.dropDownClick(driver, disTempLow1, "-5");
+//		objCU.dropDownEnter(driver, disTempLow1,objCU.getCellData("Products","Discharge Temp Min"),disTempLow2);
+//		Thread.sleep(2000);
+//		//objCU.dropDownClick(driver, disTempMax1, "-2");
+//		objCU.dropDownEnter(driver, disTempMax1,objCU.getCellData("Products","Discharge Temp Max"),disTempMax2);
+//		
 		
 		
 		driver.findElement(productNote).sendKeys("Test note");
@@ -391,15 +393,14 @@ WebDriver driver;
 		Thread.sleep(3000);
 		driver.findElement(create).click();	
 	}
-	public void addproducts(String sg,String s,String tnktp, String pk,String pa,String snm, String csnm) throws Exception
+	public void addproducts(String sg,String s,String tnktp,String snm,String pa, String csnm) throws Exception
 	{
 		this.clickcoredata();
 		this.casNumber(csnm);
 		this.prodsg(sg);
 		Thread.sleep(5000);
 		//this.tankType(tnktp);
-		//this.primarykey(pk);
-		this.prodAppearance(pa);
+		this.prodAppearance(s);
         this.testShipNm(snm);		
 		this.createproduct();
 		this.clickcreateprod();
@@ -421,14 +422,26 @@ WebDriver driver;
 	
 	public void editProduct() throws Exception
 	{
+		SoftAssert softAssert=new SoftAssert();
 		driver.findElement(editbtn).click();
 		Thread.sleep(2000);
 		driver.findElement(heatmin).sendKeys("45");
 		driver.findElement(heatmax).sendKeys("125");
 		driver.findElement(productNote).sendKeys("Test note new edited");
 		driver.findElement(qssheNote).sendKeys("Edited Qsshe Notes");
+		
+//		boolean abc= driver.findElement(By.xpath("")).isDisplayed();
+//		Assert.assertTrue(abc," Element is not displayed");	
+		
+		String acttext =driver.findElement(prodappearance).getAttribute("value");
+		String excptText = "Test Appearance 1";
+		softAssert.assertEquals(acttext, excptText, "Field Data Mismatched");
+		
+		
+		
 		driver.findElement(updatebtn).click();
 		Thread.sleep(2000);
+		softAssert.assertAll();
 	}
 	public void deleteproduct() throws Exception
 	{

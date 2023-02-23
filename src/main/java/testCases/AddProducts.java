@@ -20,13 +20,14 @@ public class AddProducts extends Base
 	@Test(priority=1)
 	public void addproductoperation() throws Exception
 	{
+		driver.manage().window().maximize();
 		LoginPage objloginpage = new LoginPage(driver);		
 		objloginpage.login(xcl.getCellData("Login","User Name"), xcl.getCellData("Login","Password"));					
 		
 		//AddProductsPage page = new AddProductsPage(driver);						
 		
 		AddProductsPage objaddpg = new AddProductsPage(driver);
-		objaddpg.addproducts(xcl.getCellData("Products","S.G"),xcl.getCellData("Products", "Appearance"),xcl.getCellData("Products", "Proper Shipping Name"),xcl.getCellData("Products","Tank Type Desc"),xcl.getCellData("Products", "Primary Class"),xcl.getCellData("Products", "Appearance"),xcl.getCellData("Products", "caS Number"));
+		objaddpg.addproducts(xcl.getCellData("Products","S.G"),xcl.getCellData("Products", "Appearance"),xcl.getCellData("Products", "Proper Shipping Name"),xcl.getCellData("Products","Tank Type Desc"),xcl.getCellData("Products", "Appearance"),xcl.getCellData("Products", "caS Number"));
 				
 	}
 	@AfterTest
