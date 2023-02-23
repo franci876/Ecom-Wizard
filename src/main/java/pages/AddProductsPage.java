@@ -19,6 +19,8 @@ import utilities.CommonUtilities;
 
 public class AddProductsPage extends CommonUtilities 
 {
+private static final boolean True = false;
+private static final boolean False = false;
 WebDriver driver;
 	
 	public AddProductsPage(WebDriver driver)
@@ -37,6 +39,7 @@ WebDriver driver;
 	By prodDiv=By.xpath("//li[contains(.,'FEED')]");
 	//click on dropbox business type
 	By businesstype = By.xpath("//div[3]/div[2]/div/a/span");
+	By businesstpe = By.xpath("/html/body/div[3]/div[1]/form/div[2]/div/fieldset/div[3]/div[2]/div/div/div/input");
 	By businesstp =By.xpath("//li[contains(.,'MAN')]");
 	
 	By addprodtyp =By.xpath("//div[3]/input");
@@ -69,6 +72,10 @@ WebDriver driver;
 	By tanktype = By.cssSelector(path);
 	By tank= By.xpath("//li[contains(.,\'T4\')]");
 	
+	By prodrts =By.cssSelector("#prod_regulated_transport_status_chosen span");
+	By prodrts2 =By.xpath("/html/body/div[3]/div[1]/form/div[4]/div/fieldset/div[2]/div[1]/div/div/div/input");
+    By prodrts3 =By.xpath("//div/div/ul/li[3]");
+    
 	By unno =By.id("prod_unno");
 	By pkgrp =By.id("prod_pk_grp");
 	By adrcode = By.id("prod_adr_code");
@@ -241,18 +248,16 @@ WebDriver driver;
 		Thread.sleep(4000);
 		objCU.dropDownClick(driver, customercls, " 24/7 Logistic Solutions B.V. (247LOGIS)");
 		
-		//objCU.dropDownClick(driver, tertiarycls, "5.1:Oxidizing agent");
-		//objCU.dropDownClick(driver, businesstp, "MAN");
 		
+		//objCU.dropDownClick(driver, tertiarycls, "5.1:Oxidizing agent");
+		//objCU.dropDownClick(driver, businesstype, "MAN");
+		objCU.dropDownEnter(driver, businesstype,objCU.getCellData("Products","Business Type"),businesstpe);
 		driver.findElement(prodDivi).click();
 		Thread.sleep(4000);
 		dropdownmethod(driver,path);
 		driver.findElement(prodDiv).click();
 		driver.findElement(prodname).sendKeys(productnm);
-		Thread.sleep(4000);
-		driver.findElement(businesstype).click();
 	    Thread.sleep(4000);
-	    driver.findElement(businesstp).click();
 		driver.findElement(addprodtyp).click();
 		driver.findElement(mltngpointfr).sendKeys("200");
 		driver.findElement(mltngpointto).sendKeys("230");
@@ -265,6 +270,8 @@ WebDriver driver;
 		driver.findElement(heattype).click();
 		driver.findElement(heatmin).sendKeys("10");
 		driver.findElement(heatmax).sendKeys("60");
+		
+		objCU.dropDownEnter(driver, prodrts,objCU.getCellData("Products","Regulated Transport Status"),prodrts2);
 		
 		//driver.findElement(prodappearance).sendKeys("Test Product appearance");
 		//driver.findElement(prodsg).sendKeys("99.1");
@@ -393,7 +400,7 @@ WebDriver driver;
 		Thread.sleep(3000);
 		driver.findElement(create).click();	
 	}
-	public void addproducts(String sg,String s,String tnktp,String snm,String pa, String csnm) throws Exception
+	public void addproducts(String sg,String s,String snm,String tnktp,String pa, String csnm) throws Exception
 	{
 		this.clickcoredata();
 		this.casNumber(csnm);
@@ -433,11 +440,70 @@ WebDriver driver;
 //		boolean abc= driver.findElement(By.xpath("")).isDisplayed();
 //		Assert.assertTrue(abc," Element is not displayed");	
 		
-		String acttext =driver.findElement(prodappearance).getAttribute("value");
-		String excptText = "Test Appearance 1";
-		softAssert.assertEquals(acttext, excptText, "Field Data Mismatched");
+		String prodappacttext =driver.findElement(prodappearance).getAttribute("value");
+		String prodappexcptText = "Test Appearance 1";
+		softAssert.assertEquals(prodappacttext, prodappexcptText, "Field Data Mismatched");
+		
+		String sgacttext =driver.findElement(prodsg).getAttribute("value");
+		String sgexcptText = "98.0100";
+		softAssert.assertEquals(sgacttext, sgexcptText, "Field Data Mismatched");
+		
+		String shpnmacttext =driver.findElement(shipname).getAttribute("value");
+		String shpnmexcptText = "Test Ship Name";
+		softAssert.assertEquals(shpnmacttext, shpnmexcptText, "Field Data Mismatched");
+		
+		WebElement bsnsElement = driver.findElement(By.cssSelector("#prod_bus_type_chosen span"));
+		String bsnsacttext =bsnsElement.getText();
+		String bsnsexcptText = "DED";
+		softAssert.assertEquals(bsnsacttext, bsnsexcptText, "Field Data Mismatched");
 		
 		
+		WebElement tntktyelement = driver.findElement(By.cssSelector("#prod_tank_type_desc_chosen span"));
+		String tnktypactText = tntktyelement.getText();
+		String tnktypexcptText = "T6";
+		softAssert.assertEquals(tnktypactText, tnktypexcptText, "Field Data Mismatched");
+		
+		WebElement prodivelement = driver.findElement(By.cssSelector("#prod_division_chosen span"));
+		String prodivactText = prodivelement.getText();
+		String prodivexcptText = "FEED";
+		softAssert.assertEquals(prodivactText, prodivexcptText, "Field Data Mismatched");
+		
+		WebElement addProdTypelement = driver.findElement(By.cssSelector("#abp"));
+		boolean addProdTypeacText= addProdTypelement.isSelected();
+		boolean addProdTypeexpText =True;
+		softAssert.assertEquals(addProdTypeacText, addProdTypeexpText, "Mismatch");
+
+		String mltngPointFracTxt =driver.findElement(mltngpointfr).getAttribute("value");
+		String mltngPointFrExpTxt = "200.00";
+		softAssert.assertEquals(mltngPointFracTxt, mltngPointFrExpTxt, "Field Data Mismatched");
+		
+		String mltngPointToacTxt =driver.findElement(mltngpointto).getAttribute("value");
+		String mltngPointToExpTxt = "230.00";
+		softAssert.assertEquals(mltngPointToacTxt, mltngPointToExpTxt, "Field Data Mismatched");
+		
+		String boilngpointfracTxt =driver.findElement(boilngpointfr).getAttribute("value");
+		String boilngpointfrExpTxt = "85.00";
+		softAssert.assertEquals(boilngpointfracTxt, boilngpointfrExpTxt, "Field Data Mismatched");
+		
+		String boilngpointtoacTxt =driver.findElement(boilngpointto).getAttribute("value");
+		String boilngpointtoExpTxt = "100.00";
+		softAssert.assertEquals(boilngpointtoacTxt, boilngpointtoExpTxt, "Field Data Mismatched");
+		
+		String sgtempacTxt =driver.findElement(sgtemp).getAttribute("value");
+		String sgtempExpTxt = "80.00";
+		softAssert.assertEquals(sgtempacTxt, sgtempExpTxt, "Field Data Mismatched");
+		
+		String phvalacTxt =driver.findElement(phval).getAttribute("value");
+		String phvalExpTxt = "14.0";
+		softAssert.assertEquals(phvalacTxt, phvalExpTxt, "Field Data Mismatched");
+		
+		String heatminacTxt =driver.findElement(heatmin).getAttribute("value");
+		String heatminExpTxt = "10.004";
+		softAssert.assertEquals(heatminacTxt, heatminExpTxt, "Field Data Mismatched");
+		
+		String heatmaxacTxt =driver.findElement(heatmax).getAttribute("value");
+		String heatmaxExpTxt = "60.001";
+		softAssert.assertEquals(heatmaxacTxt, heatmaxExpTxt, "Field Data Mismatched");
 		
 		driver.findElement(updatebtn).click();
 		Thread.sleep(2000);
