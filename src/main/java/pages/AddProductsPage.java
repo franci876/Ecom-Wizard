@@ -23,7 +23,7 @@ public class AddProductsPage extends CommonUtilities
 
 private static final boolean True = true;
 WebDriver driver;
-	
+SoftAssert softAssert=new SoftAssert();
 	public AddProductsPage(WebDriver driver)
 	{
 		this.driver = driver;		
@@ -182,7 +182,7 @@ WebDriver driver;
 	//delete added product
 	By deletebtn =By.xpath("/html/body/div[3]/div[1]/div[6]/table/tbody/tr[1]/td[9]/a[4]");
 	By deleteconfirm = By.xpath("//button[contains(.,'OK')]");
-	
+	//"//button[contains(.,'OK')]"
 	//edit added product
 	By editbtn =By.xpath("/html/body/div[3]/div[1]/div[6]/table/tbody/tr[1]/td[9]/a[1]");
 	By updatebtn = By.xpath("/html/body/div[3]/div[1]/form/div[14]/button");
@@ -466,7 +466,7 @@ WebDriver driver;
 	
 	public void editProduct() throws Exception
 	{
-		SoftAssert softAssert=new SoftAssert();
+		
 		driver.findElement(editbtn).click();
 		Allure.step("Clicked on edit button");
 		Thread.sleep(2000);
@@ -596,9 +596,11 @@ WebDriver driver;
 		Allure.step("Verified tertiary class dropdown");
 		
 		String pkgrpacTxt =driver.findElement(pkgrp).getAttribute("value");
-		String pkgrpExpTxt = "A_G";
-		softAssert.assertEquals(pkgrpacTxt, pkgrpExpTxt, "Field Data Mismatched");
+		String pkgrpExpTxt = "A_Group";
+		//softAssert.assertEquals(pkgrpacTxt, pkgrpExpTxt, "Field Data Mismatched");
+		Assert.assertEquals(pkgrpacTxt, pkgrpExpTxt, "Field Data Mismatched");
 		Allure.step("Verified packing group field data");
+	//	softAssert.assertAll();
 		
 		String adrnoacTxt =driver.findElement(adrno).getAttribute("value");
 		String adrnoExpTxt = "3434";

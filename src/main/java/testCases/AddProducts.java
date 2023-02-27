@@ -5,6 +5,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
@@ -14,12 +15,12 @@ import pages.LoginPage;
 import utilities.Base;
 import utilities.CommonUtilities;
 
-
+@Listeners({utilities.AllureListners.class})
 public class AddProducts extends Base
 {
 	    //Call read file method of the class to read data	    
 	    CommonUtilities	xcl = new CommonUtilities(); 
-	
+	    
 	@Test(priority=1)
 	@Description("Login Operation, Add Products Operation, Edit Products Operation Verify Products Details and Delete Product Operation")
 	@Story("Login with correct user name and password and add products with correct data and then edit product with correct data then delete product")
