@@ -195,6 +195,7 @@ WebDriver driver;
 		driver.findElement(coredata).click();	
 		driver.findElement(products).click();
 		driver.findElement(addnewproduct).click();
+		Allure.step("Add new product button is clicked");
 	}
 
 	public void tankType(String tnktp, By tankn) throws Exception
@@ -208,72 +209,86 @@ WebDriver driver;
 		//By tankn= By.xpath(jbn);
 		
 	    driver.findElement(tankn).click();
+	    Allure.step("Tank type is selected from dropdown");
 	  
 	}
 	public void casNumber(String csnm)
 	{
 		driver.findElement(casNum).sendKeys(csnm);
+		Allure.step("CasNum value is entered");
 	}
 	public void prodsg(String sg)
 	{
-		driver.findElement(prodsg).sendKeys(sg);	
+		driver.findElement(prodsg).sendKeys(sg);
+		Allure.step("Product SG value is entered");
 	}
 	public void primarykey(String pk) throws Exception
 	{
-		//click dropdown using sendkeys and enter button
 		driver.findElement(primarycls).click();
 		Thread.sleep(4000);
-//		By primarycs =By.xpath("(//input[@type='text'])[28]");
-//		WebElement w= driver.findElement(primarycs);
-//		Thread.sleep(4000);
-//		w.sendKeys(pk);
-//		Thread.sleep(4000);
-//		w.sendKeys(Keys.ENTER);	
 	}
 	public void prodAppearance(String pa)
 	{
 		driver.findElement(prodappearance).sendKeys(pa);
+		Allure.step("Product appearance is entered");
 	}
 	public void testShipNm(String snm)
 	{
 		driver.findElement(shipname).sendKeys(snm);
+		Allure.step("Ship name is entered");
 	}
 	
 	public void createproduct() throws Exception
 	{     	
 		objCU.dropDownClick(driver, tanktype, objCU.getCellData("Products","Tank Type Desc"));
+		Allure.step("Tank type is selected from dropdown");
 		Thread.sleep(4000);
 		objCU.dropDownClick(driver, secondarycls, "4.1:Flammable solid");
+		Allure.step("Secondary class is selected from dropdown");
 		objCU.dropDownClick(driver, primarycls, "4.1:Flammable solid");
+		Allure.step("Primary class is selected from dropdown");
 		//objCU.dropDownEnter(driver, primarycls, objCU.getCellData("Products","Primary Class"),primarycs);
 		Thread.sleep(4000);
 		objCU.dropDownClick(driver, customercls, " 24/7 Logistic Solutions B.V. (247LOGIS)");
-		
-		
+		Allure.step("Customer is selected from dropdown");
 		//objCU.dropDownClick(driver, tertiarycls, "5.1:Oxidizing agent");
 		//objCU.dropDownClick(driver, businesstype, "MAN");
 		objCU.dropDownEnter(driver, businesstype,objCU.getCellData("Products","Business Type"),businesstpe);
+		Allure.step("Business type is selected from dropdown");
 		driver.findElement(prodDivi).click();
 		Thread.sleep(4000);
 		dropdownmethod(driver,path);
 		driver.findElement(prodDiv).click();
+		Allure.step("Product Division is selected from dropdown");
 		driver.findElement(prodname).sendKeys(productnm);
+		Allure.step("Product name is entered");
 	    Thread.sleep(4000);
 		driver.findElement(addprodtyp).click();
+		Allure.step("Add product type is clicked");
 		driver.findElement(mltngpointfr).sendKeys("200");
+		Allure.step("Melting point from is entered");
 		driver.findElement(mltngpointto).sendKeys("230");
+		Allure.step("Melting point to is entered");
 		driver.findElement(boilngpointfr).sendKeys("85");
+		Allure.step("Boiling point from is entered");
 		driver.findElement(boilngpointto).sendKeys("100");
+		Allure.step("Boiling point to is entered");
 		driver.findElement(sgtemp).sendKeys("80");
+		Allure.step("SG temperature is entered");
 		driver.findElement(phval).sendKeys("14");
+		Allure.step("PH value is entered");
 		
 		driver.findElement(heattyp).click();
 		driver.findElement(heattype).click();
+		Allure.step("Heat Type is selected");
 		driver.findElement(heatmin).sendKeys("10");
+		Allure.step("Heat Min is entered");
 		driver.findElement(heatmax).sendKeys("60");
+		Allure.step("Heat Max is entered");
 		
 		objCU.dropDownEnter(driver, prodrts,objCU.getCellData("Products","Regulated Transport Status"),prodrts2);
 		
+		Allure.step("Regulated for Transport Status dropdown is selected");
 		//driver.findElement(prodappearance).sendKeys("Test Product appearance");
 		//driver.findElement(prodsg).sendKeys("99.1");
 		
@@ -288,35 +303,53 @@ WebDriver driver;
 		driver.findElement(tertiarycls).click();
 		Thread.sleep(4000);
 		driver.findElement(tertiaryclass).click();
+		Allure.step("Tertiary class dropdown is selected");
 		
 		driver.findElement(flashpointc).click();
 		Thread.sleep(5000);
 		driver.findElement(flashpointdg).click();
+		Allure.step("Flash Point dropdown is selected");
 		driver.findElement(flashpoint).sendKeys("30");
-		
+		Allure.step("Flash Point (°C) is entered");
 		driver.findElement(adrcode).sendKeys("code 334");
+		Allure.step("Emergency Action Code (ADR) is entered");
 		driver.findElement(adrno).sendKeys("3434");
+		Allure.step("Hazard Identification Number (ADR) is entered");
 		driver.findElement(emsImdg).sendKeys("Ems Imdg");
+		Allure.step("Emergency Action Schedule (IMDG) is entered");
 		
 		driver.findElement(unno).sendKeys("554");
+		Allure.step("UN Number is entered");
 		Thread.sleep(2000);
 		driver.findElement(pkgrp).sendKeys("A_Group");
+		Allure.step("Packing Group is entered");
 		Thread.sleep(2000);
 		driver.findElement(hcdg).click();
+		Allure.step("High Consequence Dangerous Goods checkbox is selected");
 		driver.findElement(marinepol).click();
+		Allure.step("Marine Pollutant checkbox is selected");
 		driver.findElement(showsp386).click();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 		driver.findElement(sp386cbtn).click();
+		Allure.step("Show SP386 checkbox is selected");
 		
 		driver.findElement(imdg).click();
+		Allure.step("IMDG checkbox is selected");
 		Thread.sleep(2000);
 		driver.findElement(adr).click();
+		Allure.step("Adr checkbox is selected");
 		driver.findElement(dot).click();
+		Allure.step("Dot checkbox is selected");
 		driver.findElement(inertAtmReq).click();
+		Allure.step("Inert Atmosphere Req checkbox is selected");
 		driver.findElement(lachrymator).click();
+		Allure.step("Lachrymator checkbox is selected");
 		driver.findElement(idtf).click();
+		Allure.step("IDTF database checked and approved- Checkbox is selected");
 		driver.findElement(idtfRefNo).sendKeys("655");
+		Allure.step("IDTF reference number is entered");
 		driver.findElement(corrosiveToMetal).click();
+		Allure.step("Corrosive to metals : H290? Checkbox is selected");
 		
 		driver.findElement(msdsValiddt).click();
 		Thread.sleep(2000);
@@ -325,6 +358,7 @@ WebDriver driver;
 		driver.findElement(msdsValiddtf3).click();
 		driver.findElement(msdsValiddtf4).click();
 		driver.findElement(msdsValiddtf5).click();
+		Allure.step("MSDS Valid From Date is Selected");
 		
 		driver.findElement(msdsValiddtt).click();
 		Thread.sleep(2000);
@@ -333,68 +367,73 @@ WebDriver driver;
 		driver.findElement(msdsValiddto4).click();
 		driver.findElement(msdsValiddto5).click();
 		driver.findElement(msdsValiddto6).click();
-		Thread.sleep(2000);
+		Allure.step("MSDS Valid To Date is Selected");
+		Thread.sleep(500);
 		//driver.findElement(customer).click();
 		driver.findElement(synonym).sendKeys("Test Synonym");
+		Allure.step("Synonym is entered");
 		driver.findElement(synadd).click();
+		Allure.step("Synonym add button is clicked");
 		
 		driver.findElement(safetyTempCtrl).click();
-		Thread.sleep(2000);
+		Allure.step("Checked Safety Critical temperature controls checkbox");
+		Thread.sleep(500);
+		
 		driver.findElement(prodCtrl).sendKeys("100");
+		Allure.step("Control temperature is added");
 		driver.findElement(prodEmerCtrl).sendKeys("150");
+		Allure.step("Emergency temperature is added");
 		driver.findElement(saptCtrl).sendKeys("82");
+		Allure.step("SAPT temperature is added");
 		driver.findElement(sadtCtrl).sendKeys("64");
+		Allure.step("SADT temperature is added");
 		
 		Thread.sleep(2000);
 		
 		driver.findElement(qualityTempCtrl).click();
+		Allure.step("Checked Customer / Quality temperature controls checkbox");
 		
-		Thread.sleep(2000);
 		objCU.dropDownClick(driver, lowestTemp1, "-9");
-		Thread.sleep(2000);
+		Allure.step("Selected Nominal Temperature - Lowest(°C) dropdown");
 		//objCU.dropDownClick(driver, maxTemp1, " -9");
 		objCU.dropDownEnter(driver, maxTemp1,objCU.getCellData("Products","Nominal Temp Max"),maxTemp2);
-		Thread.sleep(2000);
-		//objCU.dropDownClick(driver, fstWarLow1, "-8");
+		Allure.step("Selected Nominal Temperature - Max(°C) dropdown");
 		objCU.dropDownEnter(driver, fstWarLow1,objCU.getCellData("Products","First Warning Temp Min"),fstWarLow2);
-		Thread.sleep(2000);
-		//objCU.dropDownClick(driver, fstWarmax1, "-3");
+		Allure.step("Selected 1st Warning / Monitor / Consider action - Lowest(°C) dropdown");
 		objCU.dropDownEnter(driver, fstWarmax1,objCU.getCellData("Products","First Warning Temp Max"),fstWarmax2);
-		Thread.sleep(2000);
-		//objCU.dropDownClick(driver, secwarlow1, "-7");
+		Allure.step("Selected 1st Warning / Monitor / Consider action - Max(°C) dropdown");
 		objCU.dropDownEnter(driver, secwarlow1,objCU.getCellData("Products","Second Warning Temp Min"),secwarlow2);
-		Thread.sleep(2000);
-		//objCU.dropDownClick(driver, secwarmax1, "-2");
+		Allure.step("Selected 2nd Warning / Immediate action required - Lowest(°C) dropdown");
 		objCU.dropDownEnter(driver, secwarmax1,objCU.getCellData("Products","Second Warning Temp Max"),secwarmax2);
-		Thread.sleep(2000);
-		//objCU.dropDownClick(driver, criticTempLow1, "-10");
+		Allure.step("Selected 2nd Warning / Immediate action required - Max(°C) dropdown");
 		objCU.dropDownEnter(driver, criticTempLow1,objCU.getCellData("Products","Critical Temp Low"),criticTempLow2);
-		Thread.sleep(2000);
-		//objCU.dropDownClick(driver, criticTempMax1, "-1");
+		Allure.step("Selected Critical / Emergency Response required - Lowest(°C) dropdown");
 		objCU.dropDownEnter(driver, criticTempMax1,objCU.getCellData("Products","Critical Temp Max"),criticTempMax2);
-		Thread.sleep(2000);
-		//objCU.dropDownClick(driver, loadTempMin1, "-6");
+		Allure.step("Selected Critical / Emergency Response required - Max(°C) dropdown");
 		objCU.dropDownEnter(driver, loadTempMin1,objCU.getCellData("Products","Loading Temp Min"),loadTempMin2);
-		Thread.sleep(2000);
-		//objCU.dropDownClick(driver, loadTempMax1, "-2");
+		Allure.step("Selected Loading Temperature - Lowest(°C) dropdown");
 		objCU.dropDownEnter(driver, loadTempMax1,objCU.getCellData("Products","Loading Temp Max"),loadTempMax2);
-		Thread.sleep(2000);
-		//objCU.dropDownClick(driver, disTempLow1, "-5");
+		Allure.step("Selected Loading Temperature - Max(°C) dropdown");
 		objCU.dropDownEnter(driver, disTempLow1,objCU.getCellData("Products","Discharge Temp Min"),disTempLow2);
-		Thread.sleep(2000);
-		//objCU.dropDownClick(driver, disTempMax1, "-2");
+		Allure.step("Selected Discharge Temperature - Lowest(°C) dropdown");
 		objCU.dropDownEnter(driver, disTempMax1,objCU.getCellData("Products","Discharge Temp Max"),disTempMax2);
+		Allure.step("Selected Discharge Temperature - Max(°C) dropdown");
 		
 		driver.findElement(productNote).sendKeys("Test note");
+		Allure.step("Product Note is added");
 		driver.findElement(qssheNote).sendKeys("Test Qsshe Notes");
+		Allure.step("Product Qsshe Note is added");
 		driver.findElement(prodSoluInWater).click();
+		Allure.step("Checked water(cleaning information) checkbox");
 		driver.findElement(prodSoluInSolv).click();
+		Allure.step("Checked solvents(cleaning information) checkbox");
 		
 	}
 	public void clickcreateprod() throws Exception
 	{
 		Thread.sleep(3000);
-		driver.findElement(create).click();	
+		driver.findElement(create).click();
+		Allure.step("Create product button is clicked");
 	}
 	public void addproducts(String sg,String s,String snm,String tnktp,String pa, String csnm) throws Exception
 	{

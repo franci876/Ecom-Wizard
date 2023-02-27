@@ -119,7 +119,7 @@ public class CommonUtilities {
          
 		
 		driver.findElement(dropDownName).click();;
-		Thread.sleep(4000);
+		//Thread.sleep(4000);
 		
 		String jbn="//li[contains(.,\'"+strDropDownValue+"\')]";
 		By dropDownValue= By.xpath(jbn);
@@ -138,7 +138,7 @@ public class CommonUtilities {
        	Thread.sleep(500); 
               		
    		driver.findElement(dropDownName).click();
-   		Thread.sleep(4000);
+   		Thread.sleep(500);
    		
    		/*String jbn="//li[contains(.,\'"+strDropDownValue+"\')]";
    		By dropDownValue= By.xpath(jbn);  		
@@ -146,8 +146,8 @@ public class CommonUtilities {
    		    
    	    
    	    WebElement w= driver.findElement(strDropDownNameTwo);
-		Thread.sleep(4000);
-		Thread.sleep(4000);
+		Thread.sleep(1000);
+		//Thread.sleep(4000);
 		w.sendKeys(strDropDownValue);
 		w.sendKeys(Keys.ENTER);	
    	    

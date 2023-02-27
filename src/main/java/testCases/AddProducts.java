@@ -30,7 +30,6 @@ public class AddProducts extends Base
 		objloginpage.login(xcl.getCellData("Login","User Name"), xcl.getCellData("Login","Password"));					
 		
 		//AddProductsPage page = new AddProductsPage(driver);						
-		
 		AddProductsPage objaddpg = new AddProductsPage(driver);
 		objaddpg.addproducts(xcl.getCellData("Products","S.G"),xcl.getCellData("Products", "Appearance"),xcl.getCellData("Products", "Proper Shipping Name"),xcl.getCellData("Products","Tank Type Desc"),xcl.getCellData("Products", "Appearance"),xcl.getCellData("Products", "caS Number"));
 	}
