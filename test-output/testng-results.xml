@@ -1,65 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-02-23T17:53:08 IST" name="Default suite" finished-at="2023-02-23T17:55:39 IST" duration-ms="151373">
+  <suite started-at="2023-02-27T11:44:10 IST" name="Default suite" finished-at="2023-02-27T11:49:56 IST" duration-ms="346037">
     <groups>
     </groups>
-    <test started-at="2023-02-23T17:53:08 IST" name="Default test" finished-at="2023-02-23T17:55:39 IST" duration-ms="151373">
+    <test started-at="2023-02-27T11:44:10 IST" name="Default test" finished-at="2023-02-27T11:49:56 IST" duration-ms="346037">
       <class name="testCases.AddProducts">
-        <test-method is-config="true" signature="beforetest()[pri:0, instance:testCases.AddProducts@6a9950f1]" started-at="2023-02-23T17:53:08 IST" name="beforetest" finished-at="2023-02-23T17:53:14 IST" duration-ms="6239" status="PASS">
+        <test-method is-config="true" signature="beforetest()[pri:0, instance:testCases.AddProducts@3ba5c4dd]" started-at="2023-02-27T11:44:10 IST" name="beforetest" finished-at="2023-02-27T11:44:20 IST" duration-ms="10529" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforetest -->
-        <test-method signature="addproductoperation()[pri:1, instance:testCases.AddProducts@6a9950f1]" started-at="2023-02-23T17:53:14 IST" name="addproductoperation" finished-at="2023-02-23T17:55:38 IST" duration-ms="144021" status="FAIL">
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[The following asserts failed:
-Mismatch expected [false] but found [true]]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: The following asserts failed:
-Mismatch expected [false] but found [true]
-at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:47)
-at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:31)
-at pages.AddProductsPage.editProduct(AddProductsPage.java:510)
-at pages.AddProductsPage.addproducts(AddProductsPage.java:416)
-at testCases.AddProducts.addproductoperation(AddProducts.java:30)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:584)
-at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:172)
-at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:804)
-at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:145)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-at org.testng.TestRunner.privateRun(TestRunner.java:770)
-at org.testng.TestRunner.run(TestRunner.java:591)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:402)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:396)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:355)
-at org.testng.SuiteRunner.run(SuiteRunner.java:304)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1180)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1102)
-at org.testng.TestNG.runSuites(TestNG.java:1032)
-at org.testng.TestNG.run(TestNG.java:1000)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+        <test-method signature="addproductoperation()[pri:1, instance:testCases.AddProducts@3ba5c4dd]" started-at="2023-02-27T11:44:20 IST" name="addproductoperation" finished-at="2023-02-27T11:49:55 IST" duration-ms="334406" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- addproductoperation -->
-        <test-method is-config="true" signature="aftertest()[pri:0, instance:testCases.AddProducts@6a9950f1]" started-at="2023-02-23T17:55:39 IST" name="aftertest" finished-at="2023-02-23T17:55:39 IST" duration-ms="792" status="PASS">
+        <test-method is-config="true" signature="aftertest()[pri:0, instance:testCases.AddProducts@3ba5c4dd]" started-at="2023-02-27T11:49:55 IST" name="aftertest" finished-at="2023-02-27T11:49:56 IST" duration-ms="476" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- aftertest -->

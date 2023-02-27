@@ -6,6 +6,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
+
+import io.qameta.allure.Description;
+import io.qameta.allure.Story;
 import pages.AddProductsPage;
 import pages.LoginPage;
 import utilities.Base;
@@ -18,6 +21,8 @@ public class AddProducts extends Base
 	    CommonUtilities	xcl = new CommonUtilities(); 
 	
 	@Test(priority=1)
+	@Description("Login Operation, Add Products Operation, Edit Products Operation Verify Products Details and Delete Product Operation")
+	@Story("Login with correct user name and password and add products with correct data and then edit product with correct data then delete product")
 	public void addproductoperation() throws Exception
 	{
 		driver.manage().window().maximize();

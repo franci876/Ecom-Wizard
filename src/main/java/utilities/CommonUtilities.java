@@ -31,10 +31,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.asserts.SoftAssert;
 
 public class CommonUtilities {
 
 	
+	private static final boolean True = false;
 	public FileInputStream fis = null;
     public XSSFWorkbook workbook = null;
     public XSSFSheet sheet = null;
@@ -149,9 +151,21 @@ public class CommonUtilities {
 		w.sendKeys(strDropDownValue);
 		w.sendKeys(Keys.ENTER);	
    	    
-   	
-   	    
    	}
+    public void dropdownVerify(WebDriver driver, WebElement path, String exptText)
+    {
+    	SoftAssert softAssert=new SoftAssert();
+		String acttext =path.getText();
+		String excptdText = exptText;
+		softAssert.assertEquals(acttext, excptdText, "Field Data Mismatched");
+    }
+    public void checkboxVerify(WebDriver driver, WebElement path)
+    {
+    	SoftAssert softAssert=new SoftAssert();
+		boolean acText= path.isSelected();
+		boolean expText =True;
+		softAssert.assertEquals(acText, expText, "Mismatch");
+    }
 }
 	
 	
