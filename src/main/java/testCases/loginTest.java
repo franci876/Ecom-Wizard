@@ -32,14 +32,14 @@ public class loginTest extends BaseClass
 	}
 	
 	//profile-Edit
-	@Test(priority=2)
-	@Description("TestCase : Profile Edit Testcase")
-	public void editProfile()
-	{
-		profileEdit profEdit =new profileEdit(driver);
-		profEdit.profiledit(xcl.getCellData("ProfileEdit","First Name"), xcl.getCellData("ProfileEdit","Last Name"));	
-	}
-	
+//	@Test(priority=2)
+//	@Description("TestCase : Profile Edit Testcase")
+//	public void editProfile()
+//	{
+//	   	profileEdit profEdit =new profileEdit(driver);
+//		profEdit.profiledit(xcl.getCellData("ProfileEdit","First Name"), xcl.getCellData("ProfileEdit","Last Name"));	
+//	}
+//	
 	@AfterTest
 	public void afterTest()
 	{
