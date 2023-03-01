@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="2" passed="1" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-03-01T12:17:48 IST" name="Default suite" finished-at="2023-03-01T12:18:01 IST" duration-ms="12686">
+  <suite started-at="2023-03-01T15:54:52 IST" name="Default suite" finished-at="2023-03-01T15:55:03 IST" duration-ms="11013">
     <groups>
     </groups>
-    <test started-at="2023-03-01T12:17:48 IST" name="Default test" finished-at="2023-03-01T12:18:01 IST" duration-ms="12686">
+    <test started-at="2023-03-01T15:54:52 IST" name="Default test" finished-at="2023-03-01T15:55:03 IST" duration-ms="11013">
       <class name="testCases.loginTest">
-        <test-method is-config="true" signature="beforetest()[pri:0, instance:testCases.loginTest@5d01ea21]" started-at="2023-03-01T12:17:48 IST" name="beforetest" finished-at="2023-03-01T12:17:56 IST" duration-ms="7480" status="PASS">
+        <test-method is-config="true" signature="beforetest()[pri:0, instance:testCases.loginTest@33db72bd]" started-at="2023-03-01T15:54:52 IST" name="beforetest" finished-at="2023-03-01T15:54:59 IST" duration-ms="6323" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforetest -->
-        <test-method signature="login()[pri:1, instance:testCases.loginTest@5d01ea21]" started-at="2023-03-01T12:17:56 IST" name="login" finished-at="2023-03-01T12:17:59 IST" duration-ms="2697" status="PASS">
+        <test-method signature="login()[pri:1, instance:testCases.loginTest@33db72bd]" started-at="2023-03-01T15:54:59 IST" name="login" finished-at="2023-03-01T15:55:02 IST" duration-ms="2867" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- login -->
-        <test-method signature="editProfile()[pri:2, instance:testCases.loginTest@5d01ea21]" started-at="2023-03-01T12:17:59 IST" name="editProfile" finished-at="2023-03-01T12:17:59 IST" duration-ms="197" status="FAIL">
+        <test-method signature="editProfile()[pri:2, instance:testCases.loginTest@33db72bd]" started-at="2023-03-01T15:55:02 IST" name="editProfile" finished-at="2023-03-01T15:55:02 IST" duration-ms="266" status="FAIL">
           <exception class="org.openqa.selenium.NoSuchElementException">
             <message>
               <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"//img[@alt='profile-icon']"}
@@ -24,8 +24,8 @@ For documentation on this error, please visit: https://www.seleniumhq.org/except
 Build info: version: '4.0.0-alpha-3', revision: '8c567de6dc'
 System info: host: 'SEZ-WS-47', ip: '192.168.10.201', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.5'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 110.0.5481.178, chrome: {chromedriverVersion: 110.0.5481.77 (65ed616c6e8e..., userDataDir: C:\Users\dme595\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:59376}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: c4c91ab2bdf9af689e929dc5f3d5bc2e
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 110.0.5481.178, chrome: {chromedriverVersion: 110.0.5481.77 (65ed616c6e8e..., userDataDir: C:\Users\dme595\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:61049}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: c4c06afa7b36f1f0b319ae7f8e0b452f
 *** Element info: {Using=xpath, value=//img[@alt='profile-icon']}]]>
             </message>
             <full-stacktrace>
@@ -35,8 +35,8 @@ For documentation on this error, please visit: https://www.seleniumhq.org/except
 Build info: version: '4.0.0-alpha-3', revision: '8c567de6dc'
 System info: host: 'SEZ-WS-47', ip: '192.168.10.201', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.5'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 110.0.5481.178, chrome: {chromedriverVersion: 110.0.5481.77 (65ed616c6e8e..., userDataDir: C:\Users\dme595\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:59376}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: c4c91ab2bdf9af689e929dc5f3d5bc2e
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 110.0.5481.178, chrome: {chromedriverVersion: 110.0.5481.77 (65ed616c6e8e..., userDataDir: C:\Users\dme595\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:61049}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: c4c06afa7b36f1f0b319ae7f8e0b452f
 *** Element info: {Using=xpath, value=//img[@alt='profile-icon']}
 at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
@@ -89,7 +89,7 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- editProfile -->
-        <test-method is-config="true" signature="afterTest()[pri:0, instance:testCases.loginTest@5d01ea21]" started-at="2023-03-01T12:18:00 IST" name="afterTest" finished-at="2023-03-01T12:18:01 IST" duration-ms="1251" status="PASS">
+        <test-method is-config="true" signature="afterTest()[pri:0, instance:testCases.loginTest@33db72bd]" started-at="2023-03-01T15:55:03 IST" name="afterTest" finished-at="2023-03-01T15:55:03 IST" duration-ms="602" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterTest -->
