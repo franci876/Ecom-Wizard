@@ -5,13 +5,14 @@ import org.openqa.selenium.WebDriver;
 import org.testng.asserts.SoftAssert;
 
 import io.qameta.allure.Allure;
+import utilities.CommonUtilities;
 
 public class loginPage
 {
 	SoftAssert softAssert = new SoftAssert();
     
 	public	WebDriver driver;
-		    
+	CommonUtilities	xcl = new CommonUtilities();	    
 		    public loginPage(WebDriver driver)
 		    {
 		        this.driver = driver;
@@ -32,7 +33,12 @@ public class loginPage
 		    	Allure.step("Login Button is clicked");
 		    	driver.findElement(rememberMe).click();
 		    	Allure.step("Remember me checkbox is clicked");
-		    	softAssert.assertEquals("Login","Login");   
+		    	//verifying login test
+		    	String acttext =driver.findElement(userNameF).getAttribute("value");
+				String excptText = xcl.getCellData("Login","User Name");
+				softAssert.assertEquals(acttext, excptText, "Field Data Mismatched");
+				Allure.step("Verified login page");
+		    	
 			    softAssert.assertAll();
 		    }
 }
