@@ -29,10 +29,11 @@ public class loginPage
 		    	Allure.step("User name is entered");
 		    	driver.findElement(passwordF).sendKeys(password);
 		    	Allure.step("Password is entered");
-		    	driver.findElement(loginBtn).click();
-		    	Allure.step("Login Button is clicked");
 		    	driver.findElement(rememberMe).click();
 		    	Allure.step("Remember me checkbox is clicked");
+		    	driver.findElement(loginBtn).click();
+		    	Allure.step("Login Button is clicked");
+		    	
 		    	//verifying login test
 		    	String acttext =driver.findElement(userNameF).getAttribute("value");
 				String excptText = xcl.getCellData("Login","User Name");

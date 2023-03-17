@@ -6,8 +6,10 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
+import pages.logOut;
 import pages.loginPage;
 import pages.profileEdit;
+import pages.userRegistration;
 import utilities.BaseClass;
 import utilities.CommonUtilities;
 @Listeners({utilities.AllureListners.class})
@@ -28,7 +30,7 @@ public class loginTest extends BaseClass
 	public void login()
 	{
 		loginPage lp =new loginPage(driver);
-		lp.loginClick(xcl.getCellData("Login","User Name"), xcl.getCellData("Login","Password"));	
+		//lp.loginClick(xcl.getCellData("Login","User Name"), xcl.getCellData("Login","Password"));	
 	}
 	//profile-Edit
 	@Test(priority=2)
@@ -36,11 +38,28 @@ public class loginTest extends BaseClass
 	public void editProfile()
 	{
 	   	profileEdit profEdit =new profileEdit(driver);
-		profEdit.profiledit(xcl.getCellData("ProfileEdit","First Name"), xcl.getCellData("ProfileEdit","Last Name"));	
+		//profEdit.profiledit(xcl.getCellData("ProfileEdit","First Name "), xcl.getCellData("ProfileEdit","Last Name"));	
 	}
+	@Test(priority=3)
+	@Description("TestCase : Logout Function")
+	public void logoutuser()
+	{
+		logOut lg =new logOut(driver);
+		//lg.logout();
+	}
+	@Test(priority=4)
+	@Description("TestCase : User Registration")
+	public void userReg() throws Exception
+	{
+		userRegistration ur =new userRegistration(driver);
+		ur.tempMailVerification();
+		ur.register(xcl.getCellData("UserRegistration", "First Name "),xcl.getCellData("UserRegistration", "Last Name"));
+		//ur.gmailLogin();
+	}
+	
 	@AfterTest
 	public void afterTest()
 	{
-		driver.quit();
+		//driver.quit();
 	}
 }

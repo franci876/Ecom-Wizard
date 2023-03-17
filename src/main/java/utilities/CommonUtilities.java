@@ -47,10 +47,6 @@ public class CommonUtilities {
         
 			workbook = new XSSFWorkbook(fis);
 		
-        
-    	   
-       
-         
             sheet = workbook.getSheet(sheetName);
             row = sheet.getRow(0);
             fis.close();
