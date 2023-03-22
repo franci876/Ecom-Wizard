@@ -18,10 +18,10 @@ public class loginPage
 		        this.driver = driver;
 		        
 		    }
-		    By userNameF =By.xpath("//*[@id=\"root\"]/div/form/div/div/div[2]/div/div/div[1]/div/input");
-		    By passwordF = By.xpath("//*[@id=\"root\"]/div/form/div/div/div[2]/div/div/div[2]/div/input");
-		    By rememberMe = By.xpath("//input[@id='remember_me']");
-		    By loginBtn = By.xpath("/html/body/div[1]/div/form/div/div/div[2]/div/div/div[4]/button");
+		    By userNameF =By.name("userName");
+		    By passwordF = By.name("password");
+		    By rememberMe = By.name("remember_me");
+		    By loginBtn = By.xpath("//button[@type='button']");
 		    
 		    public void loginClick(String userName, String password)
 		    {

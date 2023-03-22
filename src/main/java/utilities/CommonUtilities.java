@@ -2,16 +2,19 @@ package utilities;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.io.File;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
@@ -19,10 +22,14 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
 
 
 public class CommonUtilities {
@@ -33,13 +40,287 @@ public class CommonUtilities {
     public XSSFSheet sheet = null;
     public XSSFRow row = null;
     public XSSFCell cell = null;
+    public FileOutputStream fos = null;
  
 	 String filePath = System.getProperty("user.dir")+"\\src\\excelExportAndFileIO\\";
 	 String fileName = filePath+"ExportExcel.xlsx";
-    
- 
+	 String historyfilePath = System.getProperty("user.dir")+"\\src\\recordHistory\\";
+	 String hfileName = historyfilePath+"recordHistoryXL.xlsx";
+	 
+	 public void setRecord(String sheetName, String clnHeader, String value)
+	    {
+	        try
+	        {
+	            int col_Num = -1;
+	            
+	            
+	        	fis = new FileInputStream(hfileName);
+	    		
+	            
+				workbook = new XSSFWorkbook(fis);
+	            sheet = workbook.getSheet(sheetName);
+	            XSSFRow row;
+	           
+	            row = sheet.getRow(0);
+		        
+                //cell = row.createCell(col_Num);
+                
+        
+          //  cell.setCellValue(clnHeader);
+	            Row r = sheet.getRow(0);
+	            int maxCell=  r.getLastCellNum();
+	            col_Num = maxCell;
+	            int col_Numj =0;
+	            int intCLN = 0;;
+	            for (int i = 0; i < row.getLastCellNum(); i++) {
+	                if (row.getCell(i).getStringCellValue().trim().equals(clnHeader))
+	                {
+	                    col_Num = i;
+	                }
+	                
+	                	 
+	             
+	            }
+	            for (int i = 0; i < sheet.getLastRowNum(); i++) {
+	            	row = sheet.getRow(i);
+	            	 //  if(row != null) {
+	            		   
+	            		   try
+	           	        {
+	                if (row.getCell(col_Num).getStringCellValue()!=null)
+	                {
+	                	System.out.println("NEW");
+	                    col_Numj = col_Numj+1;
+	                     intCLN = col_Numj;
+	                }
+	           	     }
+	           	        catch (Exception exp)
+	           	        {
+	           	        	System.out.println("null exp ocurred");
+	           	        		           	        	col_Numj = col_Numj+1;
+	           	        	break;
+	           	        }
+	                
+	            	   } 
+	             
+	    //        }
+	            XSSFRow frow;
+				if (col_Numj>=sheet.getLastRowNum()) {
+					col_Numj= col_Numj+1;
+	            	frow = sheet.createRow(col_Numj);
+	            	frow = sheet.getRow(col_Numj);
+	            }
+	     
+	            else {
+	            	frow = sheet.getRow(intCLN);	
+	            }
+				sheet.autoSizeColumn(col_Num);
+					cell = frow.createCell(col_Num);
+	  				cell.setCellValue(value);
+	            
+
+	 
+	            fos = new FileOutputStream(fileName);
+	            workbook.write(fos);
+	            fos.close();
+	            workbook.close();
+	        }
+	        catch (Exception ex)
+	        {
+	        	ex.printStackTrace();
+	        }
+	      
+	    }
+	 
+	 
+	 
+	 // try
+	 
+	 public boolean setRecordtry(String sheetName, String clnHeader, String value)
+	    {
+	        try
+	        {
+	            int col_Num = -1;
+	            
+	        	fis = new FileInputStream(fileName);
+	    		
+				workbook = new XSSFWorkbook(fis);
+	            sheet = workbook.getSheet(sheetName);
+	 
+	            row = sheet.getRow(0);
+	            XSSFRow row1 = sheet.getRow(1);
+	            Row r = sheet.getRow(0);
+	            int maxCell=  r.getLastCellNum();
+	            col_Num = maxCell;
+	            for (int i = 0; i < row.getLastCellNum(); i++) {
+	                if (row.getCell(i).getStringCellValue().trim().equals(clnHeader))
+	                {
+	                    col_Num = i;
+	                }
+	                
+	            }
+	           
+	            sheet.autoSizeColumn(col_Num);
+	            row = sheet.getRow(0);
+	        
+	                cell = row.createCell(col_Num);
+	                
+	                XSSFCell cell1 = row1.createCell(col_Num);
+	            cell.setCellValue(clnHeader);
+	            
+	            int lastRowNum = sheet.getLastRowNum();
+
+	         // Create a new row at the next available index
+	         Row newRow = sheet.createRow(lastRowNum + 1);
+
+	         // Get the last cell in the column
+	         Cell lastCell = newRow.createCell(col_Num);
+	         lastCell.setCellValue(value);
+
+	            fos = new FileOutputStream(fileName);
+	            workbook.write(fos);
+	            fos.close();
+	            workbook.close();
+	        }
+	        catch (Exception ex)
+	        {
+	            ex.printStackTrace();
+	            return  false;
+	        }
+	        return true;
+	    }
+	 
+	 
+	 public boolean setCellDataLC(String sheetName, String clnHeader, String value)
+	    {
+	        try
+	        {
+	            int col_Num = -1;
+	            
+	            
+	        	fis = new FileInputStream(fileName);
+	    		
+	            
+				workbook = new XSSFWorkbook(fis);
+	            sheet = workbook.getSheet(sheetName);
+	 
+	            row = sheet.getRow(0);
+	            XSSFRow row1 = sheet.getRow(1);
+	            Row r = sheet.getRow(0);
+	            int maxCell=  r.getLastCellNum();
+	            col_Num = maxCell;
+	            for (int i = 0; i < row.getLastCellNum(); i++) {
+	                if (row.getCell(i).getStringCellValue().trim().equals(clnHeader))
+	                {
+	                    col_Num = i;
+	                }
+	                
+	                	 
+	             
+	            }
+	           
+	            sheet.autoSizeColumn(col_Num);
+	            row = sheet.getRow(0);
+	        
+	                cell = row.createCell(col_Num);
+	                
+	                XSSFCell cell1 = row1.createCell(col_Num);
+	            cell.setCellValue(clnHeader);
+	            cell1.setCellValue(value);
+	            
+
+	 
+	            fos = new FileOutputStream(fileName);
+	            workbook.write(fos);
+	            fos.close();
+	            workbook.close();
+	        }
+	        catch (Exception ex)
+	        {
+	            ex.printStackTrace();
+	            return  false;
+	        }
+	        return true;
+	    }
+	 
+	 
+		 
+	    public boolean setCellData(String sheetName, String colName, int rowNum, String value)
+	    {
+	        try
+	        {
+	            int col_Num = -1;
+	            
+//	            File existingXlsx = new File("c:/Java/poi-3.9/test-data/__theproblem/test2.xlsx");
+//	            System.out.println("File Exists: " + existingXlsx.exists());
+//
+//	            Workbook workbook = WorkbookFactory.create(existingXlsx);
+	            //XSSFWorkbook wb = new XSSFWorkbook(new FileInputStream(fileName));
+	          
+	           // sheet = wb.getSheet(sheetName);
+	            
+	        	fis = new FileInputStream(fileName);
+	    		
+	            
+				workbook = new XSSFWorkbook(fis);
+	            sheet = workbook.getSheet(sheetName);
+	 
+	            row = sheet.getRow(0);
+	            for (int i = 0; i < row.getLastCellNum(); i++) {
+	                if (row.getCell(i).getStringCellValue().trim().equals(colName))
+	                {
+	                    col_Num = i;
+	                }
+	                
+	            }
+	 
+	            sheet.autoSizeColumn(col_Num);
+	            row = sheet.getRow(rowNum - 1);
+	            if(row==null)
+	                row = sheet.createRow(rowNum - 1);
+	 
+	            cell = row.getCell(col_Num);
+	            if(cell == null)
+	                cell = row.createCell(col_Num);
+	 
+	            cell.setCellValue(value);
+	            
+	            //removes other headings
+//	            int lastColumn = sheet.getRow(0).getLastCellNum();
+//	            Row row	 = sheet.createRow(0);
+//	            Cell newcell = row.createCell(lastColumn);
+//	            newcell.setCellValue("EMAIL ID");
+//	              
+//	            int lastColIndex = sheet.getRow(0).getLastCellNum() - 1;
+//	            Row row = sheet.getRow(0);
+//	            Cell cell = row.getCell(lastColIndex);
+//	            String lastCol= cell.getStringCellValue();
+//	            cell.setCellValue("Email ID");
+	            
+	            
+//	            int lastCellIndex = row.getLastCellNum();
+//	            Cell cell = row.createCell(lastCellIndex);
+//	            cell.setCellValue("EmaiL ID");
+	 
+	            fos = new FileOutputStream(fileName);
+	            workbook.write(fos);
+	            fos.close();
+	            workbook.close();
+	        }
+	        catch (Exception ex)
+	        {
+	            ex.printStackTrace();
+	            return  false;
+	        }
+	        return true;
+	    }
+	    
+	    
+	    
+	 
     public String getCellData(String sheetName, String colName)
     {
+    	
     	int col_Num = 0;
     	 try {
 			fis = new FileInputStream(fileName);
@@ -70,13 +351,13 @@ public class CommonUtilities {
                     Date date = cell.getDateCellValue();
                     cellValue = df.format(date);
                 }
-                
+                workbook.close();
                 return cellValue;
+               
             }else if(cell.getCellTypeEnum() == CellType.BLANK)
                 return "";
             else
                 return String.valueOf(cell.getBooleanCellValue());
-            
         }
     	 
                 catch(Exception e)
@@ -86,12 +367,12 @@ public class CommonUtilities {
                 	System.out.println("passed");
                     return "row "+2+" or column "+ col_Num  +" does not exist  in Excel";
                 }
-                
-            	 
-              
+    	
     	 
+    	
     	 }
-    
+
+  
 }
 	
 	

@@ -1,9 +1,20 @@
 package pages;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -15,13 +26,19 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
 
 import io.qameta.allure.Allure;
+import utilities.CommonUtilities;
 
 public class userRegistration
 {
 	public	WebDriver driver;
+	String strvalue1;
 	String strvalue;
 	String refreshbtn;
 	SoftAssert softAssert = new SoftAssert();
+	String filePath = System.getProperty("user.dir")+"\\src\\excelExportAndFileIO\\";
+	String fileName = filePath+"ExportExcel.xlsx";
+	
+	CommonUtilities	cu = new CommonUtilities();
 	public userRegistration(WebDriver driver)
 		    {
 		        this.driver = driver;
@@ -61,13 +78,18 @@ public class userRegistration
 		    By year= By.xpath("//input[@id='expiration']");
 		    By cvv =By.cssSelector("#cvv");
 		    By submit =By.id("submit-button");
-		    
+
 		    By verifymail =By.linkText("Verify Email");
+		    By createps =By.cssSelector("td:nth-child(1) tr:nth-child(1) table:nth-child(1) a:nth-child(1)");
+		    
+		    By passwrd =By.name("password");
+		    By cnfpasswrd =By.cssSelector(".mt-3 > input");
+		    By save =By.xpath("//button[contains(.,'Save')]");
 		    
 		    public void tempMailVerification() throws Exception
 		    {
 		    	
-		    	//Thread.sleep(6000);
+		    	Thread.sleep(4000);
 		    	 
 		    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); 
 		    	driver.get("https://maildrop.cc/"); 
@@ -75,20 +97,23 @@ public class userRegistration
 		    	WebElement emailtextbox = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".border-stone-400")));
 		    
 		    	// WebElement emailtextbox=driver.findElement(By.cssSelector(".border-stone-400"));
-		    	emailtextbox.sendKeys("digitalmesh"+RandomStringUtils.randomAlphanumeric(3));
+		    	emailtextbox.sendKeys("digitalmesh"+RandomStringUtils.randomAlphanumeric(6));
 		    	 WebElement viewmail =driver.findElement(By.xpath("//span[contains(.,'View Mailbox')]"));
 		    	 viewmail.click();
 		    	 //refreshbtn.click();
 		    	
 		    	// WebElement mailidr =driver.findElement(By.xpath(""));
 		    	 
-		    	  strvalue= emailtextbox.getAttribute("value");
-		    	  strvalue =strvalue+"@maildrop.cc";
+		    	  strvalue1= emailtextbox.getAttribute("value");
+		    	  strvalue =strvalue1+"@maildrop.cc";
 		    	  
 		    	 System.out.print("Text Value"+strvalue+"@ maildrop.cc");
+		    	 
+		    	 cu.setCellDataLC("UserRegistration","Email",strvalue);
+		    	 
 		    }
 		    
-		    public void register(String fstNm, String lstNm) throws Exception
+		    public void register(String fstNm, String lstNm, String emailid) throws Exception
 		    {
 
 		    	
@@ -113,7 +138,7 @@ public class userRegistration
 		    	Allure.step("Entered first name");
 		    	driver.findElement(lastName).sendKeys(lstNm);
 		    	Allure.step("Entered second name");
-		    	driver.findElement(email).sendKeys(strvalue);
+		    	driver.findElement(email).sendKeys(emailid);
 		    	Allure.step("Email id is entered");
 		    	driver.findElement(countrydp).click();
 		    	Allure.step("Clicked on country dropdown");
@@ -140,11 +165,10 @@ public class userRegistration
 		    	Thread.sleep(6000);
 		    	int sizej = driver.findElements(By.tagName("iframe")).size();
 		    	System.out.println(sizej);
+		    	Thread.sleep(4000);
 		    	driver.switchTo().frame(0);
 		    	driver.findElement(verifymail).click();
 		    	Thread.sleep(6000);
-		    	
-		    	
 		    	driver.switchTo().defaultContent();
 		    	
 	    	   ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
@@ -216,7 +240,7 @@ public class userRegistration
 		    	Allure.step("Plan is selected");
 		    	driver.findElement(nextbtn3).click();
 		    	Allure.step("Next button is clicked");
-		    	Thread.sleep(10000);
+		    	Thread.sleep(6000);
 		    	
 		    	driver.switchTo().frame(0);
 		    	driver.findElement(cardno).sendKeys("4111 1111 4555 1142");
@@ -238,8 +262,36 @@ public class userRegistration
 				softAssert.assertEquals(acttext, excptText, "Field Data Mismatched");
 		    	softAssert.assertAll();
 		    	Allure.step("Verified Registration");
-		    }
-		 
+		    }	
+		    	
+		   public void setPasswrd(String pass) throws Exception
+		   {
+			   Thread.sleep(4000);
+			   driver.get("https://maildrop.cc/");
+			   WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+			   WebElement emailtextbox = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".border-stone-400")));
+			   Thread.sleep(1000);
+			   emailtextbox.clear();
+			   Thread.sleep(1000);
+			   //String strvalue2=cu.getCellData("UserRegistration", "Email");
+		    	 emailtextbox.sendKeys(strvalue1);
+		    	 WebElement viewmail =driver.findElement(By.xpath("//span[contains(.,'View Mailbox')]"));
+		    	 Thread.sleep(5000);
+		    	 viewmail.click();
+		    	 Thread.sleep(4000);
+		    	 driver.switchTo().frame(0);
+			     driver.findElement(createps).click();
+			    
+			     ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
+			     driver.switchTo().window(tabs2.get(2));
+			     Thread.sleep(4000);
+		    	 driver.findElement(passwrd).sendKeys(pass);
+		    	 driver.findElement(cnfpasswrd).sendKeys(pass);
+		    	 driver.findElement(save).click();
+		    	
+		    	 //To store all email address
+		    	 cu.setRecordtry("UserRegistration","Email",strvalue);
+		   }
 }	    
 //Gmail -Sign up		    
 //		    public void gmailSignup()
