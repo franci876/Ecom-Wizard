@@ -25,6 +25,8 @@ public class loginPage
 		    
 		    public void loginClick(String userName, String password)
 		    {
+		    
+		    	
 		    	driver.findElement(userNameF).sendKeys(userName);
 		    	Allure.step("User name is entered");
 		    	driver.findElement(passwordF).sendKeys(password);
@@ -35,11 +37,12 @@ public class loginPage
 		    	Allure.step("Login Button is clicked");
 		    	
 		    	//verifying login test
-		    	String acttext =driver.findElement(userNameF).getAttribute("value");
-				String excptText = xcl.getCellData("Login","User Name");
-				softAssert.assertEquals(acttext, excptText, "Field Data Mismatched");
+		    	String acttext =driver.getCurrentUrl();
+				String excptText = "http://main.stage.bt-ms.co";
+				//https://ecompartner.digitalmesh.co.in/partner/dashboard
+				softAssert.assertEquals(acttext, excptText, "Login Failed");
 				Allure.step("Verified login page");
-		    	
-			    softAssert.assertAll();
+			    
+				softAssert.assertAll();
 		    }
 }

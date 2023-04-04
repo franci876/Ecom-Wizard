@@ -30,6 +30,8 @@ public class loginTest extends BaseClass
 	public void login()
 	{
 		loginPage lp =new loginPage(driver);
+		
+		
 		lp.loginClick(xcl.getCellData("Login","User Name"), xcl.getCellData("Login","Password"));	
 	}
 	//profile-Edit

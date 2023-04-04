@@ -191,7 +191,7 @@ public class CommonUtilities {
 	    }
 	 
 	 
-	 public boolean setCellDataLC(String sheetName, String clnHeader, String value)
+	 public void setCellDataLC(String sheetName, String clnHeader, String value)
 	    {
 	        try
 	        {
@@ -203,7 +203,11 @@ public class CommonUtilities {
 	            
 				workbook = new XSSFWorkbook(fis);
 	            sheet = workbook.getSheet(sheetName);
-	 
+	            if(sheet==null) {
+	           	 
+	            	 sheet = workbook.createSheet(sheetName);
+	            	 }
+	            
 	            row = sheet.getRow(0);
 	            XSSFRow row1 = sheet.getRow(1);
 	            Row r = sheet.getRow(0);
@@ -238,9 +242,9 @@ public class CommonUtilities {
 	        catch (Exception ex)
 	        {
 	            ex.printStackTrace();
-	            return  false;
+	            
 	        }
-	        return true;
+	       
 	    }
 	 
 	 
