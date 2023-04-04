@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="4" passed="3" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-03-27T11:04:45 IST" name="Default suite" finished-at="2023-03-27T11:04:59 IST" duration-ms="13608">
+  <suite started-at="2023-04-04T17:36:44 IST" name="Default suite" finished-at="2023-04-04T17:36:57 IST" duration-ms="13262">
     <groups>
     </groups>
-    <test started-at="2023-03-27T11:04:45 IST" name="Default test" finished-at="2023-03-27T11:04:59 IST" duration-ms="13608">
+    <test started-at="2023-04-04T17:36:44 IST" name="Default test" finished-at="2023-04-04T17:36:57 IST" duration-ms="13262">
       <class name="testCases.loginTest">
-        <test-method is-config="true" signature="beforetest()[pri:0, instance:testCases.loginTest@35fb22a9]" started-at="2023-03-27T11:04:45 IST" name="beforetest" finished-at="2023-03-27T11:04:54 IST" duration-ms="8804" status="PASS">
+        <test-method is-config="true" signature="beforetest()[pri:0, instance:testCases.loginTest@1e008f36]" started-at="2023-04-04T17:36:44 IST" name="beforetest" finished-at="2023-04-04T17:36:54 IST" duration-ms="9558" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforetest -->
-        <test-method signature="login()[pri:1, instance:testCases.loginTest@35fb22a9]" started-at="2023-03-27T11:04:54 IST" name="login" finished-at="2023-03-27T11:04:58 IST" duration-ms="3528" status="FAIL">
+        <test-method signature="login()[pri:1, instance:testCases.loginTest@1e008f36]" started-at="2023-04-04T17:36:54 IST" name="login" finished-at="2023-04-04T17:36:56 IST" duration-ms="2587" status="FAIL">
           <exception class="java.lang.AssertionError">
             <message>
               <![CDATA[The following asserts failed:
@@ -58,19 +58,19 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- login -->
-        <test-method signature="editProfile()[pri:2, instance:testCases.loginTest@35fb22a9]" started-at="2023-03-27T11:04:59 IST" name="editProfile" finished-at="2023-03-27T11:04:59 IST" duration-ms="23" status="PASS">
+        <test-method signature="editProfile()[pri:2, instance:testCases.loginTest@1e008f36]" started-at="2023-04-04T17:36:57 IST" name="editProfile" finished-at="2023-04-04T17:36:57 IST" duration-ms="12" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- editProfile -->
-        <test-method signature="logoutuser()[pri:3, instance:testCases.loginTest@35fb22a9]" started-at="2023-03-27T11:04:59 IST" name="logoutuser" finished-at="2023-03-27T11:04:59 IST" duration-ms="50" status="PASS">
+        <test-method signature="logoutuser()[pri:3, instance:testCases.loginTest@1e008f36]" started-at="2023-04-04T17:36:57 IST" name="logoutuser" finished-at="2023-04-04T17:36:57 IST" duration-ms="14" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- logoutuser -->
-        <test-method signature="userReg()[pri:4, instance:testCases.loginTest@35fb22a9]" started-at="2023-03-27T11:04:59 IST" name="userReg" finished-at="2023-03-27T11:04:59 IST" duration-ms="6" status="PASS">
+        <test-method signature="userReg()[pri:4, instance:testCases.loginTest@1e008f36]" started-at="2023-04-04T17:36:57 IST" name="userReg" finished-at="2023-04-04T17:36:57 IST" duration-ms="24" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- userReg -->
-        <test-method is-config="true" signature="afterTest()[pri:0, instance:testCases.loginTest@35fb22a9]" started-at="2023-03-27T11:04:59 IST" name="afterTest" finished-at="2023-03-27T11:04:59 IST" duration-ms="2" status="PASS">
+        <test-method is-config="true" signature="afterTest()[pri:0, instance:testCases.loginTest@1e008f36]" started-at="2023-04-04T17:36:57 IST" name="afterTest" finished-at="2023-04-04T17:36:57 IST" duration-ms="5" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterTest -->
