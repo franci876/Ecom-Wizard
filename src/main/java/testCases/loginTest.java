@@ -47,7 +47,7 @@ public class loginTest extends BaseClass
 	public void logoutuser()
 	{
 		logOut lg =new logOut(driver);
-		//lg.logout();
+		lg.logout();
 	}
 	@Test(priority=4)
 	@Description("TestCase : User Registration")

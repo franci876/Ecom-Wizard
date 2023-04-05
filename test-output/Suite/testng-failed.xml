@@ -7,7 +7,6 @@
         <methods>
           <include name="login"/>
           <include name="afterTest"/>
-          <include name="editProfile"/>
           <include name="beforetest"/>
         </methods>
       </class> <!-- testCases.loginTest -->
