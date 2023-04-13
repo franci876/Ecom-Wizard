@@ -40,7 +40,7 @@ public class loginTest extends BaseClass
 	public void editProfile()
 	{
 	   	profileEdit profEdit =new profileEdit(driver);
-		//profEdit.profiledit(xcl.getCellData("ProfileEdit","First Name"), xcl.getCellData("ProfileEdit","Last Name"));	
+		profEdit.profiledit(xcl.getCellData("ProfileEdit","First Name"), xcl.getCellData("ProfileEdit","Last Name"));	
 	}
 	@Test(priority=3)
 	@Description("TestCase : Logout Function")
@@ -48,20 +48,6 @@ public class loginTest extends BaseClass
 	{
 		logOut lg =new logOut(driver);
 		lg.logout();
-	}
-	@Test(priority=4)
-	@Description("TestCase : User Registration")
-	public void userReg() throws Exception {
-		
-       // xcl.setRecord("UserRegistration","First Name","gh777b@cc.com");
-//userRegistration ur =new userRegistration(driver);
-	//	ur.tempMailVerification();
-//		
-//		ur.register(xcl.getCellData("UserRegistration", "First Name"),xcl.getCellData("UserRegistration", "Last Name"),xcl.getCellData("UserRegistration", "Email"));
-//		ur.setPasswrd(xcl.getCellData("UserRegistration", "Password"));
-//	loginPage lp =new loginPage(driver);
-//		lp.loginClick(xcl.getCellData("UserRegistration", "Email"), xcl.getCellData("UserRegistration", "Password"));
-		
 	}
 	
 	@AfterTest

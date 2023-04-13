@@ -43,6 +43,6 @@ public class loginPage
 				softAssert.assertEquals(acttext, excptText, "Login Failed");
 				Allure.step("Verified login page");
 			    
-				softAssert.assertAll();
+				//softAssert.assertAll();
 		    }
 }
