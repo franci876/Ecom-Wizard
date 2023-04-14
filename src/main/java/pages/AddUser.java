@@ -15,6 +15,7 @@ import org.testng.asserts.SoftAssert;
 
 import com.github.javafaker.Faker;
 
+import io.qameta.allure.Allure;
 import utilities.CommonUtilities;
 
 public class AddUser 
@@ -42,6 +43,7 @@ public class AddUser
 		    By cnfpasswrd =By.cssSelector(".mt-3 > input");
 		    By save =By.xpath("//button[contains(.,'Save')]");
 		    
+		    By vname=By.cssSelector(".user-icon > span");
 		    String emailid;
 		    String pswrd = "Dm"+RandomStringUtils.randomAlphanumeric(4);	
 		   public void adduserinfo() throws Exception
@@ -49,9 +51,13 @@ public class AddUser
 		       emailid ="digitalmesh"+RandomStringUtils.randomAlphanumeric(6)+"@maildrop.cc";
 			   WebDriverWait wait = new WebDriverWait(driver, 10);
 			   WebElement element = wait.until(ExpectedConditions.elementToBeClickable(account));
+			   Allure.step("After login redirected to WebPartner home page");
 			   driver.findElement(account).click();
+			   Allure.step("Clicked on account button");
 			   driver.findElement(manageuser).click();
+			   Allure.step("Clicked on manager user");
 			   driver.findElement(useradd).click();
+			   Allure.step("Add user button is clicked");
 			   //Random Name Generator
 			   Faker faker = new Faker();
 			   String fullName = faker.name().fullName();
@@ -59,11 +65,18 @@ public class AddUser
 //			   String lastName = faker.name().lastName();
 //			   String streetAddress = faker.address().streetAddress();
 			   driver.findElement(name).sendKeys(fullName);
+			   Allure.step("User name entered is :"+fullName);
 			   driver.findElement(email).sendKeys(emailid);
+			   Allure.step("Email id entered is :"+emailid);
 			   driver.findElement(role).sendKeys("Customer Service"+Keys.ENTER);
+			   Allure.step("Role is selected from dropdown");
 			   driver.findElement(invitebtn).click();
+			   Allure.step("User invite button is clicked");
 			   cu.writeToExcel("Add_User","Full_Name", fullName);
 			   cu.writeToExcelH("Add_User","Full_Name_History", fullName);
+			  // cu.writeToExcel("Add_User","Email_ID", emailid);
+			   cu.writeToExcels("Add_User","Email_ID", emailid);
+			   
 			 
 		   }
 		   public void tempMailVerification() throws Exception
@@ -71,16 +84,18 @@ public class AddUser
 		    	Thread.sleep(4000);
 		    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); 
 		    	driver.get("https://maildrop.cc/"); 
+		    	 Allure.step("Redirected to mailbox to verify email");
 		    	Thread.sleep(3000);
 		    	WebElement emailtextbox = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".border-stone-400")));
 		    
 		    	emailtextbox.sendKeys(emailid);
 		    	 WebElement viewmail =driver.findElement(By.xpath("//span[contains(.,'View Mailbox')]"));
 		    	 viewmail.click();
-		    	 Thread.sleep(3000);
+		    	 Thread.sleep(4000);
 		    	 driver.switchTo().frame(0);
 		    	 WebElement verifybtn =driver.findElement(By.xpath("//a[contains(.,'Create your password')]"));
 		    	 verifybtn.click();
+		    	 Allure.step("Clicked on verify button from email");
 		    	
 		    }
 		   public void setPassword(String pass) throws Exception
@@ -91,14 +106,33 @@ public class AddUser
 			     driver.switchTo().window(tabs2.get(1));
 			     Thread.sleep(2000);
 		    	 driver.findElement(passwrd).sendKeys(pswrd+pass);
+		    	 Allure.step("Password is entered");
 		    	 driver.findElement(cnfpasswrd).sendKeys(pswrd+pass);
+		    	 Allure.step("Password is entered again to confirm");
+		    	
 		    	 //to store passwords
 		    	 String passRec =null;
 		    	 passRec =pswrd+pass;
-		    	 cu.writeToExcel("Login", "User_Password_Record",passRec);
-		    	 cu.writeToExcelH("Login", "User_Password_Record_History",passRec);
+		    	 //cu.writeToExcel("Login", "User_Password_Record",passRec);
+		    	 cu.writeToExcels("Add_User", "User_Password", passRec);
+		    	 //cu.writeToExcelH("Login", "User_Password_Record_History",passRec);
 		    	 driver.findElement(save).click();
 		    	
+		   }
+		   public void verifyUser()
+		   {
+			   String ActnmTxt =driver.findElement(vname).getText();
+			   String ExpnmTxt = cu.getCellData("Add_User","Full_Name");
+			   softAssert.assertEquals(ActnmTxt, ExpnmTxt, "Field Data Mismatched");
+			   Allure.step("Verified Added User Name");  		   
+			   
+			   
+			   String Acturl ="https://ecompartner.digitalmesh.co.in/partner/dashboard";
+			   String Expurl=driver.getCurrentUrl();
+			   softAssert.assertEquals(Acturl, Expurl, "Field Data Mismatched");
+			   Allure.step("Verified URL");  
+			  
+			   softAssert.assertAll();
 		   }
 
 }

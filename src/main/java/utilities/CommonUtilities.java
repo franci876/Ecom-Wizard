@@ -49,6 +49,12 @@ public class CommonUtilities {
 	 String fileName = filePath+"TestData.xlsx";
 	 String hFileName = filePath+"TestDataH.xlsx";
 	 
+	 public void writeToExcels(String sheetName, String clnHeader, String value)
+	    {
+		 this.writeToExcel(sheetName, clnHeader, value);
+		 this.writeToExcelH(sheetName, clnHeader, value);
+	    }
+	 
 	 public void writeToExcel(String sheetName, String clnHeader, String value)
 	    {
 		

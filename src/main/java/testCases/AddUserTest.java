@@ -32,7 +32,10 @@ public class AddUserTest extends BaseClass
 		ad.adduserinfo();
 		ad.tempMailVerification();
 		ad.setPassword(xcl.getCellData("Login", "UserPassword"));
+		Thread.sleep(3000);
+		lp.loginClick(xcl.getCellData("Add_User", "Email_ID"), xcl.getCellData("Add_User", "User_Password"));
+		Thread.sleep(1000);
+		ad.verifyUser();
 	}
 	
-
 }
