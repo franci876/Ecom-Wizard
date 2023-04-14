@@ -92,12 +92,16 @@ public class userRegistration
 		    By save =By.xpath("//button[contains(.,'Save')]");
 		    
 		    //for verification process
-		    By profileIcon =By.cssSelector(".user-icon > img:nth-child(1)");
-		    By profile =By.cssSelector(".show > .dropdown-item:nth-child(1)");
-		    By editProfile =By.cssSelector("p:nth-child(2)");
-		    By fstName =By.xpath("//input[@name='first_name']");
-		    By lstName =By.xpath("//input[@name='last_name']");
-		    By vmailid =By.xpath("//*[@id=\"personal\"]/div[2]/div/div[3]/div/input");
+		    By profileIcon =By.xpath("//span[contains(.,\'DM Test\')]");
+		    By profile =By.linkText("Profile");
+		    //By editProfile =By.cssSelector("p:nth-child(2)");
+		    
+		    By fstName =By.name("first_name");
+		    By lstName =By.name("last_name");
+		    By vmailid =By.name("email");
+		    By cmpnme =By.xpath("//*[@id=\"personal\"]/div[2]/div/div[5]/div/input");
+		    By numf =By.name("phone");
+		   
 		    By cmpm =By.name("company_name");
 		    By tmco =By.cssSelector(".card-title");
 		    By subpln =By.cssSelector(".col-12 > h4");
@@ -105,9 +109,6 @@ public class userRegistration
 		   // By payh = By.className("card-title.mb-3");
 		    By payh = By.cssSelector(".card-title");
 		    
-		   //By payh =By.xpath("//div[@id='root']/div/div[2]/div/div[2]/div/div/div");
-		   //By payh =By.xpath("//div[2]/div/div[2]/div/div/div");
-		   
 		    public void tempMailVerification() throws Exception
 		    {
 		    	Thread.sleep(4000);
@@ -127,7 +128,6 @@ public class userRegistration
 		    	  strvalue =strvalue1+"@maildrop.cc";
 		    	  
 		    	 System.out.print("Text Value"+strvalue+"@ maildrop.cc");
-		    	 
 		    	 cu.writeToExcels("Login","Partner_Email",strvalue);
 		    	// cu.setCellData("UserRegistration", "Email", 0, strvalue);
 		    	 
@@ -167,8 +167,11 @@ public class userRegistration
 		    //	Thread.sleep(1000);
 		    	driver.findElement(countrydrp).click();
 		    	Allure.step("Country name is selected from dropdown");
-		    	driver.findElement(phoneno).sendKeys(RandomStringUtils.randomNumeric(10));
+		    	String nmbr=RandomStringUtils.randomNumeric(10);
+		    	driver.findElement(phoneno).sendKeys(nmbr);
 		    	Allure.step("Phone number is entered");
+		    	cu.writeToExcels("Login", "PhoneNmbr", nmbr);
+		    	
 		    	String cmpnynm=RandomStringUtils.randomAlphabetic(5);
 		    	 driver.findElement(companyName).sendKeys(cmpnynm);
 		    	Allure.step("Company name is entered");
@@ -240,24 +243,21 @@ public class userRegistration
 //		        // Switch to the new tab
 //		        driver.switchTo().window(driver.getWindowHandles().toArray()[1]);
 		        
-		    	//Thread.sleep(2000);   
-		    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[1]/div/div[2]/div/div[2]/form/div/div[2]/div/div/div[2]/div/input")));
+		    	//Thread.sleep(2000);
+		    	
+		    	String Actcmptitle =driver.getTitle();
+			    String Expcmptitle ="My E-com Wizard";
+			    softAssert.assertEquals(Actcmptitle, Expcmptitle, "Field Data Mismatched");
+				Allure.step("Verified title of company details page"); 
+		    	
+				wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[1]/div/div[2]/div/div[2]/form/div/div[2]/div/div/div[2]/div/input")));
 		    	driver.findElement(logo).sendKeys("D:\\dme595\\Downloads\\logo\\hp.jpg");
 		    	
-		    	//verify company info URL
-//		    	String Acturl1 =driver.getCurrentUrl();
-//		    	String Expurl1="https://ecompartner.digitalmesh.co.in/partner/complete-profile/company-info/203%7CCVnDERXajSGAQ2pKxzm8pXvWanKVSbSblOKxkvhl/"+cu.getCellData("Login","Company_Name");
-//		    	softAssert.assertEquals(Acturl1, Expurl1, "Field Data Mismatched");
-//				Allure.step("Verified Company Info URL");
-		    	//Verify company Name
 		    	String Actcmp =driver.findElement(cmpm).getAttribute("value");
 		    	String Expcmp =cu.getCellData("Login","Company_Name");
 		    	softAssert.assertEquals(Actcmp, Expcmp, "Field Data Mismatched");
 				Allure.step("Verified Company Name"); 
 				
-		    	//driver.findElement(logosel).sendKeys("D:\\dme595\\Downloads\\logo\\hp.jpg");
-		    	//driver.findElement(logoUpload).click();
-		    	//Thread.sleep(2000);
 		    	driver.findElement(address1).sendKeys("Add"+RandomStringUtils.randomAlphabetic(5));
 		    	Allure.step("Address one is entered");
 		    	driver.findElement(address2).sendKeys("Addrs"+RandomStringUtils.randomAlphabetic(5));
@@ -279,28 +279,8 @@ public class userRegistration
 		    	Thread.sleep(2000);
 		    	softAssert.assertAll();
 		    }
-		    
-		    
 //		    public void clickNextBtn() throws InterruptedException
 //		    {
-//		    	driver.findElement(address1).sendKeys("Add"+RandomStringUtils.randomAlphabetic(5));
-//		    	Allure.step("Address one is entered");
-//		    	driver.findElement(address2).sendKeys("Addrs"+RandomStringUtils.randomAlphabetic(5));
-//		    	Allure.step("Address two is entered");
-//		    	driver.findElement(city).sendKeys(RandomStringUtils.randomAlphabetic(5));
-//		    	Allure.step("City is entered");
-//		    	driver.findElement(state).sendKeys(RandomStringUtils.randomAlphabetic(5));
-//		    	Allure.step("State is entered");
-//		    	driver.findElement(zipcode).sendKeys(RandomStringUtils.randomNumeric(6));
-//		    	Allure.step("Zipcode is entered");
-//		    	driver.findElement(website).sendKeys("https://www.digitalmesh.com/");
-//		    	Allure.step("Website is entered");
-//		    	driver.findElement(policylink).sendKeys("https://www.digitalmesh.com/policies");
-//		    	Allure.step("Policy Link is entered");
-//		    	driver.findElement(taxid).sendKeys(RandomStringUtils.randomNumeric(4));
-//		    	Allure.step("Tax ID is entered");
-//		    	driver.findElement(By.xpath("//*[@id=\"companyinfodetails\"]/div/div[3]/div/div/div/div[5]/div/select/option[103]")).click();
-//		    	Allure.step("Country is Selected");
 //		    	driver.findElement(nextbtn1).click();
 //		    	Allure.step("Next button is clicked");
 //		    	Thread.sleep(2000);
@@ -321,8 +301,6 @@ public class userRegistration
 				String Exptxttc="Terms and Conditions";
 				softAssert.assertEquals(Acttxttc, Exptxttc, "Field Data Mismatched");
 				Allure.step("Verified Terms and Conditions Heading");
-				
-				
 		    	
 		    	driver.findElement(readterms).click();
 		    	Allure.step("Terms and conditions checkbox is selected");
@@ -334,18 +312,12 @@ public class userRegistration
 		    {
 		    	WebDriverWait wait = new WebDriverWait(driver, 10);
 		    	Thread.sleep(2000);
-		    	//verify subscription plan url 
-		    	String Acturlsub =driver.getCurrentUrl();
-		    	String Expurlsub="https://ecompartner.digitalmesh.co.in/partner/complete-profile/subscription-plan";
-		    	softAssert.assertEquals(Acturlsub, Expurlsub, "Field Data Mismatched");
-				Allure.step("Verified Subscription Plan URL");
 				
 				String ActurlsubH =driver.findElement(subpln).getText();
 		    	String ExpurlsubH="Choose your plan";
 		    	softAssert.assertEquals(ActurlsubH, ExpurlsubH, "Field Data Mismatched");
 				Allure.step("Verified Subscription Plan Heading");
 				
-		    	
 		    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(.,'6 months')]")));
 		    	driver.findElement(chooseplanmonth).click();
 		    	Allure.step("Plan month is selected");
@@ -356,16 +328,16 @@ public class userRegistration
 		    	driver.findElement(nextbtn3).click();
 		    	Allure.step("Next button is clicked");
 		    	Thread.sleep(6000);
+		    	
+		    	//Verify title
+		    	String Actsubptitle =driver.getTitle();
+		    	String Expsubptitle="My E-com Wizard";
+		    	softAssert.assertEquals(Actsubptitle, Expsubptitle, "Field Data Mismatched");
+				Allure.step("Verified Subscription Payment URL");
 		    	softAssert.assertAll();
 		    }
 		    public void subPayment() throws InterruptedException
 		    {
-		    	//Verify payments URL
-//		    	String Acturlpay =driver.getCurrentUrl();
-//		    	String Expurlpay="https://ecompartner.digitalmesh.co.in/partner/complete-profile/payment";
-//		    	softAssert.assertEquals(Acturlpay, Expurlpay, "Field Data Mismatched");
-//				Allure.step("Verified Subscription Payment URL");
-		    	
 		    	//driver.switchTo().defaultContent();
 		    	String ActpayH =driver.findElement(payh).getText();
 		    	System.out.println(ActpayH);
@@ -420,10 +392,8 @@ public class userRegistration
 			     String Expstxt ="Create Password";
 			     softAssert.assertEquals(Actpstxt, Expstxt, "Field Data Mismatched");
 				 Allure.step("Verified  Create Password Heading");
-			     
-			     
-			     
-		    	 driver.findElement(passwrd).sendKeys(pswrd+pass);
+
+				 driver.findElement(passwrd).sendKeys(pswrd+pass);
 		    	 driver.findElement(cnfpasswrd).sendKeys(pswrd+pass);
 		    	 //to store passwords
 		    	 String passRec =null;
@@ -434,23 +404,21 @@ public class userRegistration
 		    	 String acttitleL =driver.getTitle();
 				 String excptitleL ="My E-com Wizard";
 				 softAssert.assertEquals(acttitleL, excptitleL, "Field Data Mismatched");
-			     Allure.step("Verified Login page after setting password");
+			     Allure.step("Verified Login page title ");
 
 			     softAssert.assertAll();
 		   }
 		   public void verifyPartnerAdded()
 		   {
-			  Actions builder = new Actions(driver); //mouse-over step1
+
+			  WebElement element = driver.findElement(By.cssSelector(".ant-btn"));
+			  Actions builder = new Actions(driver);
+			  builder.moveToElement(element).perform();
 			  
 			  driver.findElement(profileIcon).click();
 			  Allure.step("Profile Icon is clicked");
 			  driver.findElement(profile).click();
-		    	
-			  WebElement element = driver.findElement(By.cssSelector(".edit-icon")); //mouse-over step2
-			  builder.moveToElement(element).perform(); //mouse-over step3
-			  
-		      driver.findElement(editProfile).click();
-		      Allure.step("Edit profile button is clicked");
+			  Allure.step("Profile Button is clicked");
 		      
 		      String ActfnmTxt =driver.findElement(fstName).getAttribute("value");
 			  String ExpfnmTxt = cu.getCellData("Login","First Name");
@@ -467,10 +435,19 @@ public class userRegistration
 			  softAssert.assertEquals(ActemailTxt, ExpemailTxt, "Field Data Mismatched");
 			  Allure.step("Verified Added Partner Email ID");
 			  
+			  String Actcmpnm =driver.findElement(cmpnme).getAttribute("value");
+		      String Expcmpnm =cu.getCellData("Login","Company_Name");
+		      softAssert.assertEquals(Actcmpnm, Expcmpnm, "Field Data Mismatched");
+		      Allure.step("Verified Company Name"); 
+		      
+		      String Actnmbr =driver.findElement(numf).getAttribute("value");
+		      String Expnmbr =cu.getCellData("Login","PhoneNmbr");
+		      softAssert.assertEquals(Actnmbr, Expnmbr, "Field Data Mismatched");
+		      Allure.step("Verified Company Name"); 
+			  
 			  softAssert.assertAll();
 		   }
 }	    
-
 
 //Gmail -Sign up	
 

@@ -41,7 +41,7 @@ public class UserReg extends BaseClass
 			Thread.sleep(3000);
 			loginPage lp =new loginPage(driver);
 			lp.loginClick(xcl.getCellData("Login", "Partner_Email"), xcl.getCellData("Login", "Patrner_Password_Record"));
-			
+			ur.verifyPartnerAdded();
 		}
 
 }

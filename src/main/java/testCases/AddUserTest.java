@@ -31,7 +31,7 @@ public class AddUserTest extends BaseClass
 		Thread.sleep(5000);
 		ad.adduserinfo();
 		ad.tempMailVerification();
-		ad.setPassword(xcl.getCellData("Login", "UserPassword"));
+		ad.setPassword(xcl.getCellData("Login", "Patrner_Password_Record"));
 		Thread.sleep(3000);
 		lp.loginClick(xcl.getCellData("Add_User", "Email_ID"), xcl.getCellData("Add_User", "User_Password"));
 		Thread.sleep(1000);
