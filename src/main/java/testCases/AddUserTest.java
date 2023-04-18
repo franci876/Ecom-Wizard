@@ -18,9 +18,9 @@ public class AddUserTest extends BaseClass
 	@BeforeTest
 	public void beforetest()
 	{
-		BaseClass bs= new BaseClass();
-		driver = bs.initialize_driver();
-    	driver.get("http://ecompartner.digitalmesh.co.in/");
+//		BaseClass bs= new BaseClass();
+//		driver = bs.initialize_driver();
+//    	driver.get("http://ecompartner.digitalmesh.co.in/");
 	}
 	@Test
 	public void addecomUser() throws Exception
