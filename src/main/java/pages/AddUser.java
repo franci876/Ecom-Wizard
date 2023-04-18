@@ -23,8 +23,6 @@ public class AddUser
 	
 	public	WebDriver driver;
 	SoftAssert softAssert = new SoftAssert();
-	String filePath = System.getProperty("user.dir")+"\\src\\excelExportAndFileIO\\";
-	String fileName = filePath+"ExportExcel.xlsx";
 	
 	CommonUtilities	cu = new CommonUtilities();
 	public AddUser(WebDriver driver)
