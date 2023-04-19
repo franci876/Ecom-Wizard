@@ -49,6 +49,23 @@ public class CommonUtilities {
 	 String fileName = filePath+"TestData.xlsx";
 	 String hFileName = filePath+"TestDataH.xlsx";
 	 
+	 public void slowType(WebDriver driver, By elTxtBox, String value)
+	 {
+		 
+		 WebElement element = driver.findElement(elTxtBox);
+		 for (char c : value.toCharArray()) {
+
+			 element.sendKeys(Character.toString(c));
+			 try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			 }
+
+	 }
+	 
 	 public void writeToExcels(String sheetName, String clnHeader, String value)
 	    {
 		 this.writeToExcel(sheetName, clnHeader, value);
