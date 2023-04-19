@@ -63,20 +63,34 @@ public class AddProductPage
 	By searchBtn = By.xpath("//a[contains(text(),'Search')]");
 	By searchclk = By.cssSelector(".text-left > a");
 	
+	By prodHead = By.cssSelector(".h4");
+	By addProdHead =By.cssSelector(".h4");
 	
-	public void goToProd() throws Exception
+	public void goToProductPage() throws Exception
 	{
 		driver.findElement(productmenu).click();
 		Allure.step("Clicked on product menu");
 		driver.findElement(prodcatmen).click();
 		Allure.step("Clicked on product catalog sub menu");
+		
+		String actHeadingProd = driver.findElement(prodHead).getText();
+		String expHeadingProd = "Product Catalog";
+		softAssert.assertEquals(actHeadingProd, expHeadingProd, "Field Data Mismatched");
+		Allure.step("Verified Product page Heading");
+		
 		Thread.sleep(2000);
 		driver.findElement(addProdScroll).click();
 		Allure.step("Clicked on add product dropdown");
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		driver.findElement(addProdBtn).click();
 		Allure.step("Clicked on add product button");
 		
+		String actHeadAddProd = driver.findElement(addProdHead).getText();;
+		String expHeadAddProd = "Add Product Details";
+		softAssert.assertEquals(actHeadAddProd, expHeadAddProd, "Field Data Mismatched");
+		Allure.step("Verified Add Product Page Heading");
+		
+		softAssert.assertAll();
 		
 	}
 	public void enterProdDetails()
@@ -135,7 +149,6 @@ public class AddProductPage
 		
 		driver.findElement(ProdWeight).sendKeys(cu.getCellData("Add_Products", "Product_Weight"));
 		Allure.step("Product weight is entered");
-	
 	}
 	public void enterPckgDimensions() throws Exception
 	{

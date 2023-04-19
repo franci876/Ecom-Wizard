@@ -33,7 +33,7 @@ public class AddProducts extends BaseClass
 		loginPage lp =new loginPage(driver);
 		lp.loginClick(xcl.getCellData("Login", "Partner_Email"), xcl.getCellData("Login", "Patrner_Password_Record"));
 		Thread.sleep(2000);
-		addp.goToProd();
+		addp.goToProductPage();
 		addp.enterProdDetails();
 		addp.enterProdDimensions();
 		addp.enterPckgDimensions();
