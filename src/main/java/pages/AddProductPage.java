@@ -47,11 +47,8 @@ public class AddProductPage
 	
 	By PckgWeightUnit = By.name("package_weight_type");
 	By PckgWeight = By.name("package_weight");
-//	By prodCategory = By.cssSelector(".ant-select-selector");
 	By prodCategory = By.cssSelector(".ant-select-selection-search-input");
 	By prodCategory1 = By.cssSelector(".ant-select-item-option-content");
-//	By prodCat2 = By.cssSelector(".ant-select-selection-search");
-//	By prodCat = By.xpath("/html/body/div[1]/div/div[2]/div/div[2]/div/div/div/div/div/div[1]/div[2]/div[3]/div[2]/div/div/div/div/span[2]");
 	
 	By prodBulletpoint = By.cssSelector(".bullet-list--input > .w-100");
 	By prodImgurl = By.cssSelector(".upload:nth-child(1) input");
@@ -62,9 +59,16 @@ public class AddProductPage
 	By searchbar = By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/div/div[2]/div[1]/div/div/div[1]/div/input");
 	By searchBtn = By.xpath("//a[contains(text(),'Search')]");
 	By searchclk = By.cssSelector(".text-left > a");
-	
 	By prodHead = By.cssSelector(".h4");
 	By addProdHead =By.cssSelector(".h4");
+	//product specifications
+	By typeName = By.name("8");
+	By color = By.name("9");
+	By manufacturerContact = By.name("10");
+	By unitCount = By.name("11");
+	By externalProdInfo = By.name("12");
+	By importerContactInfo = By.name("13");
+	By packerContactInfo = By.name("14");
 	
 	public void goToProductPage() throws Exception
 	{
@@ -78,10 +82,10 @@ public class AddProductPage
 		softAssert.assertEquals(actHeadingProd, expHeadingProd, "Field Data Mismatched");
 		Allure.step("Verified Product page Heading");
 		
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		driver.findElement(addProdScroll).click();
 		Allure.step("Clicked on add product dropdown");
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 		driver.findElement(addProdBtn).click();
 		Allure.step("Clicked on add product button");
 		
@@ -176,10 +180,34 @@ public class AddProductPage
 	{
 		
 		driver.findElement(prodCategory).click();
-		cu.slowType(driver, prodCategory, "deodorant");
+		cu.slowType(driver, prodCategory, "Air Purifiers");
 		//driver.findElement(prodCategory).sendKeys("deodorant");
 		driver.findElement(prodCategory1).click();
 		Allure.step("Product category is selected");
+		
+		//product specification
+		Thread.sleep(5000);
+		driver.findElement(typeName).sendKeys(cu.getCellData("Add_Products", "Product_Type"));
+		Allure.step("Product type is entered");
+		
+		driver.findElement(color).sendKeys(cu.getCellData("Add_Products", "Product_Color"));
+		Allure.step("Product color is entered");
+		
+		driver.findElement(manufacturerContact).sendKeys(cu.getCellData("Add_Products", "Manufacturer_Contact"));
+		Allure.step("Manufacturer Contact is entered");
+		
+		driver.findElement(unitCount).sendKeys(cu.getCellData("Add_Products", "Unit_Count"));
+		Allure.step("Unit count is entered");
+		
+		driver.findElement(externalProdInfo).sendKeys(cu.getCellData("Add_Products", "External_Product_info"));
+		Allure.step("External product information is entered");
+		
+		driver.findElement(importerContactInfo).sendKeys(cu.getCellData("Add_Products", "Importer_Contact_info"));
+		Allure.step("Importer contact information is entered");
+		
+		driver.findElement(packerContactInfo).sendKeys(cu.getCellData("Add_Products", "Packer_Contact_info"));
+		Allure.step("Packer contact information is entered");
+		
 		
 		driver.findElement(prodBulletpoint).click();
 		driver.findElement(prodBulletpoint).sendKeys(cu.getCellData("Add_Products", "Bullet_Points"));
@@ -199,6 +227,7 @@ public class AddProductPage
 	
 	public void filterProducts()
 	{
+		driver.findElement(searchbar).clear();
 		driver.findElement(searchbar).sendKeys(cu.getCellData("Add_Products","SKU"));
 		driver.findElement(searchBtn).click();
 		
@@ -319,14 +348,307 @@ public class AddProductPage
 		 String ExpPckgBpoint= cu.getCellData("Add_Products","Bullet_Points");
 		 softAssert.assertEquals(ActPckgBpoint, ExpPckgBpoint, "Field Data Mismatched");
 		 Allure.step("Verified Package Bullet Point");
-		 					 
+		 
+		 String ActItemType =driver.findElement(typeName).getAttribute("value");
+		 String ExpItemType= cu.getCellData("Add_Products","Product_Type");
+		 softAssert.assertEquals(ActItemType, ExpItemType, "Field Data Mismatched");
+		 Allure.step("Verified product type name");
+		 
+		 String Actcolor =driver.findElement(color).getAttribute("value");
+		 String Expcolor = cu.getCellData("Add_Products","Product_Color");
+		 softAssert.assertEquals(Actcolor, Expcolor, "Field Data Mismatched");
+		 Allure.step("Verified product color");
+		 
+		 String ActManfCont =driver.findElement(manufacturerContact).getAttribute("value");
+		 String ExpManfCont = cu.getCellData("Add_Products","Manufacturer_Contact");
+		 softAssert.assertEquals(ActManfCont, ExpManfCont, "Field Data Mismatched");
+		 Allure.step("Verified manufacturer contact");
+		 
+		 String ActUnitCount =driver.findElement(unitCount).getAttribute("value");
+		 String ExpUnitCount = cu.getCellData("Add_Products","Unit_Count");
+		 softAssert.assertEquals(ActUnitCount, ExpUnitCount, "Field Data Mismatched");
+		 Allure.step("Verified Unit count");
+		 
+		 String ActExtProdInfo =driver.findElement(externalProdInfo).getAttribute("value");
+		 String ExpExtProdInfo = cu.getCellData("Add_Products","External_Product_info");
+		 softAssert.assertEquals(ActExtProdInfo, ExpExtProdInfo, "Field Data Mismatched");
+		 Allure.step("Verified external product information");
+		 
+		 String ActImporterContInfo =driver.findElement(importerContactInfo).getAttribute("value");
+		 String ExpImporterContInfo = cu.getCellData("Add_Products","Importer_Contact_info");
+		 softAssert.assertEquals(ActImporterContInfo, ExpImporterContInfo, "Field Data Mismatched");
+		 Allure.step("Verified importer contact information");
+		 
+		 String ActPackerContInfo =driver.findElement(packerContactInfo).getAttribute("value");
+		 String ExpPackerContInfo = cu.getCellData("Add_Products","Packer_Contact_info");
+		 softAssert.assertEquals(ActPackerContInfo, ExpPackerContInfo, "Field Data Mismatched");
+		 Allure.step("Verified packer contact information");
+		 
 		 softAssert.assertAll();
 		 driver.findElement(prodsave).click();
 		 Allure.step("Product save button is clicked");
 			
 		 
 	}
-	
-	
+	public void editProduct() throws Exception
+	{
+		 driver.findElement(searchclk).click();
+		 Thread.sleep(2000);
+		 driver.findElement(prodnm).clear();
+		 driver.findElement(prodnm).sendKeys(cu.getCellData("Edit_Product","Product_Name_Edited"));
+		 Allure.step("Edited product name entered is"+cu.getCellData("Edit_Product","Product_Name_Edited"));
+		 
+		 driver.findElement(prodDesc).clear();
+		 driver.findElement(prodDesc).sendKeys(cu.getCellData("Edit_Product", "Product_Description_Edited"));
+		 Allure.step("Product description is edited");
+		 
+		 driver.findElement(prodQuantity).clear();
+		 driver.findElement(prodQuantity).sendKeys(cu.getCellData("Edit_Product", "Product_Quantity_Edit"));
+		 Allure.step("Product quantity is edited");
+		
+		driver.findElement(prodPrice).clear();
+		driver.findElement(prodPrice).sendKeys(cu.getCellData("Edit_Product", "Product_Price_Edit"));
+		Allure.step("Product price is edited");
+		
+		driver.findElement(prodMsrp).clear();
+		driver.findElement(prodMsrp).sendKeys(cu.getCellData("Edit_Product", "Product_MSRP_Edit"));
+		Allure.step("Product MSRP is edited");
+			
+		driver.findElement(prodBrand).clear();
+		driver.findElement(prodBrand).sendKeys(cu.getCellData("Edit_Product","Product_Brand_Edit"));
+		Allure.step("Product Brand is edited");
+		
+	}
+	public void editProductDimensions()
+	{
+		driver.findElement(prodDimensnUnit).click();
+		driver.findElement(prodDimensnUnit).sendKeys(cu.getCellData("Edit_Product", "Dimension_Unit_Edit"));
+		Allure.step("Product dimension unit is edited");
+		
+		driver.findElement(PDLength).clear();
+		driver.findElement(PDLength).sendKeys(cu.getCellData("Edit_Product", "Product_Dimension_Length_Edit"));
+		Allure.step("Product dimension length is edited");
+		driver.findElement(PDWidth).clear();
+		driver.findElement(PDWidth).sendKeys(cu.getCellData("Edit_Product", "Product_Dimension_Width_Edit"));
+		Allure.step("Product dimension width is edited");
+		driver.findElement(PDHeight).clear();
+		driver.findElement(PDHeight).sendKeys(cu.getCellData("Edit_Product", "Product_Dimension_Height_Edit"));
+		Allure.step("Product dimension height is edited");
+		
+		driver.findElement(ProdWeightUnit).click();
+		driver.findElement(ProdWeightUnit).sendKeys(cu.getCellData("Edit_Product", "Product_Weight_Unit_Edit"));
+		Allure.step("Product weight unit is edited");
+		
+		driver.findElement(ProdWeight).clear();
+		driver.findElement(ProdWeight).sendKeys(cu.getCellData("Edit_Product", "Product_Weight_Edit"));
+		Allure.step("Product weight is edited");
+	}
+	public void editPackageDimensions() throws Exception
+	{
+		driver.findElement(pckgDimensnUnit).click();
+		driver.findElement(pckgDimensnUnit).sendKeys(cu.getCellData("Edit_Product", "Package_Dimension_Unit_Edit"));
+		Allure.step("Package dimension unit is selected");
+		
+		driver.findElement(PckgDLength).clear();
+		driver.findElement(PckgDLength).sendKeys(cu.getCellData("Edit_Product", "Package_Dimension_Length_Edit"));
+		Allure.step("Package dimension length is edited");
+		driver.findElement(PckgWidth).clear();
+		driver.findElement(PckgWidth).sendKeys(cu.getCellData("Edit_Product", "Package_Dimension_Width_Edit"));
+		Allure.step("Package dimension width is edited");
+		driver.findElement(PckgHeight).clear();
+		driver.findElement(PckgHeight).sendKeys(cu.getCellData("Edit_Product", "Package_Dimension_Height_Edit"));
+		Allure.step("Package dimension height is edited");
+		
+		Thread.sleep(1000);
+		driver.findElement(PckgWeightUnit).click();
+		driver.findElement(PckgWeightUnit).sendKeys(cu.getCellData("Edit_Product", "Package_Weight_Unit_Edit"));
+		Allure.step("Package weight unit is edited");
+		
+		driver.findElement(PckgWeight).clear();
+		driver.findElement(PckgWeight).sendKeys(cu.getCellData("Edit_Product", "Package_Weight_Edit"));
+		Allure.step("Package weight is edited");
+		
+		driver.findElement(prodBulletpoint).clear();
+		driver.findElement(prodBulletpoint).sendKeys(cu.getCellData("Edit_Product", "Bullet_Point_Edit"));
+		Allure.step("Product bullet point is edited");
+		
+	}
+	public void editProductSpecifications() throws Exception
+	{
+		
+		driver.findElement(typeName).clear();
+		driver.findElement(typeName).sendKeys(cu.getCellData("Edit_Product", "Product_Type_Edit"));
+		Allure.step("Product type is edited");
+		
+		driver.findElement(color).clear();
+		driver.findElement(color).sendKeys(cu.getCellData("Edit_Product", "Product_Color_Edit"));
+		Allure.step("Product color is edited");
+		
+		driver.findElement(manufacturerContact).clear();
+		driver.findElement(manufacturerContact).sendKeys(cu.getCellData("Edit_Product", "Manufacturer_Contact_Edit"));
+		Allure.step("Manufacturer Contact is edited");
+		
+		driver.findElement(unitCount).clear();
+		driver.findElement(unitCount).sendKeys(cu.getCellData("Edit_Product", "Unit_Count_Edit"));
+		Allure.step("Unit count is edited");
+		
+		driver.findElement(externalProdInfo).clear();
+		driver.findElement(externalProdInfo).sendKeys(cu.getCellData("Edit_Product", "External_Product_info_Edit"));
+		Allure.step("External product information is edited");
+		
+		driver.findElement(importerContactInfo).clear();
+		driver.findElement(importerContactInfo).sendKeys(cu.getCellData("Edit_Product", "Importer_Contact_info_Edit"));
+		Allure.step("Importer contact information is edited");
+		
+		driver.findElement(packerContactInfo).clear();
+		driver.findElement(packerContactInfo).sendKeys(cu.getCellData("Edit_Product", "Packer_Contact_info_Edit"));
+		Allure.step("Packer contact information is edited");
+		
+		Thread.sleep(1000);
+		driver.findElement(prodsave).click();
+		Allure.step("Product save button is clicked after edit");
+		
+	}
+	public void verifyEditedProdDetails() throws Exception
+	{
+		 driver.findElement(searchclk).click();
+		 Thread.sleep(2000);
+		 
+		 String ActProdName =driver.findElement(prodnm).getAttribute("value");
+		 String ExpProdName = cu.getCellData("Edit_Product","Product_Name_Edited");
+		 softAssert.assertEquals(ActProdName, ExpProdName, "Field Data Mismatched");
+		 Allure.step("Verified Product Name");
+		 
+		 String ActProdDesc =driver.findElement(prodDesc).getAttribute("value");
+		 String ExpProdDesc = cu.getCellData("Edit_Product","Product_Description_Edited");
+		 softAssert.assertEquals(ActProdDesc, ExpProdDesc, "Field Data Mismatched");
+		 Allure.step("Verified Product Description");
+		 
+		 String ActProdQty =driver.findElement(prodQuantity).getAttribute("value");
+		 String ExpProdQty = cu.getCellData("Edit_Product","Product_Quantity_Edit");
+		 softAssert.assertEquals(ActProdQty, ExpProdQty, "Field Data Mismatched");
+		 Allure.step("Verified Product Quantity");
+		 
+		 
+		 String ActPrice =driver.findElement(prodPrice).getAttribute("value");
+		 String ExpPrice = cu.getCellData("Edit_Product","Product_Price_Edit");
+		 softAssert.assertEquals(ActPrice, ExpPrice, "Field Data Mismatched");
+		 Allure.step("Verified Product Price");
+		 
+		 String ActMsrp =driver.findElement(prodMsrp).getAttribute("value");
+		 String ExpMsrp = cu.getCellData("Edit_Product","Product_MSRP_Edit");
+		 softAssert.assertEquals(ActMsrp, ExpMsrp, "Field Data Mismatched");
+		 Allure.step("Verified Product MSRP");
+		 
+		 String ActBrand =driver.findElement(prodBrand).getAttribute("value");
+		 String ExpBrand = cu.getCellData("Edit_Product","Product_Brand_Edit");
+		 softAssert.assertEquals(ActBrand, ExpBrand, "Field Data Mismatched");
+		 Allure.step("Verified Product Brand");
+		 
+		
+		 String ActProdDmUnit =driver.findElement(prodDimensnUnit).getAttribute("value");
+		 String ExpProdDmUnit = cu.getCellData("Edit_Product","Dimension_Unit_Edit");
+		 softAssert.assertEquals(ActProdDmUnit, ExpProdDmUnit, "Field Data Mismatched");
+		 Allure.step("Verified Product Dimensions Unit");
+		 
+		 String ActProdLength =driver.findElement(PDLength).getAttribute("value");
+		 String ExpProdLength = cu.getCellData("Edit_Product","Product_Dimension_Length_Edit");
+		 softAssert.assertEquals(ActProdLength, ExpProdLength, "Field Data Mismatched");
+		 Allure.step("Verified Product Length");
+		 
+		 String ActProdWidth =driver.findElement(PDWidth).getAttribute("value");
+		 String ExpProdWidth = cu.getCellData("Edit_Product","Product_Dimension_Width_Edit");
+		 softAssert.assertEquals(ActProdWidth, ExpProdWidth, "Field Data Mismatched");
+		 Allure.step("Verified Product Width");
+		 
+		 String ActProdHeight =driver.findElement(PDHeight).getAttribute("value");
+		 String ExpProdHeight = cu.getCellData("Edit_Product","Product_Dimension_Height_Edit");
+		 softAssert.assertEquals(ActProdHeight, ExpProdHeight, "Field Data Mismatched");
+		 Allure.step("Verified Product Height");
+		 
+		 String ActProdWeightUnit =driver.findElement(ProdWeightUnit).getAttribute("value");
+		 String ExpProdWeightUnit= cu.getCellData("Edit_Product","Product_Weight_Unit_Edit");
+		 softAssert.assertEquals(ActProdWeightUnit, ExpProdWeightUnit, "Field Data Mismatched");
+		 Allure.step("Verified Product Weight Unit");
+		 
+		 String ActProdWeight =driver.findElement(ProdWeight).getAttribute("value");
+		 String ExpProdWeight= cu.getCellData("Edit_Product","Product_Weight_Edit");
+		 softAssert.assertEquals(ActProdWeight, ExpProdWeight, "Field Data Mismatched");
+		 Allure.step("Verified Product Weight");
+		 
+		 String ActPckgDimUnit =driver.findElement(pckgDimensnUnit).getAttribute("value");
+		 String ExpPckgDimUnit= cu.getCellData("Edit_Product","Package_Dimension_Unit_Edit");
+		 softAssert.assertEquals(ActPckgDimUnit, ExpPckgDimUnit, "Field Data Mismatched");
+		 Allure.step("Verified Package Dimension unit");
+		 
+		 String ActPckgDLength =driver.findElement(PckgDLength).getAttribute("value");
+		 String ExpPckgDLength= cu.getCellData("Edit_Product","Package_Dimension_Length_Edit");
+		 softAssert.assertEquals(ActPckgDLength, ExpPckgDLength, "Field Data Mismatched");
+		 Allure.step("Verified Package Dimension Length");
+		 
+		 String ActPckgDWidth =driver.findElement(PckgWidth).getAttribute("value");
+		 String ExpPckgDWidth= cu.getCellData("Edit_Product","Package_Dimension_Width_Edit");
+		 softAssert.assertEquals(ActPckgDWidth, ExpPckgDWidth, "Field Data Mismatched");
+		 Allure.step("Verified Package Dimension Width");
+		
+		 String ActPckgDHeight =driver.findElement(PckgHeight).getAttribute("value");
+		 String ExpPckgDHeight= cu.getCellData("Edit_Product","Package_Dimension_Height_Edit");
+		 softAssert.assertEquals(ActPckgDHeight, ExpPckgDHeight, "Field Data Mismatched");
+		 Allure.step("Verified Package Dimension Height");
+		 
+		 String ActPckgDWeightUnit =driver.findElement(PckgWeightUnit).getAttribute("value");
+		 String ExpPckgDWeightUnit= cu.getCellData("Edit_Product","Package_Weight_Unit_Edit");
+		 softAssert.assertEquals(ActPckgDWeightUnit, ExpPckgDWeightUnit, "Field Data Mismatched");
+		 Allure.step("Verified Package Weight Unit");
+		 
+		 String ActPckgDWeight =driver.findElement(PckgWeight).getAttribute("value");
+		 String ExpPckgDWeight= cu.getCellData("Edit_Product","Package_Weight_Edit");
+		 softAssert.assertEquals(ActPckgDWeight, ExpPckgDWeight, "Field Data Mismatched");
+		 Allure.step("Verified Package Weight");
+		 
+		 String ActPckgBpoint =driver.findElement(prodBulletpoint).getAttribute("value");
+		 String ExpPckgBpoint= cu.getCellData("Edit_Product","Bullet_Point_Edit");
+		 softAssert.assertEquals(ActPckgBpoint, ExpPckgBpoint, "Field Data Mismatched");
+		 Allure.step("Verified Package Bullet Point");
+		 
+		 String ActItemType =driver.findElement(typeName).getAttribute("value");
+		 String ExpItemType= cu.getCellData("Edit_Product","Product_Type_Edit");
+		 softAssert.assertEquals(ActItemType, ExpItemType, "Field Data Mismatched");
+		 Allure.step("Verified product type name");
+		 
+		 String Actcolor =driver.findElement(color).getAttribute("value");
+		 String Expcolor = cu.getCellData("Edit_Product","Product_Color_Edit");
+		 softAssert.assertEquals(Actcolor, Expcolor, "Field Data Mismatched");
+		 Allure.step("Verified product color");
+		 
+		 String ActManfCont =driver.findElement(manufacturerContact).getAttribute("value");
+		 String ExpManfCont = cu.getCellData("Edit_Product","Manufacturer_Contact_Edit");
+		 softAssert.assertEquals(ActManfCont, ExpManfCont, "Field Data Mismatched");
+		 Allure.step("Verified manufacturer contact");
+		 
+		 String ActUnitCount =driver.findElement(unitCount).getAttribute("value");
+		 String ExpUnitCount = cu.getCellData("Edit_Product","Unit_Count_Edit");
+		 softAssert.assertEquals(ActUnitCount, ExpUnitCount, "Field Data Mismatched");
+		 Allure.step("Verified Unit count");
+		 
+		 String ActExtProdInfo =driver.findElement(externalProdInfo).getAttribute("value");
+		 String ExpExtProdInfo = cu.getCellData("Edit_Product","External_Product_info_Edit");
+		 softAssert.assertEquals(ActExtProdInfo, ExpExtProdInfo, "Field Data Mismatched");
+		 Allure.step("Verified external product information");
+		 
+		 String ActImporterContInfo =driver.findElement(importerContactInfo).getAttribute("value");
+		 String ExpImporterContInfo = cu.getCellData("Edit_Product","Importer_Contact_info_Edit");
+		 softAssert.assertEquals(ActImporterContInfo, ExpImporterContInfo, "Field Data Mismatched");
+		 Allure.step("Verified importer contact information");
+		 
+		 String ActPackerContInfo =driver.findElement(packerContactInfo).getAttribute("value");
+		 String ExpPackerContInfo = cu.getCellData("Edit_Product","Packer_Contact_info_Edit");
+		 softAssert.assertEquals(ActPackerContInfo, ExpPackerContInfo, "Field Data Mismatched");
+		 Allure.step("Verified packer contact information");
+		 
+		 softAssert.assertAll();
+		 driver.findElement(prodsave).click();
+		 Allure.step("Product save button is clicked");
+	}
 	
 }

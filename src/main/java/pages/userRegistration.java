@@ -129,6 +129,7 @@ public class userRegistration
 		    	  
 		    	 System.out.print("Text Value"+strvalue+"@ maildrop.cc");
 		    	 cu.writeToExcels("Login","Partner_Email",strvalue);
+		    	 cu.writeToExcels("PartnerDetails","Partner_Email",strvalue);
 		    	// cu.setCellData("UserRegistration", "Email", 0, strvalue);
 		    	 
 		    }
@@ -170,12 +171,12 @@ public class userRegistration
 		    	String nmbr=RandomStringUtils.randomNumeric(10);
 		    	driver.findElement(phoneno).sendKeys(nmbr);
 		    	Allure.step("Phone number is entered");
-		    	cu.writeToExcels("Login", "PhoneNmbr", nmbr);
+		    	cu.writeToExcels("PartnerDetails", "PhoneNmbr", nmbr);
 		    	
 		    	String cmpnynm=RandomStringUtils.randomAlphabetic(5);
 		    	 driver.findElement(companyName).sendKeys(cmpnynm);
 		    	Allure.step("Company name is entered");
-		    	cu.writeToExcels("Login","Company_Name",cmpnynm);
+		    	cu.writeToExcels("PartnerDetails","Company_Name",cmpnynm);
 		    	
 		    	driver.findElement(privacyPol).click();
 		    	Allure.step("Privacy policy is selected");
@@ -254,7 +255,7 @@ public class userRegistration
 		    	driver.findElement(logo).sendKeys("D:\\dme595\\Downloads\\logo\\hp.jpg");
 		    	
 		    	String Actcmp =driver.findElement(cmpm).getAttribute("value");
-		    	String Expcmp =cu.getCellData("Login","Company_Name");
+		    	String Expcmp =cu.getCellData("PartnerDetails","Company_Name");
 		    	softAssert.assertEquals(Actcmp, Expcmp, "Field Data Mismatched");
 				Allure.step("Verified Company Name"); 
 				
@@ -375,7 +376,7 @@ public class userRegistration
 			   Thread.sleep(1000);
 			   emailtextbox.clear();
 			   Thread.sleep(1000);
-			    String strvalue2=cu.getCellData("Login", "Partner_Email");
+			    String strvalue2=cu.getCellData("PartnerDetails", "Partner_Email");
 		    	 emailtextbox.sendKeys(strvalue2);
 		    	 WebElement viewmail =driver.findElement(By.xpath("//span[contains(.,'View Mailbox')]"));
 		    	 Thread.sleep(5000);
@@ -399,6 +400,7 @@ public class userRegistration
 		    	 String passRec =null;
 		    	 passRec =pswrd+pass;
 		    	 cu.writeToExcels("Login", "Patrner_Password_Record",passRec);
+		    	 cu.writeToExcels("PartnerDetails", "Patrner_Password_Record",passRec);
 		    	 driver.findElement(save).click();
 		    	 
 		    	 String acttitleL =driver.getTitle();
@@ -421,27 +423,27 @@ public class userRegistration
 			  Allure.step("Profile Button is clicked");
 		      
 		      String ActfnmTxt =driver.findElement(fstName).getAttribute("value");
-			  String ExpfnmTxt = cu.getCellData("Login","First Name");
+			  String ExpfnmTxt = cu.getCellData("PartnerDetails","First Name");
 			  softAssert.assertEquals(ActfnmTxt, ExpfnmTxt, "Field Data Mismatched");
 			  Allure.step("Verified Added Partner First Name");
 			  
 			  String ActLnmTxt =driver.findElement(lstName).getAttribute("value");
-			  String ExpLnmTxt = cu.getCellData("Login","Last Name");
+			  String ExpLnmTxt = cu.getCellData("PartnerDetails","Last Name");
 			  softAssert.assertEquals(ActLnmTxt, ExpLnmTxt, "Field Data Mismatched");
 			  Allure.step("Verified Added Partner Second Name");
 		      
 			  String ActemailTxt =driver.findElement(vmailid).getAttribute("value");
-			  String ExpemailTxt = cu.getCellData("Login","Partner_Email");
+			  String ExpemailTxt = cu.getCellData("PartnerDetails","Partner_Email");
 			  softAssert.assertEquals(ActemailTxt, ExpemailTxt, "Field Data Mismatched");
 			  Allure.step("Verified Added Partner Email ID");
 			  
 			  String Actcmpnm =driver.findElement(cmpnme).getAttribute("value");
-		      String Expcmpnm =cu.getCellData("Login","Company_Name");
+		      String Expcmpnm =cu.getCellData("PartnerDetails","Company_Name");
 		      softAssert.assertEquals(Actcmpnm, Expcmpnm, "Field Data Mismatched");
 		      Allure.step("Verified Company Name"); 
 		      
 		      String Actnmbr =driver.findElement(numf).getAttribute("value");
-		      String Expnmbr =cu.getCellData("Login","PhoneNmbr");
+		      String Expnmbr =cu.getCellData("PartnerDetails","PhoneNmbr");
 		      softAssert.assertEquals(Actnmbr, Expnmbr, "Field Data Mismatched");
 		      Allure.step("Verified Company Name"); 
 			  

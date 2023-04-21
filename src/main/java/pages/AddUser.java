@@ -111,9 +111,7 @@ public class AddUser
 		    	 //to store passwords
 		    	 String passRec =null;
 		    	 passRec =pswrd+pass;
-		    	 //cu.writeToExcel("Login", "User_Password_Record",passRec);
 		    	 cu.writeToExcels("Add_User", "User_Password", passRec);
-		    	 //cu.writeToExcelH("Login", "User_Password_Record_History",passRec);
 		    	 driver.findElement(save).click();
 		    	
 		   }

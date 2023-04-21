@@ -39,7 +39,20 @@ public class AddProducts extends BaseClass
 		addp.enterPckgDimensions();
 		addp.prodOtherDetails();
 		Thread.sleep(2000);
+//		addp.filterProducts();
+//		addp.verifyProdDetails();
 		addp.filterProducts();
-		addp.verifyProdDetails();
+		Thread.sleep(2000);
+		addp.editProduct();
+		Thread.sleep(2000);
+		addp.editProductDimensions();
+		Thread.sleep(2000);
+		addp.editPackageDimensions();
+		Thread.sleep(2000);
+		addp.editProductSpecifications();
+		Thread.sleep(2000);
+		addp.filterProducts();
+		Thread.sleep(2000);
+		addp.verifyEditedProdDetails();
 	}
 }

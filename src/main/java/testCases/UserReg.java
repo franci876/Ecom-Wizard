@@ -30,17 +30,17 @@ public class UserReg extends BaseClass
 		
 			userRegistration ur =new userRegistration(driver);
 			ur.tempMailVerification();
-			ur.register(xcl.getCellData("Login", "First Name"),xcl.getCellData("Login", "Last Name"),xcl.getCellData("Login", "Partner_Email"));
+			ur.register(xcl.getCellData("PartnerDetails", "First Name"),xcl.getCellData("PartnerDetails", "Last Name"),xcl.getCellData("PartnerDetails", "Partner_Email"));
 			
 			ur.Entercompanydetails();
 			//ur.clickNextBtn();
 			ur.termsandcon();
 			ur.subPlans();
 			ur.subPayment();
-			ur.setPasswrd(xcl.getCellData("Login", "Pass"));
+			ur.setPasswrd(xcl.getCellData("PartnerDetails", "Pass"));
 			Thread.sleep(3000);
 			loginPage lp =new loginPage(driver);
-			lp.loginClick(xcl.getCellData("Login", "Partner_Email"), xcl.getCellData("Login", "Patrner_Password_Record"));
+			lp.loginClick(xcl.getCellData("PartnerDetails", "Partner_Email"), xcl.getCellData("PartnerDetails", "Patrner_Password_Record"));
 			ur.verifyPartnerAdded();
 		}
 

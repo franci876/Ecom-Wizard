@@ -27,11 +27,11 @@ public class AddUserTest extends BaseClass
 	{
 		AddUser ad =new AddUser(driver);
 		loginPage lp =new loginPage(driver);
-		lp.loginClick(xcl.getCellData("Login", "Partner_Email"), xcl.getCellData("Login", "Patrner_Password_Record"));
-		Thread.sleep(5000);
+		lp.loginClick(xcl.getCellData("PartnerDetails", "Partner_Email"), xcl.getCellData("PartnerDetails", "Patrner_Password_Record"));
+		Thread.sleep(6000);
 		ad.adduserinfo();
 		ad.tempMailVerification();
-		ad.setPassword(xcl.getCellData("Login", "Patrner_Password_Record"));
+		ad.setPassword(xcl.getCellData("Add_User", "UserPass"));
 		Thread.sleep(3000);
 		lp.loginClick(xcl.getCellData("Add_User", "Email_ID"), xcl.getCellData("Add_User", "User_Password"));
 		Thread.sleep(1000);
