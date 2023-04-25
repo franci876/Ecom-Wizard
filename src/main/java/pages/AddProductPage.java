@@ -231,7 +231,6 @@ public class AddProductPage
 		driver.findElement(searchbar).sendKeys(cu.getCellData("Add_Products","SKU"));
 		driver.findElement(searchBtn).click();
 		
-		
 	}
 	
 	public void verifyProdDetails()

@@ -1,8 +1,11 @@
 package utilities;
 
 import java.util.ArrayList;
+
 import java.util.Date;
+import java.util.List;
 import java.io.File;
+
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -35,6 +38,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
 
+import io.qameta.allure.Allure;
+import org.openqa.selenium.WebDriver;
 public class CommonUtilities {
 
 	
@@ -418,8 +423,9 @@ File file = new File(hFileName);
 		driver.findElement(dropDownName).click();;
 		//Thread.sleep(4000);
 		
-		String jbn="//li[contains(.,\'"+strDropDownValue+"\')]";
-		By dropDownValue= By.xpath(jbn);
+		
+		String drpsel="//li[contains(.,\'"+strDropDownValue+"\')]";
+		By dropDownValue= By.xpath(drpsel);
 		
 	    driver.findElement(dropDownValue).click();
 	  
@@ -458,6 +464,53 @@ File file = new File(hFileName);
 		boolean expText =True;
 		softAssert.assertEquals(acText, expText, "Mismatch");
     }
+    
+    public void tableDropdownVerification(WebDriver driver)
+    {
+
+		WebElement table = driver.findElement(By.xpath("")); 
+
+		String headerName = "Marketplace"; 
+
+		int columnIndex = -1; // initialize column index to -1
+
+		List<WebElement> headerCells = table.findElements(By.tagName("th")); // get all the header cells
+
+		for (int i = 0; i < headerCells.size(); i++) {
+
+			if (headerName.equals(headerCells.get(i).getText())) {
+
+				columnIndex = i; // update the column index when header name matches
+				System.out.println("Number of coloumn : "+columnIndex);
+				break; // exit the loop once the header name is found
+
+			}
+
+		}
+
+	List<WebElement> rows = table.findElements(By.tagName("tr")); // get all the rows in the table
+
+	for(WebElement row : rows)
+	{
+		List<WebElement> cells = row.findElements(By.tagName("td")); // get all the cells in each row
+		if (columnIndex < cells.size()) 
+		{ 
+			// check if the column index is within bounds
+			String cellText = cells.get(columnIndex).getText().toString();
+			System.out.println("values found : "+cellText);
+		
+		}
+		
+		
+
+	}
+	
+	
+  }
+    
+    
+    
+    
 }
 	
 	

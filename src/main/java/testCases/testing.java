@@ -17,7 +17,7 @@ public class testing {
 		CommonUtilities	cu = new CommonUtilities();
 		
 		//String valueAsSeenInExcel = fmt.formatCellValue(cu.getCellData("Add_Products", "Product_Weight"));
-	System.out.println(cu.getCellData("Add_Products", "Product_Weight"));
+	System.out.println(cu.getCellData("Edit_Product", "Importer_Contact_info_Edit"));
 	}
 
 }
