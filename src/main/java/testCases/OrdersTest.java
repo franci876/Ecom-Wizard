@@ -45,7 +45,9 @@ public class OrdersTest
 		op.searchBySku();
 		op.searchByMarketplace();
 		op.searchByOrderStatus();
-		
+		op.searchByMarketplaceOrderId();
+		Thread.sleep(2000);
+		op.searchByCustomer();
 	        
 	}
 	

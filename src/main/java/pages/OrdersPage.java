@@ -44,7 +44,7 @@ public class OrdersPage
 	String drpsel="//div[8]/div";
 	//locateOrder
 	By locateOrder = By.xpath("//td[2]/a");
-	By orderVeri =By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/div[1]/div/div/span[2]");
+	//By orderVeri =By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/div[1]/div/div/span[2]");
 	
 	By searchBy = By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/div/div/div[2]/div/div/div/div[2]/form/div[1]/div/div[2]/div/div/div/div/span[2]");
 	//find sku
@@ -59,9 +59,20 @@ public class OrdersPage
 	By orderStatus = By.id("filterByOrderStatus");
 	By mkpver = By.xpath("/html/body/div[4]/div/div/div/div[2]/div/div/div/div[2]/div");
 	
+	By marketplaceclear = By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/div/div/div[2]/div/div/div/div[2]/form/div[4]/div/div[2]/div/div/div/span/span");
+	By orderstatusclear = By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/div/div/div[2]/div/div/div/div[2]/form/div[5]/div/div[2]/div/div/div/span/span");
+	By mpoidsearchbtn = By.cssSelector(".ant-table-cell:nth-child(3) .ant-dropdown-trigger svg");
+	By mpoidinput = By.cssSelector(".ant-table-filter-dropdown .ant-input");
+	By mpoidsearch = By.cssSelector(".ant-btn-primary > span:nth-child(2)");
+	By mpoidReset = By.xpath("//div[2]/button");
+	
+	By custsearch = By.cssSelector(".ant-table-cell:nth-child(5) .ant-dropdown-trigger svg");
+	By custnminput = By.cssSelector("input.ant-input[placeholder='Search Customer']"); 
+	By custsearchbtn = By.cssSelector(".ant-btn-primary > span:nth-child(2)");
+	
+	
 	public void navigateToOrderPage()
 	{
-		
 		driver.findElement(ordernav).click();
 		Allure.step("Clicked on order button at navigation bar");
 		driver.findElement(orderdash).click();
@@ -96,22 +107,66 @@ public class OrdersPage
 		driver.findElement(orderLoc).click();
 		Allure.step("Go to orders details page");
 		
-		String ActOrderID =driver.findElement(orderVeri).getAttribute("innerHTML");
-		String ExpOrderID =cu.getCellData("OrderDetails", "Order_Id");
-		softAssert.assertEquals(ActOrderID, ExpOrderID, "Field Data Mismatched");
-		Allure.step("Verified Order ID");
-		
 		driver.findElement(backBtn).click();
+		Thread.sleep(2000);
+		findOrderId();
 		
 		
-		//softAssert.assertAll();
 	}
+	public void findOrderId()
+    {
+
+		WebElement table = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/div/div/div[2]/div/div/div/div[3]/div/div/div/div/div/div/div/table")); 
+
+		String headerName = "Order-ID"; 
+
+		int columnIndex = -1; // initialize column index to -1
+
+		List<WebElement> headerCells = table.findElements(By.tagName("th")); // get all the header cells
+
+		for (int i = 0; i < headerCells.size(); i++) {
+
+			if (headerName.equals(headerCells.get(i).getText())) {
+
+				columnIndex = i; // update the column index when header name matches
+				System.out.println("Number of coloumn : "+columnIndex);
+				break; // exit the loop once the header name is found
+
+			}
+
+		}
+
+	List<WebElement> rows = table.findElements(By.tagName("tr")); // get all the rows in the table
+
+	for(WebElement row : rows)
+	{
+		List<WebElement> cells = row.findElements(By.tagName("td")); // get all the cells in each row
+		if (columnIndex < cells.size()) 
+		{ 
+			// check if the column index is within bounds
+			String cellText = cells.get(columnIndex).getText().toString();
+			System.out.println("values found : "+cellText);
+		
+			 String actOrderStatusVal =cellText;
+			 String expOrderStatusVal = cu.getCellData("OrderDetails", "Order_Id");
+			 softAssert.assertEquals(actOrderStatusVal, expOrderStatusVal, "Field Data Mismatched");
+			 Allure.step("Selected order id is verified ");
+		}
+		
+		
+
+	}
+	//softAssert.assertAll();
+	
+	
+  }
 	
 	public void selectDateFromDropdown() throws Exception
 	{
 		By monthsel = By.cssSelector("div[title='"+cu.getCellData("OrderDetails", "Select_Month")+"']");
 		Thread.sleep(3000);
 		driver.findElement(monthsel).click();
+		Allure.step("Month is selected from dropdown");
 		
 	}
 	public void selectMarketPlaceFromDropdown() throws Exception
@@ -119,12 +174,14 @@ public class OrdersPage
 		By marketsel = By.cssSelector("div[title='"+cu.getCellData("OrderDetails", "Select_Marketplace")+"']");
 		Thread.sleep(3000);
 		driver.findElement(marketsel).click();
+		Allure.step("Marketplace is selected from dropdown");
 	}
 	public void selectOrderStatusFromDropdown() throws Exception
 	{
 		By orderstatusSel = By.cssSelector("div[title='"+cu.getCellData("OrderDetails", "Order_Status")+"']");
 		Thread.sleep(3000);
 		driver.findElement(orderstatusSel).click();
+		Allure.step("Order status is selected from dropdown");
 	}
 	public void searchBy() throws Exception
 	
@@ -132,7 +189,7 @@ public class OrdersPage
 		By orderstatusSel = By.cssSelector("div[title='"+cu.getCellData("OrderDetails", "Search_By")+"']");
 		Thread.sleep(3000);
 		driver.findElement(orderstatusSel).click();
-		
+		Allure.step("Order status is selected from dropdown");
 	}
 	
 	public void searchBySku() throws Exception
@@ -140,17 +197,17 @@ public class OrdersPage
 		Thread.sleep(4000);
 		driver.findElement(orderId).clear();
 		driver.findElement(month).click();
+		Allure.step("Order date is selected");
 		Thread.sleep(2000);
 		selectDateFromDropdown();
 		
 		driver.findElement(searchBy).click();
 		searchBy();
 		Thread.sleep(2000);
-		
 		driver.findElement(orderId).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
 	   
 		driver.findElement(orderId).sendKeys(cu.getCellData("OrderDetails","SKU_ID"));
-		
+		Allure.step("SKU ID is entered");
 		driver.findElement(searchBtn).click();
 		Allure.step("Searched with SKU ID");
 		Thread.sleep(2000);
@@ -178,6 +235,7 @@ public class OrdersPage
 		Thread.sleep(1000);
 		selectMarketPlaceFromDropdown();
 		driver.findElement(month).click();
+		Allure.step("Order date is selected");
 		Thread.sleep(2000);
 		selectDateFromDropdown();
 	    Thread.sleep(1000);
@@ -287,9 +345,144 @@ public class OrdersPage
 		
 
 	}
+	//softAssert.assertAll();
+	
+	
+  }
+	public void findMPOID()
+    {
+
+		WebElement table = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/div/div/div[2]/div/div/div/div[3]/div/div/div/div/div/div/div/table")); 
+
+		String headerName = "Marketplace Order-ID"; 
+
+		int columnIndex = -1; // initialize column index to -1
+
+		List<WebElement> headerCells = table.findElements(By.tagName("th")); // get all the header cells
+
+		for (int i = 0; i < headerCells.size(); i++) {
+
+			if (headerName.equals(headerCells.get(i).getText())) {
+
+				columnIndex = i; // update the column index when header name matches
+				System.out.println("Number of coloumn : "+columnIndex);
+				break; // exit the loop once the header name is found
+
+			}
+
+		}
+
+	List<WebElement> rows = table.findElements(By.tagName("tr")); // get all the rows in the table
+
+	for(WebElement row : rows)
+	{
+		List<WebElement> cells = row.findElements(By.tagName("td")); // get all the cells in each row
+		if (columnIndex < cells.size()) 
+		{ 
+			// check if the column index is within bounds
+			String cellText = cells.get(columnIndex).getText().toString();
+			System.out.println("values found : "+cellText);
+		
+			 String actOrderStatusVal =cellText;
+			 String expOrderStatusVal = cu.getCellData("OrderDetails", "MarketPlace_Order_ID");
+			 softAssert.assertEquals(actOrderStatusVal, expOrderStatusVal, "Field Data Mismatched");
+			 Allure.step("Selected market place order id is verified ");
+		}
+		
+		
+
+	}
+	//softAssert.assertAll();
+	
+	
+  }
+	public void searchByMarketplaceOrderId() throws Exception
+	{
+		driver.findElement(marketplaceclear).click();
+		driver.findElement(orderstatusclear).click();
+		Thread.sleep(2000);
+		driver.findElement(searchBtn).click();
+		Thread.sleep(2000);
+		driver.findElement(mpoidsearchbtn).click(); //market place order id -MPOID
+		Allure.step("Clicked on search button at market place order id ");
+		Thread.sleep(2000);
+		driver.findElement(mpoidinput).sendKeys(cu.getCellData("OrderDetails", "MarketPlace_Order_ID"));
+		Allure.step("Entered marketplace order id");
+		driver.findElement(mpoidsearch).click();
+		Allure.step("Search with marketplace order id");
+		findMPOID();
+		driver.findElement(mpoidsearchbtn).click();
+		Thread.sleep(2000);
+		driver.findElement(mpoidReset).click();
+		Allure.step("Clicked on reset button at marketplace order id");
+	}
+	public void findCustomer()
+    {
+
+		WebElement table = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/div/div/div[2]/div/div/div/div[3]/div/div/div/div/div/div/div/table")); 
+
+		String headerName = "Customer"; 
+
+		int columnIndex = -1; // initialize column index to -1
+
+		List<WebElement> headerCells = table.findElements(By.tagName("th")); // get all the header cells
+
+		for (int i = 0; i < headerCells.size(); i++) {
+
+			if (headerName.equals(headerCells.get(i).getText())) {
+
+				columnIndex = i; // update the column index when header name matches
+				System.out.println("Number of coloumn : "+columnIndex);
+				break; // exit the loop once the header name is found
+
+			}
+
+		}
+
+	List<WebElement> rows = table.findElements(By.tagName("tr")); // get all the rows in the table
+
+	for(WebElement row : rows)
+	{
+		List<WebElement> cells = row.findElements(By.tagName("td")); // get all the cells in each row
+		if (columnIndex < cells.size()) 
+		{ 
+			// check if the column index is within bounds
+			String cellText = cells.get(columnIndex).getText().toString();
+			System.out.println("values found : "+cellText);
+		
+			 String actOrderStatusVal =cellText;
+			 String expOrderStatusVal = cu.getCellData("OrderDetails", "Customer_Name");
+			 softAssert.assertEquals(actOrderStatusVal, expOrderStatusVal, "Field Data Mismatched");
+			 Allure.step("Selected customer name is verified ");
+		}
+		
+		
+
+	}
 	softAssert.assertAll();
 	
 	
   }
+	
+	public void searchByCustomer() throws Exception
+	{
+		Thread.sleep(2000);
+		driver.findElement(searchBtn).click();
+		driver.findElement(custsearch).click();
+		Thread.sleep(2000);
+		driver.findElement(custnminput).sendKeys(cu.getCellData("OrderDetails", "Customer_Name"));
+		Allure.step("Entered customer name");
+		Thread.sleep(2000);
+		
+		driver.findElement(custsearchbtn);
+		
+		List<WebElement> elements = driver.findElements(custsearchbtn);
+		int elementsCount = elements.size();
+		System.out.println("Count of elemnts :"+elementsCount);
+		elements.get(1).click();
+		Allure.step("Clicked on search button to filter with customer name");
+		findCustomer();
+	
+	}
 	
 }	
