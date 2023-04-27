@@ -48,6 +48,7 @@ public class OrdersTest
 		op.searchByMarketplaceOrderId();
 		Thread.sleep(2000);
 		op.searchByCustomer();
+		op.shipTypeSelect();
 	        
 	}
 	

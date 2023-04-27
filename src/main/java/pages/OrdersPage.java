@@ -69,7 +69,11 @@ public class OrdersPage
 	By custsearch = By.cssSelector(".ant-table-cell:nth-child(5) .ant-dropdown-trigger svg");
 	By custnminput = By.cssSelector("input.ant-input[placeholder='Search Customer']"); 
 	By custsearchbtn = By.cssSelector(".ant-btn-primary > span:nth-child(2)");
+	By custReset = By.xpath("/html/body/div[9]/div/div/div/div/div/div[2]/button");
 	
+	By shipTypeFil = By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/div/div/div[2]/div/div/div/div[3]/div/div/div/div/div/div/div/table/thead/tr/th[6]/div/span[2]");
+	By shipTypeSel = By.xpath("//li[2]/span/label/span/input");
+	By shipOkBtn = By.xpath("//span[contains(.,'OK')]");
 	
 	public void navigateToOrderPage()
 	{
@@ -482,7 +486,79 @@ public class OrdersPage
 		elements.get(1).click();
 		Allure.step("Clicked on search button to filter with customer name");
 		findCustomer();
+		//click reset button
+		driver.findElement(custsearch).click();
+		Thread.sleep(1000);
+		driver.findElement(custReset).click();
+		Allure.step("Clicked on reset button");
 	
 	}
+	public void shipTypeSelect() throws Exception
+	{
+		
+		driver.findElement(shipTypeFil).click();
+		Thread.sleep(2000);
+		
+		
+		
+		
+
+		List<WebElement> elements = driver.findElements(shipTypeSel);
+		int elementsCount = elements.size();
+		System.out.println("Count of elemnts :"+elementsCount);
+		elements.get(0).click();
+		Allure.step("Clicked on search button to filter with customer name");
+		
+		//driver.findElement(shipTypeSel).click();
+		
+		Thread.sleep(2000);
+		driver.findElement(shipOkBtn).click();
+		findShipType();
+		
+	}
+	public void findShipType()
+    {
+
+		WebElement table = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/div/div/div[2]/div/div/div/div[3]/div/div/div/div/div/div/div/table")); 
+
+		String headerName = "Ship Type"; 
+
+		int columnIndex = -1; // initialize column index to -1
+
+		List<WebElement> headerCells = table.findElements(By.tagName("th")); // get all the header cells
+
+		for (int i = 0; i < headerCells.size(); i++) {
+
+			if (headerName.equals(headerCells.get(i).getText())) {
+
+				columnIndex = i; // update the column index when header name matches
+				System.out.println("Number of coloumn : "+columnIndex);
+				break; // exit the loop once the header name is found
+
+			}
+
+		}
+
+	List<WebElement> rows = table.findElements(By.tagName("tr")); // get all the rows in the table
+
+	for(WebElement row : rows)
+	{
+		List<WebElement> cells = row.findElements(By.tagName("td")); // get all the cells in each row
+		if (columnIndex < cells.size()) 
+		{ 
+			// check if the column index is within bounds
+			String cellText = cells.get(columnIndex).getText().toString();
+			System.out.println("values found : "+cellText);
+			 String actOrderStatusVal =cellText;
+			 String expOrderStatusVal = cu.getCellData("OrderDetails", "Ship_Type");
+			 softAssert.assertEquals(actOrderStatusVal, expOrderStatusVal, "Field Data Mismatched");
+			 Allure.step("Selected ship type is verified ");
+		}
+		
+
+	}
+	softAssert.assertAll();
 	
+	
+  }
 }	
