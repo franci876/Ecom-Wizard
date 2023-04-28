@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-04-27T15:22:35 IST" name="Default suite" finished-at="2023-04-27T15:23:32 IST" duration-ms="56457">
+  <suite started-at="2023-04-28T17:05:31 IST" name="Default suite" finished-at="2023-04-28T17:05:59 IST" duration-ms="28744">
     <groups>
     </groups>
-    <test started-at="2023-04-27T15:22:35 IST" name="Default test" finished-at="2023-04-27T15:23:32 IST" duration-ms="56457">
-      <class name="testCases.OrdersTest">
-        <test-method is-config="true" signature="beforetest()[pri:0, instance:testCases.OrdersTest@67c119b7]" started-at="2023-04-27T15:22:35 IST" name="beforetest" finished-at="2023-04-27T15:22:41 IST" duration-ms="5636" status="PASS">
+    <test started-at="2023-04-28T17:05:31 IST" name="Default test" finished-at="2023-04-28T17:05:59 IST" duration-ms="28744">
+      <class name="testCases.ProductUploadTest">
+        <test-method is-config="true" signature="beforetest()[pri:0, instance:testCases.ProductUploadTest@50acf55d]" started-at="2023-04-28T17:05:31 IST" name="beforetest" finished-at="2023-04-28T17:05:38 IST" duration-ms="7355" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforetest -->
-        <test-method signature="ordersFilter()[pri:0, instance:testCases.OrdersTest@67c119b7]" started-at="2023-04-27T15:22:41 IST" name="ordersFilter" finished-at="2023-04-27T15:23:31 IST" duration-ms="50414" status="PASS">
+        <test-method signature="productUpload()[pri:0, instance:testCases.ProductUploadTest@50acf55d]" started-at="2023-04-28T17:05:38 IST" name="productUpload" finished-at="2023-04-28T17:05:59 IST" duration-ms="20942" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- ordersFilter -->
-      </class> <!-- testCases.OrdersTest -->
+        </test-method> <!-- productUpload -->
+      </class> <!-- testCases.ProductUploadTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

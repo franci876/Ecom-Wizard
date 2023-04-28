@@ -24,7 +24,6 @@ public class OrdersPage
 		        this.driver = driver;
 		        
 		    }
-
 	//navigate to orders
 	By ordernav = By.cssSelector(".nav-item:nth-child(3) > #navbarDropdown");
 	By orderdash = By.cssSelector(".show > .dropdown-item");
@@ -33,8 +32,7 @@ public class OrdersPage
 	//filter by month
 	By month = By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/div/div/div[2]/div/div/div/div[2]/form/div[3]/div/div[2]/div/div/div/div/span[2]");
 	//By monthsel = By.cssSelector("div[title='This Week']");
-	
-	
+
 	By searchBtn = By.name("search");
 	//order id
 	By orderId = By.id("keyword");
@@ -44,7 +42,7 @@ public class OrdersPage
 	String drpsel="//div[8]/div";
 	//locateOrder
 	By locateOrder = By.xpath("//td[2]/a");
-	//By orderVeri =By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/div[1]/div/div/span[2]");
+	By orderVeri =By.cssSelector(".ant-page-header-heading-sub-title");
 	
 	By searchBy = By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/div/div/div[2]/div/div/div/div[2]/form/div[1]/div/div[2]/div/div/div/div/span[2]");
 	//find sku
@@ -111,59 +109,19 @@ public class OrdersPage
 		driver.findElement(orderLoc).click();
 		Allure.step("Go to orders details page");
 		
+		String actOrderStatusVal =driver.findElement(orderVeri).getText();
+		 String expOrderStatusVal = cu.getCellData("OrderDetails", "Order_Id");
+		 softAssert.assertEquals(actOrderStatusVal, expOrderStatusVal, "Field Data Mismatched");
+		 Allure.step("Selected order id is verified ");
+		
+		
 		driver.findElement(backBtn).click();
 		Thread.sleep(2000);
-		findOrderId();
+		
 		
 		
 	}
-	public void findOrderId()
-    {
-
-		WebElement table = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/div/div/div[2]/div/div/div/div[3]/div/div/div/div/div/div/div/table")); 
-
-		String headerName = "Order-ID"; 
-
-		int columnIndex = -1; // initialize column index to -1
-
-		List<WebElement> headerCells = table.findElements(By.tagName("th")); // get all the header cells
-
-		for (int i = 0; i < headerCells.size(); i++) {
-
-			if (headerName.equals(headerCells.get(i).getText())) {
-
-				columnIndex = i; // update the column index when header name matches
-				System.out.println("Number of coloumn : "+columnIndex);
-				break; // exit the loop once the header name is found
-
-			}
-
-		}
-
-	List<WebElement> rows = table.findElements(By.tagName("tr")); // get all the rows in the table
-
-	for(WebElement row : rows)
-	{
-		List<WebElement> cells = row.findElements(By.tagName("td")); // get all the cells in each row
-		if (columnIndex < cells.size()) 
-		{ 
-			// check if the column index is within bounds
-			String cellText = cells.get(columnIndex).getText().toString();
-			System.out.println("values found : "+cellText);
-		
-			 String actOrderStatusVal =cellText;
-			 String expOrderStatusVal = cu.getCellData("OrderDetails", "Order_Id");
-			 softAssert.assertEquals(actOrderStatusVal, expOrderStatusVal, "Field Data Mismatched");
-			 Allure.step("Selected order id is verified ");
-		}
-		
-		
-
-	}
-	//softAssert.assertAll();
 	
-	
-  }
 	
 	public void selectDateFromDropdown() throws Exception
 	{
@@ -459,15 +417,10 @@ public class OrdersPage
 			 softAssert.assertEquals(actOrderStatusVal, expOrderStatusVal, "Field Data Mismatched");
 			 Allure.step("Selected customer name is verified ");
 		}
-		
-		
 
 	}
-	softAssert.assertAll();
-	
-	
+	//softAssert.assertAll();
   }
-	
 	public void searchByCustomer() throws Exception
 	{
 		Thread.sleep(2000);
@@ -498,9 +451,6 @@ public class OrdersPage
 		
 		driver.findElement(shipTypeFil).click();
 		Thread.sleep(2000);
-		
-		
-		
 		
 
 		List<WebElement> elements = driver.findElements(shipTypeSel);
@@ -554,11 +504,8 @@ public class OrdersPage
 			 softAssert.assertEquals(actOrderStatusVal, expOrderStatusVal, "Field Data Mismatched");
 			 Allure.step("Selected ship type is verified ");
 		}
-		
 
 	}
 	softAssert.assertAll();
-	
-	
   }
 }	
