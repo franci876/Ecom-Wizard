@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite thread-count="2" parallel="classes" name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
-  <test thread-count="2" parallel="classes" name="Test(failed)">
+<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Test(failed)">
     <classes>
       <class name="testCases.UserReg">
         <methods>
@@ -9,6 +9,44 @@
           <include name="beforetest"/>
         </methods>
       </class> <!-- testCases.UserReg -->
+      <class name="testCases.ProductSearchTest">
+        <methods>
+          <include name="productEdit"/>
+          <include name="beforetest"/>
+        </methods>
+      </class> <!-- testCases.ProductSearchTest -->
+      <class name="testCases.loginTest">
+        <methods>
+          <include name="logoutuser"/>
+          <include name="afterTest"/>
+          <include name="editProfile"/>
+          <include name="beforetest"/>
+        </methods>
+      </class> <!-- testCases.loginTest -->
+      <class name="testCases.ProductUploadTest">
+        <methods>
+          <include name="beforetest"/>
+          <include name="productUpload"/>
+        </methods>
+      </class> <!-- testCases.ProductUploadTest -->
+      <class name="testCases.OrdersTest">
+        <methods>
+          <include name="beforetest"/>
+          <include name="ordersFilter"/>
+        </methods>
+      </class> <!-- testCases.OrdersTest -->
+      <class name="testCases.AddProducts">
+        <methods>
+          <include name="addprod"/>
+          <include name="beforetest"/>
+        </methods>
+      </class> <!-- testCases.AddProducts -->
+      <class name="testCases.AddUserTest">
+        <methods>
+          <include name="addecomUser"/>
+          <include name="beforetest"/>
+        </methods>
+      </class> <!-- testCases.AddUserTest -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

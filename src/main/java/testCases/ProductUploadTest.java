@@ -43,5 +43,6 @@ public class ProductUploadTest  extends BaseClass
 		pu.goToProductPage();
 		pu.fileDownload();
 		pu.fileupload();
+		pu.filestatusCheck();
 	}
 }

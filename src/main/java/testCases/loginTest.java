@@ -34,15 +34,8 @@ public class loginTest extends BaseClass
 		
 		lp.loginClick(xcl.getCellData("Login","User Name"), xcl.getCellData("Login","Password"));	
 	}
-	//profile-Edit
+	
 	@Test(priority=2)
-	@Description("TestCase : Profile Edit Testcase")
-	public void editProfile()
-	{
-	   	profileEdit profEdit =new profileEdit(driver);
-		profEdit.profiledit(xcl.getCellData("ProfileEdit","First Name"), xcl.getCellData("ProfileEdit","Last Name"));	
-	}
-	@Test(priority=3)
 	@Description("TestCase : Logout Function")
 	public void logoutuser()
 	{
@@ -53,6 +46,6 @@ public class loginTest extends BaseClass
 	@AfterTest
 	public void afterTest()
 	{
-		//driver.quit();
+		driver.quit();
 	}
 }
