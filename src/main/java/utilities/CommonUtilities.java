@@ -54,6 +54,32 @@ public class CommonUtilities {
 	 String fileName = filePath+"TestData.xlsx";
 	 String hFileName = filePath+"TestDataH.xlsx";
 	 
+	
+
+	 public void findElementByClassNameAndText(String className, Object desiredText, WebDriver driver) {
+		 
+			// Find element by class name and text
+		      
+
+		 		        // Find all elements with the given class name
+		        List<WebElement> elements = driver.findElements(By.className(className));
+
+		        // Iterate through the elements and find the one with the desired text
+		        for (WebElement element : elements) {
+		        	
+		        //	System.out.println(element.getText());
+		            if (element.getText().equals(desiredText)) {
+		                 element.click();
+		                break;
+		            }
+		        }
+			  
+		  }
+	 
+	 
+	 
+	 
+	 
 	 public void slowType(WebDriver driver, By elTxtBox, String value)
 	 {
 		 

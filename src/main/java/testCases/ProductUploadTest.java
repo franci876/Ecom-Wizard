@@ -42,6 +42,7 @@ public class ProductUploadTest  extends BaseClass
 		ProductUpload pu = new ProductUpload(driver);
 		pu.goToProductPage();
 		pu.fileDownload();
+		Thread.sleep(4000);
 		pu.fileupload();
 		pu.filestatusCheck();
 	}

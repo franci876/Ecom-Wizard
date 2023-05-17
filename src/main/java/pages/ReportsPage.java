@@ -1,10 +1,18 @@
 package pages;
 
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
 
 import io.qameta.allure.Allure;
@@ -20,7 +28,7 @@ public class ReportsPage
 			    {
 			        this.driver = driver;
 			    }
-			   // By reportsNavSel =By.cssSelector(".nav-item:nth-child(5) > #navbarDropdown");
+			    
 			    By reportsNavSel =By.xpath("//a[contains(text(),'Reports')]");
 			    By marketPlaceSalesRepo = By.name("MarketplaceSalesReport");
 			    By selFilter = By.xpath("//div/span[2]");
@@ -36,7 +44,14 @@ public class ReportsPage
 			    By searchProd = By.name("searchBy");
 			    By prodNm = By.cssSelector("");
 			    
-			    
+			    By custRangeBtn = By.xpath("//*[@id=\"range_picker\"]");
+			    By startingRage = By.cssSelector("#range_picker");
+			    By previousMonth = By.xpath("/html/body/div[6]/div/div/div/div[2]/div/div[1]/div/div[1]/button[2]");
+			    By startingDate = By.cssSelector(".ant-picker-panel:nth-child(1) tr:nth-child(3) > .ant-picker-cell:nth-child(2) > .ant-picker-cell-inner");
+			    By endRange = By.xpath("/html/body/div[6]/div/div/div/div[2]/div/div[2]/div/div[2]/table/tbody/tr[2]/td[4]");
+			    By previousYear = By.xpath("/html/body/div[6]/div/div/div/div[2]/div/div[1]/div/div[1]/button[1]");
+			    By nextYear = By.xpath("/html/body/div[7]/div/div/div/div[2]/div/div[2]/div/div[1]/button[4]");
+			    By month = By.xpath("/html/body/div[6]/div/div/div/div[2]/div/div[1]/div/div[1]/div/button[1]");
 			    
 			    public void marketPlaceSalesReport() throws Exception
 			    {
@@ -213,6 +228,151 @@ public class ReportsPage
 			    	softAssert.assertAll();
 			    	
 			    }
-			  
+			    
+			    public void marketPlaceSalesRepoFilterByCustomRange() throws Exception
+			    {
+			    	Thread.sleep(3000);
+			    	driver.findElement(reportsNavSel).click();
+			    	Allure.step("Clicked on reports menu");
+			    	driver.findElement(marketPlaceSalesRepo).click();
+			    	Allure.step("Clicked on market place sales report submenu");
+			    	
+			    	this.filterByDate("Custom Range");
+			    	String startDate=cu.getCellData("CustomDate", "StartDate");
+			    	String endDate =cu.getCellData("CustomDate", "EndDate");
+			    	this.myEcomDateSelection(driver, startDate,  endDate);
+			    	Allure.step("From date and to date is selected");
+			    	
+			    	Thread.sleep(2000);
+			    	driver.findElement(searchBtn).click();
+			    	Allure.step("Search button is clicked");
+			    	
+			    	
+			    }
+			    public void selectDateFromDropdown2() throws Exception
+				{
+				By monthsel = By.cssSelector("div[title='"+cu.getCellData("Reports", "FilterByDateCustom")+"']");
+				Thread.sleep(3000);
+				driver.findElement(monthsel).click();
+				Allure.step("Filter by date is selected from dropdown");
+				}
 
+			    public void filterByDate(String dateRange) throws InterruptedException
+			    {
+		    		  driver.findElement(By.cssSelector(".ant-select-selection-item")).click();
+		    		  Thread.sleep(1000);
+		    		  cu.findElementByClassNameAndText("ant-select-item-option-content", dateRange, driver);
+			    }
+			   //to select custom date from calander  
+			    public void myEcomDateSelection(WebDriver driver, String inputDate, String toDate) throws InterruptedException {
+					
+			    	//	String inputDate = "2021-09-14";
+
+			            // Parse the input date string into a LocalDate object
+			            LocalDate date = LocalDate.parse(inputDate);
+
+			            // Format the LocalDate object to the desired output format
+			            DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy MMM");
+			            String outputDate = date.format(outputFormatter);
+
+			            // Extract year, month, and day from the LocalDate object
+			            String year = String.valueOf(date.getYear());
+			            String month = date.getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
+			            String day = String.valueOf(date.getDayOfMonth());
+			     
+			            LocalDate todate = LocalDate.parse(toDate);
+
+			            // Format the LocalDate object to the desired output format
+			            DateTimeFormatter outputFormattert = DateTimeFormatter.ofPattern("yyyy MMM");
+			            String outputDatet = todate.format(outputFormattert);
+
+			            // Extract year, month, and day from the LocalDate object
+			            String toYear = String.valueOf(todate.getYear());
+			            String toMonth = todate.getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
+			            String toDay = String.valueOf(todate.getDayOfMonth());
+			         // Get the current year and month
+			            YearMonth currentYearMonth = YearMonth.now();
+
+			            // Extract the current year and month as separate strings
+			            String currentYear = String.valueOf(currentYearMonth.getYear());
+			            String currentMonth = String.valueOf(currentYearMonth.getMonthValue());
+			            currentMonth = currentYearMonth.getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
+			            
+
+			            
+			    		CommonUtilities cu = new CommonUtilities();
+
+			    	
+			    		  driver.findElement(By.id("range_picker")).click();
+			    		  Thread.sleep(1000);
+			    		  cu.findElementByClassNameAndText("ant-picker-year-btn", currentYear, driver);
+			    		  Thread.sleep(1000);
+			    		  cu.findElementByClassNameAndText("ant-picker-cell-inner",year, driver);
+			    		  Thread.sleep(1000);
+			    		  
+			    		  System.out.println(currentMonth);
+			    		  cu.findElementByClassNameAndText("ant-picker-month-btn", currentMonth, driver);
+			    		  Thread.sleep(1000);
+			    		  cu.findElementByClassNameAndText("ant-picker-cell-inner",month, driver);
+			    		  Thread.sleep(1000);
+			    		  
+			    		  cu.findElementByClassNameAndText("ant-picker-cell-inner", day, driver);
+			    		  
+			    		  Thread.sleep(1000);
+			    		  
+			    		  cu.findElementByClassNameAndText("ant-picker-year-btn", year, driver);
+			    		  Thread.sleep(1000);
+			    		  cu.findElementByClassNameAndText("ant-picker-cell-inner",toYear, driver);
+			    		  Thread.sleep(1000);
+			    		  cu.findElementByClassNameAndText("ant-picker-month-btn", month, driver);
+			    		  Thread.sleep(1000);
+			    		  cu.findElementByClassNameAndText("ant-picker-cell-inner",toMonth, driver);
+			    		  Thread.sleep(1000);
+			    		  
+			    		  cu.findElementByClassNameAndText("ant-picker-cell-inner", toDay, driver);
+			    		  
+			    	}
+			    	
+			    	
+			    public void CategorySalesRepoFilterByCustomRange() throws Exception
+			    {
+			    	Thread.sleep(3000);
+			    	driver.findElement(reportsNavSel).click();
+			    	Allure.step("Clicked on reports menu");
+			    	driver.findElement(categorySalesRepo).click();
+			    	Allure.step("Clicked on market place sales report submenu");
+			    	
+			    	this.filterByDate("Custom Range");
+			    	String startDate=cu.getCellData("CustomDate", "StartDate");
+			    	String endDate =cu.getCellData("CustomDate", "EndDate");
+			    	this.myEcomDateSelection(driver, startDate,  endDate);
+			    	Allure.step("From date and to date is selected");
+			    	
+			    	Thread.sleep(2000);
+			    	driver.findElement(searchBtn).click();
+			    	Allure.step("Search button is clicked");
+			    	
+			    	
+			    }
+			    public void TopSellingProductsFilterByCustomRange() throws Exception
+			    {
+			    	Thread.sleep(3000);
+			    	driver.findElement(reportsNavSel).click();
+			    	Allure.step("Clicked on reports menu");
+			    	driver.findElement(topsellingprod).click();
+			    	Allure.step("Clicked on market place sales report submenu");
+			    	
+			    	this.filterByDate("Custom Range");
+			    	//String startDate =cu.getCellData("CustomDate", "StartDate");
+			    	String startDate=cu.getCellData("CustomDate", "StartDate");
+			    	String endDate =cu.getCellData("CustomDate", "EndDate");
+			    	this.myEcomDateSelection(driver, startDate,  endDate);
+			    	Allure.step("From date and to date is selected");
+			    	
+			    	Thread.sleep(2000);
+			    	driver.findElement(searchBtn).click();
+			    	Allure.step("Search button is clicked");
+			    	
+			    }
+			 
 }

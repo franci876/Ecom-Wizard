@@ -91,7 +91,6 @@ CommonUtilities	cu = new CommonUtilities();
 			         System.out.println("Element is not displayed");
 			         actImg ="Element is not displayed";
 			      }
-				
 				String expImg = "Element is displayed";
 				softAssert.assertEquals(actImg, expImg, "Field Data Mismatched");
 				softAssert.assertAll();

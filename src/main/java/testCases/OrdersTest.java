@@ -36,7 +36,7 @@ public class OrdersTest
 	public void ordersFilter() throws Exception
 	{
 		loginPage lp =new loginPage(driver);
-		lp.loginClick(xcl.getCellData("Login", "Partner_Email"), xcl.getCellData("Login", "Patrner_Password_Record"));
+		lp.loginClick(xcl.getCellData("Login", "Email"), xcl.getCellData("Login", "Password_Record"));
 		OrdersPage op =new OrdersPage(driver);
 		Thread.sleep(2000);
 		op.navigateToOrderPage();

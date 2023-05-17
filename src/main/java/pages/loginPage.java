@@ -22,19 +22,22 @@ public class loginPage
 		    By passwordF = By.name("password");
 		    By rememberMe = By.name("remember_me");
 		    By loginBtn = By.xpath("//button[@type='button']");
+		    By loginBtnInvalidLogin = By.xpath("//*[@id=\"root\"]/div/div[4]/a");
 		    
-		    public void loginClick(String userName, String password)
+		    public void loginClick(String userName, String password) 
 		    {
 		    
-		    	
+		    	driver.findElement(userNameF).clear();
 		    	driver.findElement(userNameF).sendKeys(userName);
 		    	Allure.step("User name is entered");
+		    	driver.findElement(passwordF).clear();
 		    	driver.findElement(passwordF).sendKeys(password);
 		    	Allure.step("Password is entered");
 		    	driver.findElement(rememberMe).click();
 		    	Allure.step("Remember me checkbox is clicked");
 		    	driver.findElement(loginBtn).click();
 		    	Allure.step("Login Button is clicked");
+		    	
 		    	
 		    	//verifying login test
 		    	String acttext =driver.getCurrentUrl();
@@ -44,5 +47,11 @@ public class loginPage
 				Allure.step("Verified login page");
 			    
 				//softAssert.assertAll();
+			
+		    }
+		    public void loginfails() throws Exception
+		    {
+		    	Thread.sleep(2000);
+		    	driver.findElement(loginBtnInvalidLogin).click();
 		    }
 }

@@ -99,7 +99,7 @@ public class userRegistration
 		    By fstName =By.name("first_name");
 		    By lstName =By.name("last_name");
 		    By vmailid =By.name("email");
-		    By cmpnme =By.xpath("//*[@id=\"personal\"]/div[2]/div/div[5]/div/input");
+		    By cmpnme =By.name("company_name");
 		    By numf =By.name("phone");
 		   
 		    By cmpm =By.name("company_name");

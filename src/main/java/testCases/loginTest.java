@@ -32,8 +32,9 @@ public class loginTest extends BaseClass
 		loginPage lp =new loginPage(driver);
 		
 		
-		lp.loginClick(xcl.getCellData("Login","User Name"), xcl.getCellData("Login","Password"));	
+		lp.loginClick(xcl.getCellData("Login","Email"), xcl.getCellData("Login","Password_Record"));	
 	}
+	
 	
 	@Test(priority=2)
 	@Description("TestCase : Logout Function")
@@ -43,9 +44,40 @@ public class loginTest extends BaseClass
 		lg.logout();
 	}
 	
+	@Test(priority=3)
+	@Description("TestCase : Login Negative case with wrong credentials")
+	public void loginNeg1() throws Exception
+	{
+		loginPage lp =new loginPage(driver);
+		lp.loginClick(xcl.getCellData("Login","EmailNegCase1"), xcl.getCellData("Login","PassNegCase1"));
+		lp.loginfails();
+	}
+	@Test(priority=4)
+	@Description("TestCase : Login Negative case with no email id")
+	public void loginNeg2() throws Exception
+	{
+		loginPage lp =new loginPage(driver);
+		lp.loginClick(" ", xcl.getCellData("Login","PassNegCase2"));
+
+	}
+	@Test(priority=5)
+	@Description("TestCase : Login Negative case with wrong email id")
+	public void loginNeg3() 
+	{
+		loginPage lp =new loginPage(driver);
+		lp.loginClick(xcl.getCellData("Login","EmailNegCase3"), xcl.getCellData("Login","PassNegCase3"));	
+	}
+	@Test(priority=6)
+	@Description("TestCase : Login Negative case with blank space as password")
+	public void loginNeg4() 
+	{
+		loginPage lp =new loginPage(driver);
+		lp.loginClick(xcl.getCellData("Login","Email"), " ");	
+	}
+	
 	@AfterTest
 	public void afterTest()
 	{
-		driver.quit();
+		//driver.quit();
 	}
 }

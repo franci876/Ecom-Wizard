@@ -148,7 +148,7 @@ public class ProductSearchPage
 	}
 	public void prodSearchByStock() throws Exception
 	{
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		driver.findElement(prodStock).click();
 		driver.findElement(prodStock).sendKeys("High to Low");
 		driver.findElement(prodStock).sendKeys(Keys.ENTER);

@@ -6,16 +6,14 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
+import pages.AccountSettingsPage;
 import pages.loginPage;
-import pages.profileEdit;
 import utilities.BaseClass;
 import utilities.CommonUtilities;
-@Listeners({utilities.AllureListners.class})
 
-public class ProfileEditTest extends BaseClass
-{
-	
-	
+@Listeners({utilities.AllureListners.class})
+public class AccountSettingsTest extends BaseClass
+	{
 		public WebDriver driver;
 		CommonUtilities	xcl = new CommonUtilities();
 		@BeforeTest
@@ -26,13 +24,16 @@ public class ProfileEditTest extends BaseClass
 	    	driver.get("http://ecompartner.digitalmesh.co.in/");
 		}
 		@Test(priority=1)
-		@Description("TestCase : To verify profile edit")
-		public void editProfile() throws Exception
+		@Description("TestCase : To verify account activation")
+		public void accountSettings() throws Exception
 		{
 			loginPage lp =new loginPage(driver);
 			lp.loginClick(xcl.getCellData("Login","Email"), xcl.getCellData("Login","Password_Record"));
-			profileEdit pe = new profileEdit(driver);
-			pe.profiledit();
+			AccountSettingsPage asp =new AccountSettingsPage(driver);
+			asp.navigateToSettings();
+			asp.deactivateAccount();
+			lp.loginClick(xcl.getCellData("Login","Email"), xcl.getCellData("Login","Password_Record"));
+			asp.activateAccount();
+		
 		}
 }
-

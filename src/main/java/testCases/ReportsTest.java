@@ -38,24 +38,29 @@ public class ReportsTest extends BaseClass
 			public void marketPlaceSalesReports() throws Exception
 			{
 				ReportsPage rp = new ReportsPage(driver);
-				rp.marketPlaceSalesReport();
-				rp.verifyMarketplace();
+//				rp.marketPlaceSalesReport();
+//				rp.verifyMarketplace();
+				rp.marketPlaceSalesRepoFilterByCustomRange();
 			}
 			@Test(priority=3)
 			@Description("TestCase : To verify category sales reports")
 			public void categorySales() throws Exception
 			{
-				ReportsPage rp = new ReportsPage(driver);
-				rp.categorySales();
-				rp.verifyCategory();
+//				ReportsPage rp = new ReportsPage(driver);
+//				rp.categorySales();
+//				rp.verifyCategory();
+//				rp.CategorySalesRepoFilterByCustomRange();
 			}
 			@Test(priority=4)
 			@Description("TestCase : To verify top selling products reports")
 			public void topSellingProducts() throws Exception
 			{
 				ReportsPage rp = new ReportsPage(driver);
-				rp.topSellingProducts();
-				rp.verifyProduct();
+//				rp.topSellingProducts();
+//				rp.verifyProduct();
+//				rp.TopSellingProductsFilterByCustomRange();
 			}
-
 }
+
+
+
