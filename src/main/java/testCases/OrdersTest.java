@@ -49,6 +49,8 @@ public class OrdersTest
 		Thread.sleep(2000);
 		op.searchByCustomer();
 		op.shipTypeSelect();
+		op.verifyAllOrderDetails();
+		
 	        
 	}
 	

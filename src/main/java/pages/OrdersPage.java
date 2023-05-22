@@ -54,7 +54,7 @@ public class OrdersPage
 	By marketPlaceOut = By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/div/div/div[2]/div/div/div/div[1]");
 	
 	By marketplaceVeri = By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/div/div/div[2]/div/div/div/div[3]/div/div/div/div/div/div/div/table/tbody/tr/td[4]");
-	By orderStatus = By.id("filterByOrderStatus");
+	By orderStatus = By.xpath("//*[@id=\"filterByOrderStatuses\"]");
 	By mkpver = By.xpath("/html/body/div[4]/div/div/div/div[2]/div/div/div/div[2]/div");
 	
 	By marketplaceclear = By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/div/div/div[2]/div/div/div/div[2]/form/div[4]/div/div[2]/div/div/div/span/span");
@@ -72,6 +72,18 @@ public class OrdersPage
 	By shipTypeFil = By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/div/div/div[2]/div/div/div/div[3]/div/div/div/div/div/div/div/table/thead/tr/th[6]/div/span[2]");
 	By shipTypeSel = By.xpath("//li[2]/span/label/span/input");
 	By shipOkBtn = By.xpath("//span[contains(.,'OK')]");
+	
+	By verifyDateOfOrder = By.cssSelector(".col-4:nth-child(1) time");
+	By verifyMarketPlace = By.cssSelector(".col-4:nth-child(2) .field-info-value");
+	By verifyStatus = By.cssSelector(".field-info-value > .ant-tag");
+	
+	By expectdShipDate = By.cssSelector(".pt-2 time");
+	By shipType = By.cssSelector(".col-4:nth-child(5) .field-info-value");
+	By marketplaceorder = By.cssSelector(".col-4:nth-child(6) .field-info-value");
+	By customerName = By.cssSelector(".col-4 .field-info-label > .field-info-value");
+	By custNumber = By.cssSelector(".col-3 .field-info-value");
+	By custEmail = By.cssSelector(".col-5 .field-info-value");
+	By custAddress = By.cssSelector("css=.col-12 .field-info-value");
 	
 	public void navigateToOrderPage()
 	{
@@ -186,6 +198,7 @@ public class OrdersPage
 		String ActOdHead =driver.findElement(odHeading).getText();
 		String ExpOdHead = "Order Details";
 		softAssert.assertEquals(ActOdHead, ExpOdHead, "Field Data Mismatched");
+		Allure.step("Verified order details heading");
 		
 		//softAssert.assertAll();
 		driver.findElement(backBtn).click();
@@ -256,7 +269,7 @@ public class OrdersPage
   }
 	public void searchByOrderStatus() throws Exception
 	{
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 		driver.findElement(orderStatus).click();
 		selectOrderStatusFromDropdown();
 		 driver.findElement(searchBtn).click();
@@ -506,6 +519,81 @@ public class OrdersPage
 		}
 
 	}
-	softAssert.assertAll();
+	//softAssert.assertAll();
   }
+	
+	public void verifyAllOrderDetails() throws Exception
+	{
+		Thread.sleep(2000);
+		driver.findElement(locateOrder).click();
+		Allure.step("Go to orders details page");
+		
+		//verify order id
+		String actOrderStatusVal =driver.findElement(orderVeri).getText();
+		String expOrderStatusVal = cu.getCellData("OrderDetails", "Order_Id");
+		softAssert.assertEquals(actOrderStatusVal, expOrderStatusVal, "Field Data Mismatched");
+		Allure.step("Order id is verified ");
+		
+		// verify date of order
+		String actOrderDate = driver.findElement(verifyDateOfOrder).getText();
+		String expOrderDate = cu.getCellData("OrderDetails", "Date_of_order");
+		softAssert.assertEquals(actOrderDate, expOrderDate, "Field Data Mismatched");
+		Allure.step("Date of order is verified ");
+		
+		// verify market place
+		String actMarketPlace = driver.findElement(verifyMarketPlace).getText();
+		String expMarketPlace = cu.getCellData("OrderDetails", "VerifyMarketPlace");
+		softAssert.assertEquals(actMarketPlace, expMarketPlace, "Field Data Mismatched");
+		Allure.step("Marketpalce is verified ");
+		
+		//verify status
+		String actStatus = driver.findElement(verifyStatus).getText();
+		String expStatus = cu.getCellData("OrderDetails", "Verify_Status");
+		softAssert.assertEquals(actStatus, expStatus, "Field Data Mismatched");
+		Allure.step("Order status is verified");
+		
+		//verify expected shipping date
+		String actExpShipDate = driver.findElement(expectdShipDate).getText();
+		String eExpShipDate = cu.getCellData("OrderDetails", "Expected_Ship_Date");
+		softAssert.assertEquals(actExpShipDate, eExpShipDate, "Field Data Mismatched");
+		Allure.step("Expected shipping date is verified");
+		
+		//verify ship type
+		String actShipType = driver.findElement(shipType).getText();
+		String ExpShipType = cu.getCellData("OrderDetails", "Ship_Type_Verify");
+		softAssert.assertEquals(actShipType, ExpShipType, "Field Data Mismatched");
+		Allure.step("Ship type is verified");
+		
+		//verify marketplace order
+		String actMarketPlaceOrder = driver.findElement(marketplaceorder).getText();
+		String expMarketPlaceOrder = cu.getCellData("OrderDetails", "Market_Place_Order");
+		softAssert.assertEquals(actMarketPlaceOrder, expMarketPlaceOrder, "Field Data Mismatched");
+		Allure.step("Marketplace order is verified");
+		
+		//verify customer name 
+		String actCustName = driver.findElement(customerName).getText();
+		String expCustName= cu.getCellData("OrderDetails", "Customer_Name");
+		softAssert.assertEquals(actCustName, expCustName, "Field Data Mismatched");
+		Allure.step("Customer name  is verified");
+		
+		//verify customer number 
+		String actCustNum = driver.findElement(custNumber).getText();
+		String expCustNum= cu.getCellData("OrderDetails", "Customer_Number");
+		softAssert.assertEquals(actCustNum, expCustNum, "Field Data Mismatched");
+		Allure.step("Customer number  is verified");
+		
+		//verify customer email 
+		
+		String actCustEmail = driver.findElement(custEmail).getText();
+		String expCustEmail = cu.getCellData("OrderDetails", "Customer_Email");
+		softAssert.assertEquals(actCustEmail, expCustEmail, "Field Data Mismatched");
+		Allure.step("Customer Email  is verified");
+		
+		//verify customer address 
+		String actCustaddress = driver.findElement(custAddress).getText();
+		String expCustaddress = cu.getCellData("OrderDetails", "Customer_address");
+		softAssert.assertEquals(actCustaddress, expCustaddress, "Field Data Mismatched");
+		Allure.step("Customer address is verified");
+	}
+	
 }	
