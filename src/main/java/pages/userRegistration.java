@@ -109,6 +109,25 @@ public class userRegistration
 		   // By payh = By.className("card-title.mb-3");
 		    By payh = By.cssSelector(".card-title");
 		    
+		    
+		    By firstNameValidMsg = By.cssSelector(".col-12:nth-child(1) > .text-danger");
+		    By secondNameValidMsg = By.cssSelector(".col-12:nth-child(2) > .text-danger");
+		    By emailValidMsg = By.cssSelector(".col-12:nth-child(3) > .text-danger");
+		    By countryValidMsg = By.cssSelector(".col-12:nth-child(4) > .text-danger");
+		    By phoneValidMsg = By.cssSelector(".col-12:nth-child(5) > .text-danger");
+		    By companyNameValidMSg = By.cssSelector(".col-12:nth-child(6) > .text-danger");
+		    By partnerPolicyValidMSg = By.cssSelector(".col-12:nth-child(7) > .text-danger");
+		    
+		    By emailValidationVerify = By.xpath("//*[@id=\"root\"]/div/div/div/div[2]/div/div/form/div[1]/div/div[3]/span");
+		    By logoErrorMsg =By.xpath("//*[@id=\"companyinfodetails\"]/div/div[2]/div/div/div[2]/span");
+		    
+		    By choosePlanbtn1 = By.cssSelector(".slick-slide:nth-child(1) .btn");
+		    By choosePlanbtn2 = By.cssSelector(".slick-slide:nth-child(1) .btn");
+		    By choosePlanbtn3 = By.cssSelector(".slick-slide:nth-child(1) .btn");
+		    By choosePlanbtn4 = By.cssSelector(".slick-slide:nth-child(1) .btn");
+		    By selectPlan =By.cssSelector(".slick-slide:nth-child(2) .btn");
+		    By selectedPlanColor =By.xpath("//a[contains(text(),'Selected')]");
+		    
 		    public void tempMailVerification() throws Exception
 		    {
 		    	Thread.sleep(4000);
@@ -133,11 +152,224 @@ public class userRegistration
 		    	// cu.setCellData("UserRegistration", "Email", 0, strvalue);
 		    	 
 		    }
+		    //to verify validation messages
+		    public void verifyMandatoryFieldsMsg()
+		    {
+		    	driver.findElement(regBtn).click();
+		    	Allure.step("Clicked on register button to verify mandatory fields");
+		    	
+		    	// verify validation messages for first name
+		    	String Actfname ="First Name cannot be blank!";
+		    	String Expfname =driver.findElement(firstNameValidMsg).getText();
+		    	softAssert.assertEquals(Actfname, Expfname, "Field Data Mismatched");
+				Allure.step("Verified First name validation Message");
+				// verify validation messages for last name
+				String Actlname ="Last Name cannot be blank!";
+		    	String Explname =driver.findElement(secondNameValidMsg).getText();
+		    	softAssert.assertEquals(Actlname, Explname, "Field Data Mismatched");
+				Allure.step("Verified Last name validation Message");
+				// verify validation messages for email
+				String ActEmail ="Email cannot be blank!";
+		    	String ExpEmail =driver.findElement(emailValidMsg).getText();
+		    	softAssert.assertEquals(ActEmail, ExpEmail, "Field Data Mismatched");
+				Allure.step("Verified email validation Message");
+				// verify validation messages for country
+				String ActCountry ="Country cannot be blank!";
+		    	String ExpCountry =driver.findElement(countryValidMsg).getText();
+		    	softAssert.assertEquals(ActCountry, ExpCountry, "Field Data Mismatched");
+				Allure.step("Verified country validation Message");
+				// verify validation messages for phone
+				String ActPhone ="Phone cannot be blank!";
+		    	String ExpPhone =driver.findElement(phoneValidMsg).getText();
+		    	softAssert.assertEquals(ActPhone, ExpPhone, "Field Data Mismatched");
+				Allure.step("Verified phone number validation Message");
+				// verify validation messages for company
+				String ActCompany ="Company cannot be blank!";
+		    	String ExpCompany =driver.findElement(companyNameValidMSg).getText();
+		    	softAssert.assertEquals(ActCompany, ExpCompany, "Field Data Mismatched");
+				Allure.step("Verified Company name validation Message");
+				// verify validation messages for company
+				String ActPartnerPolicy ="Please accept the partner policy!";
+		    	String ExpPartnerPolicy =driver.findElement(partnerPolicyValidMSg).getText();
+		    	softAssert.assertEquals(ActPartnerPolicy, ExpPartnerPolicy, "Field Data Mismatched");
+				Allure.step("Verified partner policy validation Message");
+				
+		    }
+		    //test case to register with existing email 
+		    //to test is possible to register with existing customer
+		    public void registerWithExistingEmail(String fstNm, String lstNm)
+		    {
+		    	// Get the current window handle
+		    	String mainWindow = driver.getWindowHandle();
+
+		    	// Open a new tab
+		    	((JavascriptExecutor) driver).executeScript("window.open();");
+		    	for (String windowHandle : driver.getWindowHandles()) {
+		    	    if (!windowHandle.equals(mainWindow)) {
+		    	        driver.switchTo().window(windowHandle);
+		    	        break;
+		    	    }
+		    	}
+		    	driver.get("https://ecompartner.digitalmesh.co.in/");
+
+		    	driver.findElement(registerLink).click();
+		    	Allure.step("Clicked on registration link");
+		    	driver.findElement(firstName).sendKeys(fstNm);
+		    	Allure.step("Entered first name");
+		    	driver.findElement(lastName).sendKeys(lstNm);
+		    	Allure.step("Entered second name");
+		    	driver.findElement(email).sendKeys("davi@maildrop.cc");
+		    	Allure.step("Email id is entered");
+		    	driver.findElement(countrydp).click();
+		    	Allure.step("Clicked on country dropdown");
+		    	
+		    	WebDriverWait wait = new WebDriverWait(driver, 10);
+		    	WebElement element = wait.until(ExpectedConditions.elementToBeClickable(countrydrp));
+		    //	Thread.sleep(1000);
+		    	
+		    	
+		    	
+		    	driver.findElement(countrydrp).click();
+		    	Allure.step("Country name is selected from dropdown");
+		    	String nmbr=RandomStringUtils.randomNumeric(10);
+		    	driver.findElement(phoneno).sendKeys(nmbr);
+		    	Allure.step("Phone number is entered");
+		    	cu.writeToExcels("PartnerDetails", "PhoneNmbr", nmbr);
+		    	
+		    	String cmpnynm=RandomStringUtils.randomAlphabetic(5);
+		    	 driver.findElement(companyName).sendKeys(cmpnynm);
+		    	Allure.step("Company name is entered");
+		    	cu.writeToExcels("PartnerDetails","Company_Name",cmpnynm);
+		    	
+		    	driver.findElement(privacyPol).click();
+		    	Allure.step("Privacy policy is selected");
+		    	driver.findElement(regBtn).click();
+		    	Allure.step("Clicked on register button");
+		    	
+		    	String ActEmailValidationMsg = driver.findElement(emailValidationVerify).getText();
+		    	String ExpEmailValidMsg = "The email has already been taken.";
+		    	softAssert.assertEquals(ActEmailValidationMsg, ExpEmailValidMsg, "Field Data Mismatched");
+				Allure.step("Verified not possible to login with registered email id");
+		    }
 		    
-		    public void register(String fstNm, String lstNm, String emailid) throws Exception
+		    public void registerWithoutPrivacyPolicy(String fstNm, String lstNm, String emailid) throws Exception
 		    {
 
+		    	// Get the current window handle
+		    	String mainWindow = driver.getWindowHandle();
+
+		    	// Open a new tab
+		    	((JavascriptExecutor) driver).executeScript("window.open();");
+		    	for (String windowHandle : driver.getWindowHandles()) {
+		    	    if (!windowHandle.equals(mainWindow)) {
+		    	        driver.switchTo().window(windowHandle);
+		    	        break;
+		    	    }
+		    	}
+		    	driver.get("https://ecompartner.digitalmesh.co.in/");
+
+		    	driver.findElement(registerLink).click();
+		    	Allure.step("Clicked on registration link");
+		    	driver.findElement(firstName).sendKeys(fstNm);
+		    	Allure.step("Entered first name");
+		    	driver.findElement(lastName).sendKeys(lstNm);
+		    	Allure.step("Entered second name");
+		    	driver.findElement(email).sendKeys(emailid);
+		    	Allure.step("Email id is entered");
+		    	driver.findElement(countrydp).click();
+		    	Allure.step("Clicked on country dropdown");
 		    	
+		    	WebDriverWait wait = new WebDriverWait(driver, 10);
+		    	WebElement element = wait.until(ExpectedConditions.elementToBeClickable(countrydrp));
+		    //	Thread.sleep(1000);
+		    	
+		    	//select country from dropdown by typing the letters corresponding to country name
+		    	driver.findElement(countrydp).sendKeys("India");
+		    	Allure.step("Country name is selected");
+//		    	driver.findElement(countrydrp).click();
+//		    	Allure.step("Country name is selected from dropdown");
+		    	String nmbr=RandomStringUtils.randomNumeric(10);
+		    	driver.findElement(phoneno).sendKeys(nmbr);
+		    	Allure.step("Phone number is entered");
+		    	cu.writeToExcels("PartnerDetails", "PhoneNmbr", nmbr);
+		    	
+		    	String cmpnynm=RandomStringUtils.randomAlphabetic(5);
+		    	 driver.findElement(companyName).sendKeys(cmpnynm);
+		    	Allure.step("Company name is entered");
+		    	cu.writeToExcels("PartnerDetails","Company_Name",cmpnynm);
+		    	
+		    	//driver.findElement(privacyPol).click();
+		    	
+		    	driver.findElement(regBtn).click();
+		    	Allure.step("Clicked on register button");
+		    	
+		    	Thread.sleep(2500);
+		    	String Actwel =driver.getTitle();
+		    	String Expwel ="My E-com Wizard";
+		    	softAssert.assertEquals(Actwel, Expwel, "Field Data Mismatched");
+				Allure.step("Verified Welcome Message");  
+		    	
+		    	softAssert.assertAll();
+		    }
+		    //test to register with incorrect email address
+		    public void registerWithIncorrectEmailId(String fstNm, String lstNm, String emailid) throws Exception
+		    {
+		    	// Get the current window handle
+		    	String mainWindow = driver.getWindowHandle();
+
+		    	// Open a new tab
+		    	((JavascriptExecutor) driver).executeScript("window.open();");
+		    	for (String windowHandle : driver.getWindowHandles()) {
+		    	    if (!windowHandle.equals(mainWindow)) {
+		    	        driver.switchTo().window(windowHandle);
+		    	        break;
+		    	    }
+		    	}
+		    	driver.get("https://ecompartner.digitalmesh.co.in/");
+
+		    	driver.findElement(registerLink).click();
+		    	Allure.step("Clicked on registration link");
+		    	driver.findElement(firstName).sendKeys(fstNm);
+		    	Allure.step("Entered first name");
+		    	driver.findElement(lastName).sendKeys(lstNm);
+		    	Allure.step("Entered second name");
+		    	driver.findElement(email).sendKeys(emailid);
+		    	Allure.step("Email id is entered");
+		    	driver.findElement(countrydp).click();
+		    	Allure.step("Clicked on country dropdown");
+		    	
+		    	WebDriverWait wait = new WebDriverWait(driver, 10);
+		    	WebElement element = wait.until(ExpectedConditions.elementToBeClickable(countrydrp));
+		    //	Thread.sleep(1000);
+		    	driver.findElement(countrydrp).click();
+		    	Allure.step("Country name is selected from dropdown");
+		    	String nmbr=RandomStringUtils.randomNumeric(10);
+		    	driver.findElement(phoneno).sendKeys(nmbr);
+		    	Allure.step("Phone number is entered");
+		    	cu.writeToExcels("PartnerDetails", "PhoneNmbr", nmbr);
+		    	
+		    	String cmpnynm=RandomStringUtils.randomAlphabetic(5);
+		    	 driver.findElement(companyName).sendKeys(cmpnynm);
+		    	Allure.step("Company name is entered");
+		    	cu.writeToExcels("PartnerDetails","Company_Name",cmpnynm);
+		    	
+		    	driver.findElement(privacyPol).click();
+		    	Allure.step("Privacy policy is selected");
+		    	driver.findElement(regBtn).click();
+		    	Allure.step("Clicked on register button");
+		    	
+		    	Thread.sleep(2500);
+		    	String Actwel =driver.getTitle();
+		    	String Expwel ="My E-com Wizard";
+		    	softAssert.assertEquals(Actwel, Expwel, "Field Data Mismatched");
+				Allure.step("Verified Welcome Message");  
+		    	
+		    	softAssert.assertAll();
+		    }
+		    
+	    
+		    public void register(String fstNm, String lstNm, String emailid) throws Exception
+		    {
 
 		    	// Get the current window handle
 		    	String mainWindow = driver.getWindowHandle();
@@ -254,6 +486,7 @@ public class userRegistration
 				wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[1]/div/div[2]/div/div[2]/form/div/div[2]/div/div/div[2]/div/input")));
 		    	driver.findElement(logo).sendKeys("D:\\dme595\\Downloads\\logo\\hp.jpg");
 		    	
+		    	
 		    	String Actcmp =driver.findElement(cmpm).getAttribute("value");
 		    	String Expcmp =cu.getCellData("PartnerDetails","Company_Name");
 		    	softAssert.assertEquals(Actcmp, Expcmp, "Field Data Mismatched");
@@ -280,6 +513,120 @@ public class userRegistration
 		    	Thread.sleep(2000);
 		    	softAssert.assertAll();
 		    }
+		    
+		    public void EntercompanydetailsWithInvalidLogo() throws Exception
+		    {
+		    	WebDriverWait wait = new WebDriverWait(driver, 10);
+		    	//Welcome Message Verification
+		    	
+		    	// Get the current window handle
+		    	String mainWindow = driver.getWindowHandle();
+
+		    	// Open a new tab
+		    	
+		    	for (String windowHandle : driver.getWindowHandles()) {
+		    	    if (!windowHandle.equals(mainWindow)) {
+		    	        driver.switchTo().window(windowHandle);
+		    	        break;
+		    	    }
+		    	}
+		    	
+		    	//driver.switchTo().window(mainWindow);
+		    	Thread.sleep(10000);
+		    	driver.findElement(refreshbutn).click();
+		    	//driver.findElement(firstmail).click();
+		    	Thread.sleep(6000);
+		    	int sizej = driver.findElements(By.tagName("iframe")).size();
+		    	System.out.println(sizej);
+		    	Thread.sleep(4000);
+		    	driver.switchTo().frame(0);
+		    	driver.findElement(verifymail).click();
+		    	Thread.sleep(6000);
+		    	driver.switchTo().defaultContent();
+		    	
+	    	   ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
+	    	    driver.switchTo().window(tabs2.get(0));
+		    	    
+		    	    Thread.sleep(3000);
+		    	   driver.close();
+		    	   Thread.sleep(3000);
+		    	   
+		    	   ArrayList<String> tabs3 = new ArrayList<String> (driver.getWindowHandles());
+		    	   System.out.println(tabs3.size());
+		    	    driver.switchTo().window(tabs3.get(1));
+		    	
+		    	
+		    	String Actcmptitle =driver.getTitle();
+			    String Expcmptitle ="My E-com Wizard";
+			    softAssert.assertEquals(Actcmptitle, Expcmptitle, "Field Data Mismatched");
+				Allure.step("Verified title of company details page"); 
+		    	
+				wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[1]/div/div[2]/div/div[2]/form/div/div[2]/div/div/div[2]/div/input")));
+		    	
+		    	//verify logo with file type gif
+		    	driver.findElement(logo).sendKeys("D:\\dme595\\Downloads\\car\\car-driving-7.gif");
+		    	
+		    	//verify logo with file type excel
+		    	driver.findElement(logo).sendKeys("D:\\dme595\\Downloads\\Salessummery_01-Nov-2022_13-Jan-2023 (2).xls");
+		    	
+		    	String ActLogoErrMsg =driver.findElement(logoErrorMsg).getText();
+		    	String ExpLogoErrMsg = "Please upload file having extensions: .jpeg/.jpg/.png";
+		    	softAssert.assertEquals(ActLogoErrMsg, ExpLogoErrMsg, "Field Data Mismatched");
+				Allure.step("Verified file upload with .jpeg/.jpg/.png"); 
+		    	
+		    	
+		    	
+		    	
+		    	String Actcmp =driver.findElement(cmpm).getAttribute("value");
+		    	String Expcmp =cu.getCellData("PartnerDetails","Company_Name");
+		    	softAssert.assertEquals(Actcmp, Expcmp, "Field Data Mismatched");
+				Allure.step("Verified Company Name"); 
+				
+				driver.findElement(address1).sendKeys("Add"+RandomStringUtils.randomAlphabetic(5));
+		    	Allure.step("Address one is entered");
+		    	
+		    	//verify address fields with more than 150 characters
+		    	driver.findElement(address2).sendKeys("Addrs"+RandomStringUtils.randomAlphabetic(200));
+		    	Allure.step("Address two is entered");
+		    	Thread.sleep(2000);
+		    	String address_two = driver.findElement(address2).getAttribute("value");
+		    	// Get the length of typed value
+				int size = address_two.length();
+				// Assert with expected
+				if (size == 150) {
+					System.out.println("Max character functionality is working fine.");
+				}
+		 
+				else {
+					System.out.println("No limit is set for address two.");
+				}
+		    	//Verify address two is mandatory or not
+				//driver.findElement(address2).sendKeys(" ");
+		    	
+		    	driver.findElement(city).sendKeys(RandomStringUtils.randomAlphabetic(5));
+		    	Allure.step("City is entered");
+		    	driver.findElement(state).sendKeys(RandomStringUtils.randomAlphabetic(5));
+		    	Allure.step("State is entered");
+		    	driver.findElement(zipcode).sendKeys(RandomStringUtils.randomNumeric(6));
+		    	Allure.step("Zipcode is entered");
+		    	driver.findElement(website).sendKeys("https://www.digitalmesh.com/");
+		    	Allure.step("Website is entered");
+		    	driver.findElement(policylink).sendKeys("https://www.digitalmesh.com/policies");
+		    	Allure.step("Policy Link is entered");
+		    	driver.findElement(taxid).sendKeys(RandomStringUtils.randomNumeric(4));
+		    	Allure.step("Tax ID is entered");
+		    	driver.findElement(nextbtn1).click();
+		    	Allure.step("Next button is clicked");
+		    	Thread.sleep(2000);
+		    	softAssert.assertAll();
+		    }
+		    
+		    
+		    
+		    
+		    
+		    
+		    
 //		    public void clickNextBtn() throws InterruptedException
 //		    {
 //		    	driver.findElement(nextbtn1).click();
@@ -309,6 +656,17 @@ public class userRegistration
 		    	Allure.step("Next button is clicked");
 		    	softAssert.assertAll();
 		    }
+		    public void RegWithoutTermsAndCon()
+		    {
+		    	
+		    	
+//		    	driver.findElement(readterms).click();
+//		    	Allure.step("Terms and conditions checkbox is selected");
+		    	driver.findElement(nextbtn2).click();
+		    	Allure.step("Next button is clicked");
+		    	softAssert.assertAll();
+		    }
+		    
 		    public void subPlans() throws Exception
 		    {
 		    	WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -336,6 +694,94 @@ public class userRegistration
 		    	softAssert.assertEquals(Actsubptitle, Expsubptitle, "Field Data Mismatched");
 				Allure.step("Verified Subscription Payment URL");
 		    	softAssert.assertAll();
+		    }
+		    
+		    public void subPlansColourVerificationMouseHover() throws Exception
+		    {
+		    	WebDriverWait wait = new WebDriverWait(driver, 10);
+		    	Thread.sleep(2000);
+				
+		    	//verify colour change while mouse hover on different subscription plan
+		    	driver.findElement(choosePlanbtn3).getCssValue("background-color");
+		    	
+		    	String ActplanColour=driver.findElement(choosePlanbtn3).getCssValue("background-color");
+		    	String ExpplanColour="rgba(189, 211, 204, 1)";
+		    	Thread.sleep(2500);
+		    	softAssert.assertEquals(ActplanColour, ExpplanColour, "Field Data Mismatched");
+				Allure.step("Verified colour change while mouse hover on different subscription plans");
+				
+				
+				
+		    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(.,'6 months')]")));
+		    	driver.findElement(chooseplanmonth).click();
+		    	Allure.step("Plan month is selected");
+		    	//Thread.sleep(2000);
+		    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Choose')]")));
+		    	driver.findElement(chooseplan).click();
+		    	Allure.step("Plan is selected");
+		    	driver.findElement(nextbtn3).click();
+		    	Allure.step("Next button is clicked");
+		    	Thread.sleep(6000);
+		    	
+		    	
+		    }
+		    
+		    public void subPlansColourChangeAfterSubPlanSelect() throws Exception
+		    {
+		    	WebDriverWait wait = new WebDriverWait(driver, 10);
+		    	Thread.sleep(2000);
+				
+			
+				
+		    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(.,'6 months')]")));
+		    	driver.findElement(chooseplanmonth).click();
+		    	Allure.step("Plan month is selected");
+		    	Thread.sleep(2000);
+		    	driver.findElement(selectPlan).click();
+		    	Allure.step("Subscription plan is selected");
+		    	Thread.sleep(2000);
+		    	
+		    	//Verify Colour Change
+		    	String ActselPlanColor =driver.findElement(selectedPlanColor).getCssValue("background-color");
+		    	String ExpselPlanColor="rgba(189, 211, 204, 1)";
+		    	softAssert.assertEquals(ActselPlanColor, ExpselPlanColor, "Field Data Mismatched");
+				Allure.step("Verified colour of subscription plan which is selected");
+		    	
+		    	
+		    	
+		    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Choose')]")));
+		    	driver.findElement(chooseplan).click();
+		    	Allure.step("Plan is selected");
+		    	driver.findElement(nextbtn3).click();
+		    	Allure.step("Next button is clicked");
+		    	Thread.sleep(6000);
+		    	softAssert.assertAll();
+		    	
+		    }
+		    public void subPlansWithoutSelectingPlan() throws Exception
+		    {
+		    	WebDriverWait wait = new WebDriverWait(driver, 10);
+		    	Thread.sleep(2000);
+				
+				String ActurlsubH =driver.findElement(subpln).getText();
+		    	String ExpurlsubH="Choose your plan";
+		    	softAssert.assertEquals(ActurlsubH, ExpurlsubH, "Field Data Mismatched");
+				Allure.step("Verified Subscription Plan Heading");
+				
+		    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(.,'6 months')]")));
+		    	driver.findElement(chooseplanmonth).click();
+		    	Allure.step("Plan month is selected");
+		    	//Thread.sleep(2000);
+		    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Choose')]")));
+//		    	driver.findElement(chooseplan).click();
+		    	Allure.step("Plan is selected");
+		    	driver.findElement(nextbtn3).click();
+		    	Allure.step("Next button is clicked");
+		    	Thread.sleep(6000);
+		    	
+		    	
+		    	
+		    	
 		    }
 		    public void subPayment() throws InterruptedException
 		    {

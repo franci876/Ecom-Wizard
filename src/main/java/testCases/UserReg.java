@@ -31,12 +31,38 @@ public class UserReg extends BaseClass
 			userRegistration ur =new userRegistration(driver);
 			ur.tempMailVerification();
 			ur.register(xcl.getCellData("PartnerDetails", "First Name"),xcl.getCellData("PartnerDetails", "Last Name"),xcl.getCellData("PartnerDetails", "Partner_Email"));
-			
 			ur.Entercompanydetails();
-			//ur.clickNextBtn();
 			ur.termsandcon();
 			ur.subPlans();
-			ur.subPayment();
+			ur.subPayment(); 
+			ur.setPasswrd(xcl.getCellData("PartnerDetails", "Pass"));
+			Thread.sleep(3000);
+			loginPage lp =new loginPage(driver);
+			lp.loginClick(xcl.getCellData("PartnerDetails", "Partner_Email"), xcl.getCellData("PartnerDetails", "Patrner_Password_Record"));
+			ur.verifyPartnerAdded();
+		}
+	
+	//@Test(priority =2, groups ="Regression")
+	@Description("TestCase : User Registration2 ")
+	public void userRegRegressionTest() throws Exception
+	{
+		
+			userRegistration ur =new userRegistration(driver);
+			ur.tempMailVerification();
+			
+			ur.registerWithExistingEmail(xcl.getCellData("PartnerDetails", "First Name"),xcl.getCellData("PartnerDetails", "Last Name"));
+			//ur.verifyMandatoryFieldsMsg();
+			ur.registerWithoutPrivacyPolicy(xcl.getCellData("PartnerDetails", "First Name"),xcl.getCellData("PartnerDetails", "Last Name"),xcl.getCellData("PartnerDetails", "Partner_Email"));
+			ur.registerWithIncorrectEmailId(xcl.getCellData("PartnerDetails", "First Name"),xcl.getCellData("PartnerDetails", "Last Name"),xcl.getCellData("PartnerDetails", "Partner_Email"));
+			ur.EntercompanydetailsWithInvalidLogo();
+			ur.tempMailVerification();
+			ur.register(xcl.getCellData("PartnerDetails", "First Name"),xcl.getCellData("PartnerDetails", "Last Name"),xcl.getCellData("PartnerDetails", "Partner_Email"));
+			ur.EntercompanydetailsWithInvalidLogo();
+			ur.Entercompanydetails();
+			ur.RegWithoutTermsAndCon();
+			ur.subPlansColourVerificationMouseHover();
+			ur.subPlansColourChangeAfterSubPlanSelect();
+			ur.subPayment(); 
 			ur.setPasswrd(xcl.getCellData("PartnerDetails", "Pass"));
 			Thread.sleep(3000);
 			loginPage lp =new loginPage(driver);

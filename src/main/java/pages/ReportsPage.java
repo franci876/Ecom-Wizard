@@ -249,6 +249,8 @@ public class ReportsPage
 			    	
 			    	
 			    }
+			   
+			    
 			    public void selectDateFromDropdown2() throws Exception
 				{
 				By monthsel = By.cssSelector("div[title='"+cu.getCellData("Reports", "FilterByDateCustom")+"']");

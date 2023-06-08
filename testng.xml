@@ -11,5 +11,11 @@
       <class name="testCases.AddProducts"/>
       <class name="testCases.OrdersTest"/>
     </classes>
+    
+    
+    
   </test> <!-- Test -->
+  
 </suite> <!-- Suite -->
+
+  

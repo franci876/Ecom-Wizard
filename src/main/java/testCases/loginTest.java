@@ -44,7 +44,7 @@ public class loginTest extends BaseClass
 		lg.logout();
 	}
 	
-	@Test(priority=3)
+	@Test(priority=3, groups = { "Regression" })
 	@Description("TestCase : Login Negative case with wrong credentials")
 	public void loginNeg1() throws Exception
 	{
@@ -52,7 +52,7 @@ public class loginTest extends BaseClass
 		lp.loginClick(xcl.getCellData("Login","EmailNegCase1"), xcl.getCellData("Login","PassNegCase1"));
 		lp.loginfails();
 	}
-	@Test(priority=4)
+	@Test(priority=4, groups = { "Regression" })
 	@Description("TestCase : Login Negative case with no email id")
 	public void loginNeg2() throws Exception
 	{
@@ -60,20 +60,35 @@ public class loginTest extends BaseClass
 		lp.loginClick(" ", xcl.getCellData("Login","PassNegCase2"));
 
 	}
-	@Test(priority=5)
+	@Test(priority=5, groups = { "Regression" })
 	@Description("TestCase : Login Negative case with wrong email id")
 	public void loginNeg3() 
 	{
 		loginPage lp =new loginPage(driver);
 		lp.loginClick(xcl.getCellData("Login","EmailNegCase3"), xcl.getCellData("Login","PassNegCase3"));	
 	}
-	@Test(priority=6)
+	@Test(priority=6, groups = { "Regression" })
 	@Description("TestCase : Login Negative case with blank space as password")
 	public void loginNeg4() 
 	{
 		loginPage lp =new loginPage(driver);
 		lp.loginClick(xcl.getCellData("Login","Email"), " ");	
 	}
+	@Test(priority=7, groups = { "Regression" })
+	@Description("TestCase : Login Negative case with blank space as password")
+	public void loginValidCred1()
+	{
+		loginPage lp =new loginPage(driver);
+		lp.loginClick(xcl.getCellData("Login","Login_Valid_Email_2"), xcl.getCellData("Login","Login_Valid_Password_2"));	
+	}
+	@Test(priority=8, groups = { "Regression" })
+	@Description("TestCase : Login Negative case with blank space as password")
+	public void loginValidCred2()
+	{
+		loginPage lp =new loginPage(driver);
+		lp.loginClick(xcl.getCellData("Login","Login_Valid_Email_3"), xcl.getCellData("Login","Login_Valid_Password_3"));	
+	}
+	
 	
 	@AfterTest
 	public void afterTest()

@@ -84,6 +84,16 @@ public class OrdersPage
 	By custNumber = By.cssSelector(".col-3 .field-info-value");
 	By custEmail = By.cssSelector(".col-5 .field-info-value");
 	By custAddress = By.cssSelector("css=.col-12 .field-info-value");
+	By prodctName = By.cssSelector(".ant-space-item:nth-child(2)");
+	By prodPrice = By.xpath("//div[@id='root']/div/div[2]/div/div/div[2]/div[3]/div/div/div/div[2]/div/div/div/div/div/div/table/tbody/tr/td[4]");
+	By prodQnty = By.xpath("//div[@id='root']/div/div[2]/div/div/div[2]/div[3]/div/div/div/div[2]/div/div/div/div/div/div/table/tbody/tr/td[5]");
+	By totProdPrice = By.xpath("//div[@id='root']/div/div[2]/div/div/div[2]/div[3]/div/div/div/div[2]/div/div/div/div/div/div/table/tbody/tr/td[6]/p");
+	By totalQnty = By.xpath("//div[@id='root']/div/div[2]/div/div/div[2]/div[3]/div/div/div/div[2]/div/div/div/div/div/div/table/tfoot/tr/td[5]/span");
+	By totalPrice = By.xpath("//div[@id='root']/div/div[2]/div/div/div[2]/div[3]/div/div/div/div[2]/div/div/div/div/div/div/table/tfoot/tr/td[6]/span");
+	By shipCharge = By.cssSelector(".row:nth-child(1) > .col-2");
+	By salesTax = By.cssSelector(".bg-light > .col-2");
+	By grandTotal = By.cssSelector(".h6 > .col-2");
+	
 	
 	public void navigateToOrderPage()
 	{
@@ -594,6 +604,67 @@ public class OrdersPage
 		String expCustaddress = cu.getCellData("OrderDetails", "Customer_address");
 		softAssert.assertEquals(actCustaddress, expCustaddress, "Field Data Mismatched");
 		Allure.step("Customer address is verified");
+		
+		//verify SKU ID 
+		String ActSKUID = driver.findElement(findSKU).getText();
+		String ExpSKUrID = cu.getCellData("OrderDetails","SKU_ID");
+		softAssert.assertEquals(ActSKUID, ExpSKUrID, "Field Data Mismatched");
+		Allure.step("Verified SKU ID");
+		
+		//Verify Product Name 
+		String ActProdNm = driver.findElement(prodctName).getText();
+		String ExpProdNm = cu.getCellData("OrderDetails", "Product_Name");
+		softAssert.assertEquals(ActProdNm, ExpProdNm, "Field Data Mismatched");
+		Allure.step("Verified Product Name");
+		
+		//Verify Product Price 
+		String ActProdPrice = driver.findElement(prodPrice).getText();
+		String ExpProdPrice = cu.getCellData("OrderDetails", "Product_Price");
+		softAssert.assertEquals(ActProdPrice, ExpProdPrice, "Field Data Mismatched");
+		Allure.step("Verified Product Price");
+		
+		//Verify Product Quantity 
+		String ActProdQnty = driver.findElement(prodQnty).getText();
+		String ExpProdQnty = cu.getCellData("OrderDetails", "Product_Quantity");
+		softAssert.assertEquals(ActProdQnty, ExpProdQnty, "Field Data Mismatched");
+		Allure.step("Verified Product Quantity");
+		
+		//Verify total item price 
+		String ActProdTotPrice = driver.findElement(totProdPrice).getText();
+		String ExpProdTotPrice = cu.getCellData("OrderDetails", "Total_Product_Price");
+		softAssert.assertEquals(ActProdTotPrice, ExpProdTotPrice, "Field Data Mismatched");
+		Allure.step("Verified Product total item price");
+		
+		//Verify product total quantity
+		String ActtotalQnty = driver.findElement(totalQnty).getText();
+		String ExptotalQnty = cu.getCellData("OrderDetails", "Total_Product_Price");
+		softAssert.assertEquals(ActtotalQnty, ExptotalQnty, "Field Data Mismatched");
+		Allure.step("Verified Product total quantity");
+		
+		//Verify product total price
+		String ActtotalPrice= driver.findElement(totalPrice).getText();
+		String ExptotalPrice = cu.getCellData("OrderDetails", "Total_Product_Price");
+		softAssert.assertEquals(ActtotalPrice, ExptotalPrice, "Field Data Mismatched");
+		Allure.step("Verified Product total price");
+
+		//Verify product shipping charge
+		String ActShipCharge = driver.findElement(shipCharge).getText();
+		String ExpShipCharge = cu.getCellData("OrderDetails", "Product_Ship_Charge");
+		softAssert.assertEquals(ActShipCharge, ExpShipCharge, "Field Data Mismatched");
+		Allure.step("Verified Product shipping charge");
+		
+		//Verify product sales tax
+		String ActProdSalesTax = driver.findElement(salesTax).getText();
+		String ExpProdSalesTax = cu.getCellData("OrderDetails", "Sales_Tax");
+		softAssert.assertEquals(ActProdSalesTax, ExpProdSalesTax, "Field Data Mismatched");
+		Allure.step("Verified Product sales tax");
+		
+		//Verify product grand total
+		String ActGrandTotal = driver.findElement(grandTotal).getText();
+		String ExpGrandTotal = cu.getCellData("OrderDetails", "Grand_Total");
+		softAssert.assertEquals(ActGrandTotal, ExpGrandTotal, "Field Data Mismatched");
+		Allure.step("Verified product grand total");
+
 	}
 	
 }	

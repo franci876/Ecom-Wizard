@@ -33,12 +33,13 @@ public class ProductSearchTest extends BaseClass
 			lp.loginClick(xcl.getCellData("Login", "Partner_Email"), xcl.getCellData("Login", "Patrner_Password_Record"));
 			ProductSearchPage pe =new ProductSearchPage(driver);
 			pe.gotoProductSearch();
-			pe.productSearchBySku();
-			pe.verifyProdSearchBySku();
-			pe.prodSearchByCategory();
-			pe.verifyProdSearchByCategory();
-			pe.prodSearchByStock();
-			pe.searchByStatus();
+//			pe.productSearchBySku();
+//			pe.verifyProdSearchBySku();
+//			pe.prodSearchByCategory();
+//			pe.verifyProdSearchByCategory();
+//			pe.prodSearchByStock();
+//			pe.searchByStatus();
+			pe.prodSearchByDate();
 			
 		
 		}

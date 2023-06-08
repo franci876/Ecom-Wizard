@@ -1,6 +1,11 @@
 package pages;
 
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
 import java.util.List;
+import java.util.Locale;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -36,6 +41,8 @@ public class ProductSearchPage
 	By prodStock = By.xpath("//select[@name='stock']");
 	By ProdStatus = By.xpath("//select[@name='Country']");
 	By Prodfilter = By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/div/div[2]/div[2]/div[1]/div[1]/div/div[3]/a");
+	
+	By datepick = By.cssSelector("input:nth-child(1)");
 	
 
 	
@@ -167,4 +174,70 @@ public class ProductSearchPage
 		driver.findElement(Prodfilter).click();
 		Allure.step("Clicked on filter Button");
 	}
+	public void prodSearchByDate() throws Exception
+	{
+		driver.findElement(datepick).click();
+		
+    	String FilterDate=cu.getCellData("CustomDate", "ProductSearchDate");
+    	this.myEcomDateSelection(driver, FilterDate);
+    	Allure.step("Filter date is selected");
+    	Thread.sleep(5000);
+    	driver.findElement(searchbtn).click();
+		Allure.step("Clicked on search Button");
+		
+		
+	}
+	 public void myEcomDateSelection(WebDriver driver, String inputDate) throws InterruptedException {
+			
+	    	//	String inputDate = "2021-09-14";
+
+	            // Parse the input date string into a LocalDate object
+	            LocalDate date = LocalDate.parse(inputDate);
+
+	            // Format the LocalDate object to the desired output format
+	            DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy MMM");
+	            String outputDate = date.format(outputFormatter);
+
+	            // Extract year, month, and day from the LocalDate object
+	            String year = String.valueOf(date.getYear());
+	            String month = date.getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
+	            String day = String.valueOf(date.getDayOfMonth());
+	     
+
+	            // Format the LocalDate object to the desired output format
+
+	            // Extract year, month, and day from the LocalDate object
+	         // Get the current year and month
+	            YearMonth currentYearMonth = YearMonth.now();
+
+	            // Extract the current year and month as separate strings
+	            String currentYear = String.valueOf(currentYearMonth.getYear());
+	            String currentMonth = String.valueOf(currentYearMonth.getMonthValue());
+	            currentMonth = currentYearMonth.getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
+	            
+
+	            
+	    		CommonUtilities cu = new CommonUtilities();
+
+	    	
+	    		  //driver.findElement(By.id("datepick")).click();
+	    		  Thread.sleep(1000);
+	    		  cu.findElementByClassNameAndText("ant-picker-year-btn", currentYear, driver);
+	    		  Thread.sleep(1000);
+	    		  cu.findElementByClassNameAndText("ant-picker-cell-inner",year, driver);
+	    		  Thread.sleep(1000);
+	    		  
+	    		  System.out.println(currentMonth);
+	    		  cu.findElementByClassNameAndText("ant-picker-month-btn", currentMonth, driver);
+	    		  Thread.sleep(1000);
+	    		  cu.findElementByClassNameAndText("ant-picker-cell-inner",month, driver);
+	    		  Thread.sleep(1000);
+	    		  
+	    		  cu.findElementByClassNameAndText("ant-picker-cell-inner", day, driver);
+	    		  
+	    		  Thread.sleep(1000);
+	    		  	    		  
+	    	}
+	    	
+	 
 }

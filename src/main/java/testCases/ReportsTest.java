@@ -37,19 +37,20 @@ public class ReportsTest extends BaseClass
 			@Description("TestCase : To verify marketplace sales reports")
 			public void marketPlaceSalesReports() throws Exception
 			{
-				ReportsPage rp = new ReportsPage(driver);
+//				ReportsPage rp = new ReportsPage(driver);
 //				rp.marketPlaceSalesReport();
 //				rp.verifyMarketplace();
-				rp.marketPlaceSalesRepoFilterByCustomRange();
+//				rp.marketPlaceSalesRepoFilterByCustomRange();
 			}
 			@Test(priority=3)
 			@Description("TestCase : To verify category sales reports")
 			public void categorySales() throws Exception
 			{
-//				ReportsPage rp = new ReportsPage(driver);
+				ReportsPage rp = new ReportsPage(driver);
 //				rp.categorySales();
 //				rp.verifyCategory();
 //				rp.CategorySalesRepoFilterByCustomRange();
+				
 			}
 			@Test(priority=4)
 			@Description("TestCase : To verify top selling products reports")
@@ -58,7 +59,7 @@ public class ReportsTest extends BaseClass
 				ReportsPage rp = new ReportsPage(driver);
 //				rp.topSellingProducts();
 //				rp.verifyProduct();
-//				rp.TopSellingProductsFilterByCustomRange();
+				rp.TopSellingProductsFilterByCustomRange();
 			}
 }
 

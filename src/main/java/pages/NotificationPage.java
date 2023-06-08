@@ -18,6 +18,7 @@ public class NotificationPage
 		        
 		    }
 		    By notificationIcon =By.cssSelector(".anticon-bell > svg");
+		    By markread = By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/div[2]/div/div/div/div[2]/div/div[1]/a");
 		    By notiMsg = By.xpath("//*[@id=\"notifi-messages--tab\"]");
 		    By warningMsg = By.xpath("//*[@id=\"notifi-warnings--tab\"]");
 		    By errorMsg = By.xpath("//*[@id=\"notifi-errors--tab\"]");
@@ -37,6 +38,10 @@ public class NotificationPage
 				Thread.sleep(2000);
 				driver.findElement(notiMsg).click();
 				Allure.step("Clicked on notification messages tab");
+				driver.findElement(markread).click();
+				Allure.step("Clicked on mark all as read button");
+
+				
 				Thread.sleep(2000);
 				driver.findElement(warningMsg).click();
 				Allure.step("Clicked on warning messages tab");

@@ -32,8 +32,10 @@ public class AccountSettingsTest extends BaseClass
 			AccountSettingsPage asp =new AccountSettingsPage(driver);
 			asp.navigateToSettings();
 			asp.deactivateAccount();
-			lp.loginClick(xcl.getCellData("Login","Email"), xcl.getCellData("Login","Password_Record"));
+			Thread.sleep(2000);
+			asp.verifyDeactivateAccount();
 			asp.activateAccount();
-		
+			Thread.sleep(2000);
+			asp.verifyActivateAccount();
 		}
 }
